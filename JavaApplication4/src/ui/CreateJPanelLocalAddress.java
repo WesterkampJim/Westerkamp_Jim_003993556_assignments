@@ -117,7 +117,7 @@ public class CreateJPanelLocalAddress extends javax.swing.JPanel {
        // Save data to our person profile object.
        boolean valid=true;
        String message = "Successfully saved";
-       //ensure all fields are filled and radio buttons have a selection.
+       //ensure all fields are filled 
        if (!validateAllFieldsNotEmpty() ){
            valid=false;
            message="Please enter all information before saving.";
@@ -125,14 +125,14 @@ public class CreateJPanelLocalAddress extends javax.swing.JPanel {
 
        }else{
                     
-            //getting text and validations for first name
+            //getting text and validations for street name
             String street = fieldStreetName.getText();
             if (street.length()>99){
                 valid=false;
                 message="please enter a street name less than 100 characters";
             }
             
-                        //getting text and validations for first name
+            //getting text and validations for city
             String city = fieldCity.getText();
             if (city.length()>99){
                 valid=false;
@@ -143,30 +143,45 @@ public class CreateJPanelLocalAddress extends javax.swing.JPanel {
                 message="please enter a city name with only letters";
             }
             
-            //getting text and validations for first name
+            //getting text and validations for unit
             String unit = fieldUnitNumber.getText();
             if (unit.length()>9){
                 valid=false;
                 message="please enter a unit with less than 10 characters";
             }
 
+            //getting text and validations for zip code
+            String zipCode = fieldZipCode.getText();
+            if (zipCode.length()>15){
+                valid=false;
+                message="please enter a unit with less than 16 characters";
+            }else if (!zipCode.matches("[0-9]+")){
+                valid=false;
+                message="please enter a Zip Code with numbers only";
+            }
             
             //getting text and validations for first name
             String country = fieldCountry.getText();
             if (country.length()>100){
                 valid=false;
                 message="please enter a country with less than 100 characters";
-            }
-            if (!country.matches("[a-zA-Z ]+")){
+            }else if (!country.matches("[a-zA-Z ]+")){
                 valid=false;
                 message="please enter a country with only letters";
             }
+            
+            
 
             //////validation check,
            if (!valid){
                 JOptionPane.showMessageDialog(this, message, "Failed to Save",JOptionPane.INFORMATION_MESSAGE);
            }else{
-               
+                           //set all the fields into persons home address object.   
+            person.getLocalAddress().setCity(city);  
+            person.getLocalAddress().setCountry(country);
+            person.getLocalAddress().setStreetName(street);
+            person.getLocalAddress().setUnitNum(unit);
+            person.getLocalAddress().setZipCode(zipCode);
                
                JOptionPane.showMessageDialog(this, "Saved Successfully", "Saved Successfully",JOptionPane.INFORMATION_MESSAGE);
            }

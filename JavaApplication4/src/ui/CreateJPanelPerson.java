@@ -99,6 +99,8 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
         lblCountry = new javax.swing.JLabel();
         fieldCountry = new javax.swing.JTextField();
         lblZipCode = new javax.swing.JLabel();
+        fieldOccupation = new javax.swing.JTextField();
+        lblOccupation = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(220, 200, 200));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -197,6 +199,11 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
         lblZipCode.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblZipCode.setText("Zip Code");
         add(lblZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 510, -1, -1));
+        add(fieldOccupation, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 100, -1));
+
+        lblOccupation.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblOccupation.setText("Occupation");
+        add(lblOccupation, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
   
@@ -233,6 +240,16 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
                 message="please enter a last name less than 100 characters";
             }
             if (!lastName.matches("[a-zA-Z ]+")){
+                valid=false;
+                message="please enter a last name with only letters";
+            }
+            
+            String occupation = fieldOccupation.getText();
+            if (occupation.length()>99){
+                valid=false;
+                message="please enter a last name less than 100 characters";
+            }
+            if (!occupation.matches("[a-zA-Z ]+")){
                 valid=false;
                 message="please enter a last name with only letters";
             }
@@ -363,6 +380,15 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
            if (!valid){
                 JOptionPane.showMessageDialog(this, message, "Failed to Save",JOptionPane.INFORMATION_MESSAGE);
            }else{
+                           /// setting all the bank data in our bank product.
+            person.setFirstName(firstName);
+            person.setLastName(lastName);
+            person.setAge(age);
+            person.setMarried(married);
+            person.setOccupation(occupation);
+               
+            
+
                
                
                JOptionPane.showMessageDialog(this, "Saved Successfully", "Saved Successfully",JOptionPane.INFORMATION_MESSAGE);
@@ -387,6 +413,7 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
     private javax.swing.JTextField fieldFirstName;
     private javax.swing.JTextField fieldGrowth;
     private javax.swing.JTextField fieldLastName;
+    private javax.swing.JTextField fieldOccupation;
     private javax.swing.JTextField fieldPIN;
     private javax.swing.JTextField fieldStreetName;
     private javax.swing.JTextField fieldUnitNumber;
@@ -403,6 +430,7 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
     private javax.swing.JLabel lblHomeAddress;
     private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblMaritalStatus1;
+    private javax.swing.JLabel lblOccupation;
     private javax.swing.JLabel lblPIN;
     private javax.swing.JLabel lblPersonProfile;
     private javax.swing.JLabel lblStreetName;

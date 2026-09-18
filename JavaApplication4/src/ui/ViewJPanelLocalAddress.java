@@ -19,8 +19,18 @@ public class ViewJPanelLocalAddress extends javax.swing.JPanel {
     public ViewJPanelLocalAddress(Person p) {
         initComponents();
         person = p;
+        displayInformation();
     }
+    
+    private void displayInformation(){
+            ///grabs all local address object attr values from person and displays.
+            fieldCity.setText(person.getLocalAddress().getCity());
+            fieldCountry.setText(person.getLocalAddress().getCountry());
+            fieldStreetName.setText(person.getLocalAddress().getStreetName());
+            fieldUnitNumber.setText(person.getLocalAddress().getUnitNum());
+            fieldZipCode.setText(person.getLocalAddress().getZipCode());
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,32 +57,32 @@ public class ViewJPanelLocalAddress extends javax.swing.JPanel {
 
         lblLocalAddress.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         lblLocalAddress.setText("Local Address");
-        add(lblLocalAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 196, 58));
+        add(lblLocalAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 196, 58));
 
         lblStreetName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblStreetName.setText("Street Name");
-        add(lblStreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
+        add(lblStreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
 
         lblUnitNumber.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblUnitNumber.setText("Unit Number");
-        add(lblUnitNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
+        add(lblUnitNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, -1, -1));
 
         lblCity.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblCity.setText("City");
-        add(lblCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, -1, -1));
-        add(fieldCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 100, -1));
-        add(fieldUnitNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 100, -1));
-        add(fieldStreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 100, -1));
-        add(fieldZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 100, -1));
+        add(lblCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, -1));
+        add(fieldCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 100, -1));
+        add(fieldUnitNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 100, -1));
+        add(fieldStreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 100, -1));
+        add(fieldZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 100, -1));
 
         lblCountry.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblCountry.setText("Country");
-        add(lblCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, -1, -1));
-        add(fieldCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 100, -1));
+        add(lblCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, -1, -1));
+        add(fieldCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 100, -1));
 
         lblZipCode.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblZipCode.setText("Zip Code");
-        add(lblZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, -1));
+        add(lblZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 

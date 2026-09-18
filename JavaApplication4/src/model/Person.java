@@ -13,6 +13,7 @@ public class Person {
 
     String FirstName;
     String LastName;
+    String Occupation;
     int Age;
     boolean Married;
     Address homeAddress;
@@ -56,6 +57,10 @@ public class Person {
     public void setLastName(String LastName) {
         this.LastName = LastName;
     }
+    
+    public void setOccupation(String Occupation) {
+        this.Occupation = Occupation;
+    }
 
     public void setAge(int Age) {
         this.Age = Age;
@@ -76,11 +81,16 @@ public class Person {
     public int getAge() {
         return Age;
     }
+    
+    public String getOccupation() {
+        return Occupation;
+    }
 
     public boolean isMarried() {
         return Married;
     }
 
+    
 }
 
 

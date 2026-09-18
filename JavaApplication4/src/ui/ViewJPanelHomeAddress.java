@@ -19,7 +19,19 @@ public class ViewJPanelHomeAddress extends javax.swing.JPanel {
     public ViewJPanelHomeAddress(Person p) {
         initComponents();
         person = p;
+        displayInformation();
     }
+    
+        private void displayInformation(){
+            ///grabs all local address object attr values from person and displays.
+            fieldCity.setText(person.getHomeAddress().getCity());
+            fieldCountry.setText(person.getHomeAddress().getCountry());
+            fieldStreetName.setText(person.getHomeAddress().getStreetName());
+            fieldUnitNumber.setText(person.getHomeAddress().getUnitNum());
+            fieldZipCode.setText(person.getHomeAddress().getZipCode());
+
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
