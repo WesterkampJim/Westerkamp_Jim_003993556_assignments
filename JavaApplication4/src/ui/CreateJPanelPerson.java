@@ -46,6 +46,18 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
             return true;
     }
     
+    
+        public void clearAllFields(){
+        // for loop, grabs all components in "this" class instance
+        for (Component c : this.getComponents()){
+        // if the component is a jtextfield set text to "", if its a radio, remove selection   
+            if (c instanceof JTextField f){
+                    f.setText("");
+            }
+            }
+        //removes radio button selection
+         btnGroupMaritalStatus.clearSelection();
+        }
 
     //Method to validate that one of 2 radio buttons is selected.
     public boolean validateRadioButtons(JRadioButton a, JRadioButton b){
@@ -66,9 +78,7 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
     private void initComponents() {
 
         btnGroupMaritalStatus = new javax.swing.ButtonGroup();
-        lblHomeAddress = new javax.swing.JLabel();
         lblPersonProfile = new javax.swing.JLabel();
-        lblBankInformation1 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         radioMarried = new javax.swing.JRadioButton();
         radioSingle = new javax.swing.JRadioButton();
@@ -79,43 +89,15 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
         fieldAge = new javax.swing.JTextField();
         fieldLastName = new javax.swing.JTextField();
         fieldFirstName = new javax.swing.JTextField();
-        lblBankName = new javax.swing.JLabel();
-        lblBalance = new javax.swing.JLabel();
-        lblGrowth = new javax.swing.JLabel();
-        fieldGrowth = new javax.swing.JTextField();
-        fieldBalance = new javax.swing.JTextField();
-        fieldBankName = new javax.swing.JTextField();
-        fieldAccountNumber = new javax.swing.JTextField();
-        lblPIN = new javax.swing.JLabel();
-        fieldPIN = new javax.swing.JTextField();
-        lblAccountNumber = new javax.swing.JLabel();
-        lblStreetName = new javax.swing.JLabel();
-        lblUnitNumber = new javax.swing.JLabel();
-        lblCity = new javax.swing.JLabel();
-        fieldCity = new javax.swing.JTextField();
-        fieldUnitNumber = new javax.swing.JTextField();
-        fieldStreetName = new javax.swing.JTextField();
-        fieldZipCode = new javax.swing.JTextField();
-        lblCountry = new javax.swing.JLabel();
-        fieldCountry = new javax.swing.JTextField();
-        lblZipCode = new javax.swing.JLabel();
         fieldOccupation = new javax.swing.JTextField();
         lblOccupation = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(220, 200, 200));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblHomeAddress.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        lblHomeAddress.setText("Home Address");
-        add(lblHomeAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 196, 58));
-
         lblPersonProfile.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         lblPersonProfile.setText("Person Profile");
-        add(lblPersonProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 51, 215, 90));
-
-        lblBankInformation1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        lblBankInformation1.setText("Bank Information");
-        add(lblBankInformation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 196, 58));
+        add(lblPersonProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 215, 90));
 
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -123,87 +105,37 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 570, -1, -1));
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 500, -1, -1));
 
         radioMarried.setText("Married");
-        add(radioMarried, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 279, -1, -1));
+        add(radioMarried, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, -1));
 
         radioSingle.setText("Single");
-        add(radioSingle, new org.netbeans.lib.awtextra.AbsoluteConstraints(357, 279, -1, -1));
+        add(radioSingle, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, -1));
 
         lblAge.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblAge.setText("Age");
-        add(lblAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 228, -1, -1));
+        add(lblAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, -1));
 
         lblMaritalStatus1.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblMaritalStatus1.setText("Mrital Status");
-        add(lblMaritalStatus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 283, -1, -1));
+        add(lblMaritalStatus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, -1, -1));
 
         lblLastName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblLastName.setText("Last Name");
-        add(lblLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 193, -1, -1));
+        add(lblLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, -1, -1));
 
         lblFirstName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblFirstName.setText("First Name");
-        add(lblFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 152, -1, -1));
-        add(fieldAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 223, 100, -1));
-        add(fieldLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 188, 100, -1));
-        add(fieldFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 147, 100, -1));
-
-        lblBankName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
-        lblBankName.setText("Bank Name");
-        add(lblBankName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, -1, -1));
-
-        lblBalance.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
-        lblBalance.setText("Balance  $");
-        add(lblBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, -1, -1));
-
-        lblGrowth.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
-        lblGrowth.setText("Growth %");
-        add(lblGrowth, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, -1, -1));
-        add(fieldGrowth, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 100, -1));
-        add(fieldBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 100, -1));
-        add(fieldBankName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, 100, -1));
-        add(fieldAccountNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 100, -1));
-
-        lblPIN.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
-        lblPIN.setText("PIN");
-        add(lblPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 540, -1, -1));
-        add(fieldPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 540, 100, -1));
-
-        lblAccountNumber.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
-        lblAccountNumber.setText("Account Number");
-        add(lblAccountNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, -1, -1));
-
-        lblStreetName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
-        lblStreetName.setText("Street Name");
-        add(lblStreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
-
-        lblUnitNumber.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
-        lblUnitNumber.setText("Unit Number");
-        add(lblUnitNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, -1, -1));
-
-        lblCity.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
-        lblCity.setText("City");
-        add(lblCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, -1, -1));
-        add(fieldCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 460, 100, -1));
-        add(fieldUnitNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 100, -1));
-        add(fieldStreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 100, -1));
-        add(fieldZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 500, 100, -1));
-
-        lblCountry.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
-        lblCountry.setText("Country");
-        add(lblCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 540, -1, -1));
-        add(fieldCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 540, 100, -1));
-
-        lblZipCode.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
-        lblZipCode.setText("Zip Code");
-        add(lblZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 510, -1, -1));
-        add(fieldOccupation, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 100, -1));
+        add(lblFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, -1));
+        add(fieldAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 100, -1));
+        add(fieldLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 100, -1));
+        add(fieldFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 100, -1));
+        add(fieldOccupation, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 100, -1));
 
         lblOccupation.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblOccupation.setText("Occupation");
-        add(lblOccupation, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, -1, -1));
+        add(lblOccupation, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
   
@@ -276,105 +208,7 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
             }else{
                 married = false;
             }
-            
-            //getting text and validations for bank account  
-            String bankAccount = fieldAccountNumber.getText();
-            if (bankAccount.length()>20){
-                valid=false;
-                message="please enter an account number with less than 20 characters";
-            }
-            if (!bankAccount.matches("[0-9]+")){
-                valid=false;
-                message="please enter an account number with only numbers";
-            }
-            
-            //getting text and validations for bank name  
-            String bankName = fieldBankName.getText();
-            if (bankName.length()>100){
-                valid=false;
-                message="please enter a valid Bank name";
-            }
-            if (!bankName.matches("[a-zA-Z]+")){
-                valid=false;
-                message="please enter a bank name with only letters";
-            }
-            
-                        //getting Age and validation
-            double balance = 0; //needs to start 0 due to the try/catch
-            //does not accept values that are larger than 12 digits. protects from overflow
-            if (fieldBalance.getText().length()>12){
-                valid=false;
-                message="please enter a valid balance.";
-            }
-            try{ //try converting the balance field to a double, if it fails show an error message
-                balance = Double.parseDouble(fieldBalance.getText());
-                    }catch (NumberFormatException e){
-                        valid=false;
-                        message="please enter a valid balance using only numbers";
-            }
-
-            
-                        //getting text and validations for first name
-            String pin = fieldPIN.getText();
-            if (pin.length()!=4){
-                valid=false;
-                message="please enter a valid 4 digit pin";
-            }
-            if (!pin.matches("[0-9]+")){
-                valid=false;
-                message="please enter a PIN with numbers only";
-            }
-
-            float growth = 0.0f; //needs to start 0 due to the try/catch
-            //does not accept values that are larger than the 12 digits. protects from overflow
-            if (fieldGrowth.getText().length()>12){
-                valid=false;
-                message="please enter a valid growth percentage.";
-            }
-            try{ //try converting the growth field to a float, if it fails show an error message
-                growth = Float.parseFloat(fieldGrowth.getText());
-                    }catch (NumberFormatException e){
-                        valid=false;
-                        message="please enter a valid growth percentage";
-            }
-            
-            
-            //getting text and validations for first name
-            String street = fieldStreetName.getText();
-            if (street.length()>99){
-                valid=false;
-                message="please enter a street name less than 100 characters";
-            }
-            
-                        //getting text and validations for first name
-            String city = fieldCity.getText();
-            if (city.length()>99){
-                valid=false;
-                message="please enter a city name less than 100 characters";
-            }
-            if (!city.matches("[a-zA-Z ]+")){
-                valid=false;
-                message="please enter a city name with only letters";
-            }
-            
-            //getting text and validations for first name
-            String unit = fieldUnitNumber.getText();
-            if (unit.length()>9){
-                valid=false;
-                message="please enter a unit with less than 10 characters";
-            }
-
-            
-            //getting text and validations for first name
-            String country = fieldCountry.getText();
-            if (country.length()>100){
-                valid=false;
-                message="please enter a country with less than 100 characters";
-            }
-            if (!country.matches("[a-zA-Z ]+")){
-                valid=false;
-                message="please enter a country with only letters";
-            }
+          
 
             //////validation check,
            if (!valid){
@@ -392,6 +226,7 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
                
                
                JOptionPane.showMessageDialog(this, "Saved Successfully", "Saved Successfully",JOptionPane.INFORMATION_MESSAGE);
+               clearAllFields();
            }
        }
 
@@ -404,38 +239,16 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGroupMaritalStatus;
     private javax.swing.JButton btnSave;
-    private javax.swing.JTextField fieldAccountNumber;
     private javax.swing.JTextField fieldAge;
-    private javax.swing.JTextField fieldBalance;
-    private javax.swing.JTextField fieldBankName;
-    private javax.swing.JTextField fieldCity;
-    private javax.swing.JTextField fieldCountry;
     private javax.swing.JTextField fieldFirstName;
-    private javax.swing.JTextField fieldGrowth;
     private javax.swing.JTextField fieldLastName;
     private javax.swing.JTextField fieldOccupation;
-    private javax.swing.JTextField fieldPIN;
-    private javax.swing.JTextField fieldStreetName;
-    private javax.swing.JTextField fieldUnitNumber;
-    private javax.swing.JTextField fieldZipCode;
-    private javax.swing.JLabel lblAccountNumber;
     private javax.swing.JLabel lblAge;
-    private javax.swing.JLabel lblBalance;
-    private javax.swing.JLabel lblBankInformation1;
-    private javax.swing.JLabel lblBankName;
-    private javax.swing.JLabel lblCity;
-    private javax.swing.JLabel lblCountry;
     private javax.swing.JLabel lblFirstName;
-    private javax.swing.JLabel lblGrowth;
-    private javax.swing.JLabel lblHomeAddress;
     private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblMaritalStatus1;
     private javax.swing.JLabel lblOccupation;
-    private javax.swing.JLabel lblPIN;
     private javax.swing.JLabel lblPersonProfile;
-    private javax.swing.JLabel lblStreetName;
-    private javax.swing.JLabel lblUnitNumber;
-    private javax.swing.JLabel lblZipCode;
     private javax.swing.JRadioButton radioMarried;
     private javax.swing.JRadioButton radioSingle;
     // End of variables declaration//GEN-END:variables

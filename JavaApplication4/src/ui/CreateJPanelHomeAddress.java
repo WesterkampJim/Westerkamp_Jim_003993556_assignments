@@ -40,7 +40,17 @@ public class CreateJPanelHomeAddress extends javax.swing.JPanel {
         }
             return true;
     }
-    
+    public void clearAllFields(){
+        // for loop, grabs all components in "this" class instance
+        for (Component c : this.getComponents()){
+        // if the component is a jtextfield set text to "", if its a radio, remove selection   
+            if (c instanceof JTextField f){
+                    f.setText("");
+            }
+            }
+        //removes radio button selection
+         btnGroupMaritalStatus.clearSelection();
+        }
 
     //Method to validate that one of 2 radio buttons is selected.
     public boolean validateRadioButtons(JRadioButton a, JRadioButton b){
@@ -73,13 +83,15 @@ public class CreateJPanelHomeAddress extends javax.swing.JPanel {
         lblCountry = new javax.swing.JLabel();
         fieldCountry = new javax.swing.JTextField();
         lblZipCode = new javax.swing.JLabel();
+        fieldPersonName = new javax.swing.JTextField();
+        lblPersonName = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(220, 200, 200));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblHomeAddress.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         lblHomeAddress.setText("Home Address");
-        add(lblHomeAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 196, 58));
+        add(lblHomeAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 196, 58));
 
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +125,11 @@ public class CreateJPanelHomeAddress extends javax.swing.JPanel {
         lblZipCode.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblZipCode.setText("Zip Code");
         add(lblZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, -1, -1));
+        add(fieldPersonName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 100, -1));
+
+        lblPersonName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblPersonName.setText("Name");
+        add(lblPersonName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
   
@@ -138,6 +155,17 @@ public class CreateJPanelHomeAddress extends javax.swing.JPanel {
                 valid=false;
                 message="please enter a street name less than 100 characters";
             }
+                                    //getting text and validations for person Name  
+            String personName = fieldPersonName.getText();
+            if (personName.length()>49){
+                valid=false;
+                message="please enter a persons name with less than 50 characters";
+            }else if (!personName.matches("[a-zA-Z]+")){
+                valid=false;
+                message="please enter a name with only letters";
+            }
+            
+            
             
                         //getting text and validations for city
             String city = fieldCity.getText();
@@ -191,9 +219,11 @@ public class CreateJPanelHomeAddress extends javax.swing.JPanel {
             person.getHomeAddress().setStreetName(street);
             person.getHomeAddress().setUnitNum(unit);
             person.getHomeAddress().setZipCode(zipCode);
+            person.getHomeAddress().setPersonName(personName);
 
                
-               JOptionPane.showMessageDialog(this, "Saved Successfully", "Saved Successfully",JOptionPane.INFORMATION_MESSAGE);
+           JOptionPane.showMessageDialog(this, "Saved Successfully", "Saved Successfully",JOptionPane.INFORMATION_MESSAGE);
+           clearAllFields();
            }
        }
 
@@ -208,12 +238,14 @@ public class CreateJPanelHomeAddress extends javax.swing.JPanel {
     private javax.swing.JButton btnSave;
     private javax.swing.JTextField fieldCity;
     private javax.swing.JTextField fieldCountry;
+    private javax.swing.JTextField fieldPersonName;
     private javax.swing.JTextField fieldStreetName;
     private javax.swing.JTextField fieldUnitNumber;
     private javax.swing.JTextField fieldZipCode;
     private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblCountry;
     private javax.swing.JLabel lblHomeAddress;
+    private javax.swing.JLabel lblPersonName;
     private javax.swing.JLabel lblStreetName;
     private javax.swing.JLabel lblUnitNumber;
     private javax.swing.JLabel lblZipCode;

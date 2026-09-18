@@ -19,8 +19,46 @@ public class ViewJPanelPerson extends javax.swing.JPanel {
     public ViewJPanelPerson(Person p) {
         initComponents();
         person = p;
+        displayInformation();
     }
 
+    
+        private void displayInformation(){
+            fieldBankName.setText(person.getBankAccount().getBankName());
+            fieldAccountNumber.setText(person.getBankAccount().getAccountNumber());
+            fieldPIN.setText(person.getBankAccount().getPin());
+            
+            //convert double back to string for display
+            String cb = String.valueOf(person.getBankAccount().getCurrentBalance());
+            fieldBalance.setText(cb);
+            
+            //convert double back to string for display
+            String yg = String.valueOf(person.getBankAccount().getYearlyGrowth());
+            fieldGrowth.setText(yg);
+            
+            fieldCity.setText(person.getHomeAddress().getCity());
+            fieldCountry.setText(person.getHomeAddress().getCountry());
+            fieldStreetName.setText(person.getHomeAddress().getStreetName());
+            fieldUnitNumber.setText(person.getHomeAddress().getUnitNum());
+            fieldZipCode.setText(person.getHomeAddress().getZipCode());
+            fieldFirstName.setText(person.getFirstName());
+            fieldLastName.setText(person.getLastName());
+            
+            //convert int back into string
+            fieldAge.setText(String.valueOf(person.getAge()));
+            
+            fieldOccupation.setText(person.getOccupation());
+            
+            if (person.isMarried()){
+                radioMarried.setSelected(true);
+                radioSingle.setSelected(false);
+            }else{
+                radioMarried.setSelected(false);
+                radioSingle.setSelected(true);
+            }
+
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,6 +100,8 @@ public class ViewJPanelPerson extends javax.swing.JPanel {
         lblCountry = new javax.swing.JLabel();
         fieldCountry = new javax.swing.JTextField();
         lblZipCode = new javax.swing.JLabel();
+        fieldOccupation = new javax.swing.JTextField();
+        lblOccupation = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(252, 252, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -76,13 +116,13 @@ public class ViewJPanelPerson extends javax.swing.JPanel {
 
         lblBankInformation1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         lblBankInformation1.setText("Bank Information");
-        add(lblBankInformation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 323, 196, 58));
+        add(lblBankInformation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 196, 58));
 
         radioMarried.setText("Married");
-        add(radioMarried, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 279, -1, -1));
+        add(radioMarried, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, -1));
 
         radioSingle.setText("Single");
-        add(radioSingle, new org.netbeans.lib.awtextra.AbsoluteConstraints(357, 279, -1, -1));
+        add(radioSingle, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, -1, -1));
 
         lblAge.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblAge.setText("Age");
@@ -90,7 +130,7 @@ public class ViewJPanelPerson extends javax.swing.JPanel {
 
         lblMaritalStatus1.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblMaritalStatus1.setText("Mrital Status");
-        add(lblMaritalStatus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 283, -1, -1));
+        add(lblMaritalStatus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
 
         lblLastName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblLastName.setText("Last Name");
@@ -105,28 +145,28 @@ public class ViewJPanelPerson extends javax.swing.JPanel {
 
         lblBankName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblBankName.setText("Bank Name");
-        add(lblBankName, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 402, -1, -1));
+        add(lblBankName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
 
         lblBalance.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblBalance.setText("Balance");
-        add(lblBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 443, -1, -1));
+        add(lblBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, -1, -1));
 
         lblGrowth.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblGrowth.setText("Growth %");
-        add(lblGrowth, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 478, -1, -1));
-        add(fieldGrowth, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 473, 100, -1));
-        add(fieldBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 438, 100, -1));
-        add(fieldBankName, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 397, 100, -1));
-        add(fieldAccountNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 514, 100, -1));
+        add(lblGrowth, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, -1, -1));
+        add(fieldGrowth, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, 100, -1));
+        add(fieldBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 100, -1));
+        add(fieldBankName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 100, -1));
+        add(fieldAccountNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 510, 100, -1));
 
         lblPIN.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblPIN.setText("PIN");
-        add(lblPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 555, -1, -1));
-        add(fieldPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 550, 100, -1));
+        add(lblPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 560, -1, -1));
+        add(fieldPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 550, 100, -1));
 
         lblAccountNumber.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblAccountNumber.setText("Account Number");
-        add(lblAccountNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 519, -1, -1));
+        add(lblAccountNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, -1, -1));
 
         lblStreetName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblStreetName.setText("Street Name");
@@ -152,6 +192,11 @@ public class ViewJPanelPerson extends javax.swing.JPanel {
         lblZipCode.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblZipCode.setText("Zip Code");
         add(lblZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 520, -1, -1));
+        add(fieldOccupation, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 100, -1));
+
+        lblOccupation.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblOccupation.setText("Occupation");
+        add(lblOccupation, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -165,6 +210,7 @@ public class ViewJPanelPerson extends javax.swing.JPanel {
     private javax.swing.JTextField fieldFirstName;
     private javax.swing.JTextField fieldGrowth;
     private javax.swing.JTextField fieldLastName;
+    private javax.swing.JTextField fieldOccupation;
     private javax.swing.JTextField fieldPIN;
     private javax.swing.JTextField fieldStreetName;
     private javax.swing.JTextField fieldUnitNumber;
@@ -181,6 +227,7 @@ public class ViewJPanelPerson extends javax.swing.JPanel {
     private javax.swing.JLabel lblHomeAddress;
     private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblMaritalStatus1;
+    private javax.swing.JLabel lblOccupation;
     private javax.swing.JLabel lblPIN;
     private javax.swing.JLabel lblPersonProfile;
     private javax.swing.JLabel lblStreetName;

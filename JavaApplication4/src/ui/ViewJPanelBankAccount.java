@@ -26,6 +26,7 @@ public class ViewJPanelBankAccount extends javax.swing.JPanel {
     
     private void displayInformation(){
             fieldBankName.setText(person.getBankAccount().getBankName());
+            fieldPersonName.setText(person.getBankAccount().getPersonName());
             fieldAccountNumber.setText(person.getBankAccount().getAccountNumber());
             fieldPIN.setText(person.getBankAccount().getPin());
             
@@ -60,13 +61,15 @@ public class ViewJPanelBankAccount extends javax.swing.JPanel {
         lblPIN = new javax.swing.JLabel();
         fieldPIN = new javax.swing.JTextField();
         lblAccountNumber = new javax.swing.JLabel();
+        lblPersonName = new javax.swing.JLabel();
+        fieldPersonName = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(252, 252, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblBankInformation1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         lblBankInformation1.setText("Bank Information");
-        add(lblBankInformation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 196, 58));
+        add(lblBankInformation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 196, 58));
 
         lblBankName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblBankName.setText("Bank Name");
@@ -92,6 +95,11 @@ public class ViewJPanelBankAccount extends javax.swing.JPanel {
         lblAccountNumber.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblAccountNumber.setText("Account Number");
         add(lblAccountNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, -1, -1));
+
+        lblPersonName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblPersonName.setText("Name");
+        add(lblPersonName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
+        add(fieldPersonName, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 100, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -101,11 +109,13 @@ public class ViewJPanelBankAccount extends javax.swing.JPanel {
     private javax.swing.JTextField fieldBankName;
     private javax.swing.JTextField fieldGrowth;
     private javax.swing.JTextField fieldPIN;
+    private javax.swing.JTextField fieldPersonName;
     private javax.swing.JLabel lblAccountNumber;
     private javax.swing.JLabel lblBalance;
     private javax.swing.JLabel lblBankInformation1;
     private javax.swing.JLabel lblBankName;
     private javax.swing.JLabel lblGrowth;
     private javax.swing.JLabel lblPIN;
+    private javax.swing.JLabel lblPersonName;
     // End of variables declaration//GEN-END:variables
 }

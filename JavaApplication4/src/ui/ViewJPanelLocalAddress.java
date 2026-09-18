@@ -25,6 +25,7 @@ public class ViewJPanelLocalAddress extends javax.swing.JPanel {
     private void displayInformation(){
             ///grabs all local address object attr values from person and displays.
             fieldCity.setText(person.getLocalAddress().getCity());
+            fieldPersonName.setText(person.getLocalAddress().getPersonName());
             fieldCountry.setText(person.getLocalAddress().getCountry());
             fieldStreetName.setText(person.getLocalAddress().getStreetName());
             fieldUnitNumber.setText(person.getLocalAddress().getUnitNum());
@@ -51,13 +52,15 @@ public class ViewJPanelLocalAddress extends javax.swing.JPanel {
         lblCountry = new javax.swing.JLabel();
         fieldCountry = new javax.swing.JTextField();
         lblZipCode = new javax.swing.JLabel();
+        lblPersonName = new javax.swing.JLabel();
+        fieldPersonName = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(252, 252, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblLocalAddress.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         lblLocalAddress.setText("Local Address");
-        add(lblLocalAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 196, 58));
+        add(lblLocalAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 196, 58));
 
         lblStreetName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblStreetName.setText("Street Name");
@@ -83,18 +86,25 @@ public class ViewJPanelLocalAddress extends javax.swing.JPanel {
         lblZipCode.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblZipCode.setText("Zip Code");
         add(lblZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, -1, -1));
+
+        lblPersonName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblPersonName.setText("Name");
+        add(lblPersonName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
+        add(fieldPersonName, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 100, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField fieldCity;
     private javax.swing.JTextField fieldCountry;
+    private javax.swing.JTextField fieldPersonName;
     private javax.swing.JTextField fieldStreetName;
     private javax.swing.JTextField fieldUnitNumber;
     private javax.swing.JTextField fieldZipCode;
     private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblCountry;
     private javax.swing.JLabel lblLocalAddress;
+    private javax.swing.JLabel lblPersonName;
     private javax.swing.JLabel lblStreetName;
     private javax.swing.JLabel lblUnitNumber;
     private javax.swing.JLabel lblZipCode;

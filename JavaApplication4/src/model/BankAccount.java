@@ -14,7 +14,16 @@ public class BankAccount {
     float yearlyGrowth;
     String pin;
     String accountNumber;
+    String personName;
 
+    public void setPersonName(String personName) {
+        this.personName = personName;
+    }
+
+    public String getPersonName() {
+        return personName;
+    }
+    
     public void setBankName(String bankName) {
         this.bankName = bankName;
     }

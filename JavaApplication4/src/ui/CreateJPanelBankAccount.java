@@ -43,7 +43,17 @@ public class CreateJPanelBankAccount extends javax.swing.JPanel {
         }
             return true;
     }
-    
+    public void clearAllFields(){
+        // for loop, grabs all components in "this" class instance
+        for (Component c : this.getComponents()){
+        // if the component is a jtextfield set text to "", if its a radio, remove selection   
+            if (c instanceof JTextField f){
+                    f.setText("");
+            }
+            }
+        //removes radio button selection
+         btnGroupMaritalStatus.clearSelection();
+        }
 
     //Method to validate that one of 2 radio buttons is selected.
     public boolean validateRadioButtons(JRadioButton a, JRadioButton b){
@@ -76,6 +86,8 @@ public class CreateJPanelBankAccount extends javax.swing.JPanel {
         lblPIN = new javax.swing.JLabel();
         fieldPIN = new javax.swing.JTextField();
         lblAccountNumber = new javax.swing.JLabel();
+        lblPersonName = new javax.swing.JLabel();
+        fieldPersonName = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(220, 200, 200));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -116,6 +128,11 @@ public class CreateJPanelBankAccount extends javax.swing.JPanel {
         lblAccountNumber.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblAccountNumber.setText("Account Number");
         add(lblAccountNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, -1, -1));
+
+        lblPersonName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblPersonName.setText("Name");
+        add(lblPersonName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, -1, -1));
+        add(fieldPersonName, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 100, -1));
     }// </editor-fold>//GEN-END:initComponents
 
   
@@ -140,11 +157,21 @@ public class CreateJPanelBankAccount extends javax.swing.JPanel {
             if (bankAccount.length()>20){
                 valid=false;
                 message="please enter an account number with less than 20 characters";
-            }
-            if (!bankAccount.matches("[0-9]+")){
+            }else if (!bankAccount.matches("[0-9]+")){
                 valid=false;
                 message="please enter an account number with only numbers";
             }
+            
+                        //getting text and validations for person Name  
+            String personName = fieldPersonName.getText();
+            if (personName.length()>49){
+                valid=false;
+                message="please enter a persons name with less than 50 characters";
+            }else if (!personName.matches("[a-zA-Z]+")){
+                valid=false;
+                message="please enter a name with only letters";
+            }
+            
             
             //getting text and validations for bank name  
             String bankName = fieldBankName.getText();
@@ -207,9 +234,10 @@ public class CreateJPanelBankAccount extends javax.swing.JPanel {
             person.getBankAccount().setYearlyGrowth(growth);
             person.getBankAccount().setPin(pin);
             person.getBankAccount().setCurrentBalance(balance);
-
+            person.getBankAccount().setPersonName(personName);
                
-               JOptionPane.showMessageDialog(this, "Saved Successfully", "Saved Successfully",JOptionPane.INFORMATION_MESSAGE);
+           JOptionPane.showMessageDialog(this, "Saved Successfully", "Saved Successfully",JOptionPane.INFORMATION_MESSAGE);
+           clearAllFields();
            }
        }
 
@@ -227,11 +255,13 @@ public class CreateJPanelBankAccount extends javax.swing.JPanel {
     private javax.swing.JTextField fieldBankName;
     private javax.swing.JTextField fieldGrowth;
     private javax.swing.JTextField fieldPIN;
+    private javax.swing.JTextField fieldPersonName;
     private javax.swing.JLabel lblAccountNumber;
     private javax.swing.JLabel lblBalance;
     private javax.swing.JLabel lblBankInformation1;
     private javax.swing.JLabel lblBankName;
     private javax.swing.JLabel lblGrowth;
     private javax.swing.JLabel lblPIN;
+    private javax.swing.JLabel lblPersonName;
     // End of variables declaration//GEN-END:variables
 }

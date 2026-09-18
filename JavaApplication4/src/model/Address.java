@@ -14,6 +14,15 @@ public class Address {
     String city;
     String zipCode;
     String country;
+    String personName;
+
+    public void setPersonName(String personName) {
+        this.personName = personName;
+    }
+
+    public String getPersonName() {
+        return personName;
+    }
 
     public String getStreetName() {
         return streetName;
@@ -32,7 +41,7 @@ public class Address {
     }
     
     public String getCountry() {
-    return country;
+        return country;
     }
 
     public void setStreetName(String streetName) {
@@ -51,8 +60,8 @@ public class Address {
         this.zipCode = zipCode;
     }
     
-        public void setCountry(String zipCode) {
-        this.zipCode = country;
+        public void setCountry(String country) {
+        this.country = country;
     }
     
 }
