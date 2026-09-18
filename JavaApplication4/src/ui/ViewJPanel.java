@@ -30,21 +30,312 @@ public class ViewJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblHomeAddress = new javax.swing.JLabel();
+        lblPersonProfile = new javax.swing.JLabel();
+        lblBankInformation1 = new javax.swing.JLabel();
+        radioMarried = new javax.swing.JRadioButton();
+        radioSingle = new javax.swing.JRadioButton();
+        lblAge = new javax.swing.JLabel();
+        lblMaritalStatus1 = new javax.swing.JLabel();
+        lblLastName = new javax.swing.JLabel();
+        lblFirstName = new javax.swing.JLabel();
+        fieldAge = new javax.swing.JTextField();
+        fieldLastName = new javax.swing.JTextField();
+        fieldFirstName = new javax.swing.JTextField();
+        lblBankName = new javax.swing.JLabel();
+        lblBalance = new javax.swing.JLabel();
+        lblGrowth = new javax.swing.JLabel();
+        fieldGrowth = new javax.swing.JTextField();
+        fieldBalance = new javax.swing.JTextField();
+        fieldBankName = new javax.swing.JTextField();
+        fieldAccountNumber = new javax.swing.JTextField();
+        lblPIN = new javax.swing.JLabel();
+        fieldPIN = new javax.swing.JTextField();
+        lblAccountNumber = new javax.swing.JLabel();
+        lblStreetName = new javax.swing.JLabel();
+        lblUnitNumber = new javax.swing.JLabel();
+        lblCity = new javax.swing.JLabel();
+        fieldCity = new javax.swing.JTextField();
+        fieldUnitNumber = new javax.swing.JTextField();
+        fieldStreetName = new javax.swing.JTextField();
+        fieldZipCode = new javax.swing.JTextField();
+        lblCountry = new javax.swing.JLabel();
+        fieldCountry = new javax.swing.JTextField();
+        lblZipCode = new javax.swing.JLabel();
+
         setBackground(new java.awt.Color(252, 252, 242));
+
+        lblHomeAddress.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        lblHomeAddress.setText("Home Address");
+
+        lblPersonProfile.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        lblPersonProfile.setText("Person Profile");
+
+        lblBankInformation1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        lblBankInformation1.setText("Bank Information");
+
+        radioMarried.setText("Married");
+
+        radioSingle.setText("Single");
+
+        lblAge.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblAge.setText("Age");
+
+        lblMaritalStatus1.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblMaritalStatus1.setText("Mrital Status");
+
+        lblLastName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblLastName.setText("Last Name");
+
+        lblFirstName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblFirstName.setText("First Name");
+
+        lblBankName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblBankName.setText("Bank Name");
+
+        lblBalance.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblBalance.setText("Balance");
+
+        lblGrowth.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblGrowth.setText("Growth %");
+
+        lblPIN.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblPIN.setText("PIN");
+
+        lblAccountNumber.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblAccountNumber.setText("Account Number");
+
+        lblStreetName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblStreetName.setText("Street Name");
+
+        lblUnitNumber.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblUnitNumber.setText("Unit Number");
+
+        lblCity.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblCity.setText("City");
+
+        lblCountry.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblCountry.setText("Country");
+
+        lblZipCode.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
+        lblZipCode.setText("Zip Code");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(131, 131, 131)
+                            .addComponent(lblPersonProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(131, 131, 131)
+                            .addComponent(lblFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(fieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(131, 131, 131)
+                            .addComponent(lblLastName)
+                            .addGap(24, 24, 24)
+                            .addComponent(fieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(131, 131, 131)
+                            .addComponent(lblAge, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(61, 61, 61)
+                            .addComponent(fieldAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(118, 118, 118)
+                            .addComponent(lblMaritalStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(radioMarried, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(radioSingle, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblBankInformation1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(109, 109, 109)
+                            .addComponent(lblHomeAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(9, 9, 9)
+                            .addComponent(lblBankName, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(51, 51, 51)
+                            .addComponent(fieldBankName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(104, 104, 104)
+                            .addComponent(lblStreetName)
+                            .addGap(42, 42, 42)
+                            .addComponent(fieldStreetName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(9, 9, 9)
+                            .addComponent(lblBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(74, 74, 74)
+                            .addComponent(fieldBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(104, 104, 104)
+                            .addComponent(lblUnitNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(33, 33, 33)
+                            .addComponent(fieldUnitNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(9, 9, 9)
+                            .addComponent(lblGrowth, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(59, 59, 59)
+                            .addComponent(fieldGrowth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(104, 104, 104)
+                            .addComponent(lblCity, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(86, 86, 86)
+                            .addComponent(fieldCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(9, 9, 9)
+                            .addComponent(lblAccountNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(fieldAccountNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(105, 105, 105)
+                            .addComponent(lblZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(57, 57, 57)
+                            .addComponent(fieldZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(9, 9, 9)
+                            .addComponent(lblPIN)
+                            .addGap(93, 93, 93)
+                            .addComponent(fieldPIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(105, 105, 105)
+                            .addComponent(lblCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(62, 62, 62)
+                            .addComponent(fieldCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(lblPersonProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(6, 6, 6)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(5, 5, 5)
+                            .addComponent(lblFirstName))
+                        .addComponent(fieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(5, 5, 5)
+                            .addComponent(lblLastName))
+                        .addComponent(fieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(12, 12, 12)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(5, 5, 5)
+                            .addComponent(lblAge))
+                        .addComponent(fieldAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(33, 33, 33)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(4, 4, 4)
+                            .addComponent(lblMaritalStatus1))
+                        .addComponent(radioMarried)
+                        .addComponent(radioSingle))
+                    .addGap(22, 22, 22)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblBankInformation1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(2, 2, 2)
+                            .addComponent(lblHomeAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(7, 7, 7)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(12, 12, 12)
+                            .addComponent(lblBankName))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(7, 7, 7)
+                            .addComponent(fieldBankName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(lblStreetName))
+                        .addComponent(fieldStreetName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(10, 10, 10)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(13, 13, 13)
+                            .addComponent(lblBalance))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(8, 8, 8)
+                            .addComponent(fieldBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(lblUnitNumber))
+                        .addComponent(fieldUnitNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(9, 9, 9)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(8, 8, 8)
+                            .addComponent(lblGrowth))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(3, 3, 3)
+                            .addComponent(fieldGrowth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(lblCity))
+                        .addComponent(fieldCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(12, 12, 12)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(9, 9, 9)
+                            .addComponent(lblAccountNumber))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(4, 4, 4)
+                            .addComponent(fieldAccountNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(lblZipCode))
+                        .addComponent(fieldZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(12, 12, 12)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(5, 5, 5)
+                            .addComponent(lblPIN))
+                        .addComponent(fieldPIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblCountry)
+                        .addComponent(fieldCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField fieldAccountNumber;
+    private javax.swing.JTextField fieldAge;
+    private javax.swing.JTextField fieldBalance;
+    private javax.swing.JTextField fieldBankName;
+    private javax.swing.JTextField fieldCity;
+    private javax.swing.JTextField fieldCountry;
+    private javax.swing.JTextField fieldFirstName;
+    private javax.swing.JTextField fieldGrowth;
+    private javax.swing.JTextField fieldLastName;
+    private javax.swing.JTextField fieldPIN;
+    private javax.swing.JTextField fieldStreetName;
+    private javax.swing.JTextField fieldUnitNumber;
+    private javax.swing.JTextField fieldZipCode;
+    private javax.swing.JLabel lblAccountNumber;
+    private javax.swing.JLabel lblAge;
+    private javax.swing.JLabel lblBalance;
+    private javax.swing.JLabel lblBankInformation1;
+    private javax.swing.JLabel lblBankName;
+    private javax.swing.JLabel lblCity;
+    private javax.swing.JLabel lblCountry;
+    private javax.swing.JLabel lblFirstName;
+    private javax.swing.JLabel lblGrowth;
+    private javax.swing.JLabel lblHomeAddress;
+    private javax.swing.JLabel lblLastName;
+    private javax.swing.JLabel lblMaritalStatus1;
+    private javax.swing.JLabel lblPIN;
+    private javax.swing.JLabel lblPersonProfile;
+    private javax.swing.JLabel lblStreetName;
+    private javax.swing.JLabel lblUnitNumber;
+    private javax.swing.JLabel lblZipCode;
+    private javax.swing.JRadioButton radioMarried;
+    private javax.swing.JRadioButton radioSingle;
     // End of variables declaration//GEN-END:variables
 }
