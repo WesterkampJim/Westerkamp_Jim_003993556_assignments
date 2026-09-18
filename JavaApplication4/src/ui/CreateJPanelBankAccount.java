@@ -24,10 +24,10 @@ public class CreateJPanelBankAccount extends javax.swing.JPanel {
     Person person;
     public CreateJPanelBankAccount(Person p) {
         initComponents();
-        //initializing person labelled as p
+        //store shared person object
         person = p;
         
-        //Placing my radiobuttons in a group so they cannot both be selected.
+       
     }
     
     ///Method to validate all JTextFields, returns false if any field is blank.
@@ -178,8 +178,7 @@ public class CreateJPanelBankAccount extends javax.swing.JPanel {
             if (bankName.length()>100){
                 valid=false;
                 message="please enter a valid Bank name";
-            }
-            if (!bankName.matches("[a-zA-Z]+")){
+            } else if (!bankName.matches("[a-zA-Z]+")){
                 valid=false;
                 message="please enter a bank name with only letters";
             }
@@ -204,8 +203,7 @@ public class CreateJPanelBankAccount extends javax.swing.JPanel {
             if (pin.length()!=4){
                 valid=false;
                 message="please enter a valid 4 digit pin";
-            }
-            if (!pin.matches("[0-9]+")){
+            } else if (!pin.matches("[0-9]+")){
                 valid=false;
                 message="please enter a PIN with numbers only";
             }

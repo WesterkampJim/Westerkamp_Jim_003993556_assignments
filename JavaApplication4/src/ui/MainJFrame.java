@@ -186,7 +186,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnViewPersonActionPerformed
 
     private void btnCreateBankAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateBankAccountActionPerformed
-        // TODO add your handling c        ///instantiates a new CreateJPanel
+        ///instantiates a new CreateJPanel
         CreateJPanelBankAccount createJPanel = new CreateJPanelBankAccount(person);
         //changes right part of split pane to the new JPanel
         splitPane.setRightComponent(createJPanel);

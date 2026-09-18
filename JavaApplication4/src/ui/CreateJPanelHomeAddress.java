@@ -22,7 +22,7 @@ public class CreateJPanelHomeAddress extends javax.swing.JPanel {
     Person person;
     public CreateJPanelHomeAddress(Person p) {
         initComponents();
-        //initializing person labelled as p
+        //store shared person object
         person = p;
   
     }
@@ -172,8 +172,7 @@ public class CreateJPanelHomeAddress extends javax.swing.JPanel {
             if (city.length()>99){
                 valid=false;
                 message="please enter a city name less than 100 characters";
-            }
-            if (!city.matches("[a-zA-Z ]+")){
+            }else if (!city.matches("[a-zA-Z ]+")){
                 valid=false;
                 message="please enter a city name with only letters";
             }
@@ -201,8 +200,7 @@ public class CreateJPanelHomeAddress extends javax.swing.JPanel {
             if (country.length()>100){
                 valid=false;
                 message="please enter a country with less than 100 characters";
-            }
-            if (!country.matches("[a-zA-Z ]+")){
+            }else if (!country.matches("[a-zA-Z ]+")){
                 valid=false;
                 message="please enter a country with only letters";
             }

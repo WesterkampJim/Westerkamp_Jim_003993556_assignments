@@ -24,7 +24,7 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
     Person person;
     public CreateJPanelPerson(Person p) {
         initComponents();
-        //initializing person labelled as p
+        //store shared person object
         person = p;
         
         //Placing my radiobuttons in a group so they cannot both be selected.
@@ -159,8 +159,7 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
             if (firstName.length()>99){
                 valid=false;
                 message="please enter a first name less than 100 characters";
-            }
-            if (!firstName.matches("[a-zA-Z ]+")){
+            }else if (!firstName.matches("[a-zA-Z ]+")){
                 valid=false;
                 message="please enter a first name with only letters";
             }
@@ -170,8 +169,7 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
             if (lastName.length()>99){
                 valid=false;
                 message="please enter a last name less than 100 characters";
-            }
-            if (!lastName.matches("[a-zA-Z ]+")){
+            }else if (!lastName.matches("[a-zA-Z ]+")){
                 valid=false;
                 message="please enter a last name with only letters";
             }
@@ -180,8 +178,7 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
             if (occupation.length()>99){
                 valid=false;
                 message="please enter a last name less than 100 characters";
-            }
-            if (!occupation.matches("[a-zA-Z ]+")){
+            }else if(!occupation.matches("[a-zA-Z ]+")){
                 valid=false;
                 message="please enter a last name with only letters";
             }

@@ -24,7 +24,7 @@ public class CreateJPanelLocalAddress extends javax.swing.JPanel {
     Person person;
     public CreateJPanelLocalAddress(Person p) {
         initComponents();
-        //initializing person labelled as p
+        //store shared person object
         person = p;
 
     }
@@ -203,7 +203,7 @@ public class CreateJPanelLocalAddress extends javax.swing.JPanel {
            if (!valid){
                 JOptionPane.showMessageDialog(this, message, "Failed to Save",JOptionPane.INFORMATION_MESSAGE);
            }else{
-                           //set all the fields into persons home address object.   
+                           //set all the fields into persons local address object.   
             person.getLocalAddress().setCity(city);  
             person.getLocalAddress().setCountry(country);
             person.getLocalAddress().setStreetName(street);
