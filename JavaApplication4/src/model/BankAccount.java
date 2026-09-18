@@ -14,5 +14,53 @@ public class BankAccount {
     float yearlyGrowth;
     String pin;
     String accountNumber;
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public void setCurrentBalance(double currentBalance) {
+        this.currentBalance = currentBalance;
+    }
+
+    public void setYearlyGrowth(float yearlyGrowth) {
+        this.yearlyGrowth = yearlyGrowth;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    
+    
+    
+    public String getBankName() {
+        return bankName;
+    }
+
+    public double getCurrentBalance() {
+        return currentBalance;
+    }
+
+    public float getYearlyGrowth() {
+        return yearlyGrowth;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+    
+    
+    
+    
+    
 }
 

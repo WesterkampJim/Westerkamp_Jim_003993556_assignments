@@ -19,7 +19,8 @@ public class MainJFrame extends javax.swing.JFrame {
         
     public MainJFrame() {
         initComponents();
-        Person person = new Person();
+        person = new Person();
+        
     }
 
     /**
@@ -33,8 +34,14 @@ public class MainJFrame extends javax.swing.JFrame {
 
         splitPane = new javax.swing.JSplitPane();
         controlPanel = new javax.swing.JPanel();
-        btnCreate = new javax.swing.JButton();
-        btnView = new javax.swing.JButton();
+        btnCreatePerson = new javax.swing.JButton();
+        btnViewPerson = new javax.swing.JButton();
+        btnCreateBankAccount = new javax.swing.JButton();
+        btnViewBankAccount = new javax.swing.JButton();
+        btnCreateLocalAddress = new javax.swing.JButton();
+        btnViewLocalAddress = new javax.swing.JButton();
+        btnCreateHomeAddress = new javax.swing.JButton();
+        btnViewHomeAddress = new javax.swing.JButton();
         workArea = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,17 +49,59 @@ public class MainJFrame extends javax.swing.JFrame {
         controlPanel.setBackground(new java.awt.Color(242, 242, 255));
         controlPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnCreate.setText("Create");
-        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+        btnCreatePerson.setText("Create Person");
+        btnCreatePerson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateActionPerformed(evt);
+                btnCreatePersonActionPerformed(evt);
             }
         });
 
-        btnView.setText("View");
-        btnView.addActionListener(new java.awt.event.ActionListener() {
+        btnViewPerson.setText("View Person");
+        btnViewPerson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewActionPerformed(evt);
+                btnViewPersonActionPerformed(evt);
+            }
+        });
+
+        btnCreateBankAccount.setText("Create Bank Account");
+        btnCreateBankAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateBankAccountActionPerformed(evt);
+            }
+        });
+
+        btnViewBankAccount.setText("View Bank Account");
+        btnViewBankAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewBankAccountActionPerformed(evt);
+            }
+        });
+
+        btnCreateLocalAddress.setText("Create Local Address");
+        btnCreateLocalAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateLocalAddressActionPerformed(evt);
+            }
+        });
+
+        btnViewLocalAddress.setText("View Local Address");
+        btnViewLocalAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewLocalAddressActionPerformed(evt);
+            }
+        });
+
+        btnCreateHomeAddress.setText("Create Home Address");
+        btnCreateHomeAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateHomeAddressActionPerformed(evt);
+            }
+        });
+
+        btnViewHomeAddress.setText("View Home Address");
+        btnViewHomeAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewHomeAddressActionPerformed(evt);
             }
         });
 
@@ -60,21 +109,43 @@ public class MainJFrame extends javax.swing.JFrame {
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(controlPanelLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnCreateHomeAddress))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnView)
-                    .addComponent(btnCreate))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnViewBankAccount)
+                        .addComponent(btnCreateBankAccount)
+                        .addComponent(btnViewPerson)
+                        .addComponent(btnCreatePerson))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnViewLocalAddress)
+                        .addComponent(btnCreateLocalAddress))
+                    .addComponent(btnViewHomeAddress, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
-                .addGap(281, 281, 281)
-                .addComponent(btnCreate)
+                .addGap(57, 57, 57)
+                .addComponent(btnCreatePerson)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnViewPerson)
+                .addGap(63, 63, 63)
+                .addComponent(btnCreateBankAccount)
                 .addGap(18, 18, 18)
-                .addComponent(btnView)
-                .addContainerGap(251, Short.MAX_VALUE))
+                .addComponent(btnViewBankAccount)
+                .addGap(66, 66, 66)
+                .addComponent(btnCreateLocalAddress)
+                .addGap(18, 18, 18)
+                .addComponent(btnViewLocalAddress)
+                .addGap(72, 72, 72)
+                .addComponent(btnCreateHomeAddress)
+                .addGap(18, 18, 18)
+                .addComponent(btnViewHomeAddress)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(controlPanel);
@@ -99,20 +170,59 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        ///instantiates a new CreatJPanel
-        CreateJPanel createJPanel = new CreateJPanel(person);
+    private void btnCreatePersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePersonActionPerformed
+        ///instantiates a new CreateJPanel
+        CreateJPanelPerson createJPanel = new CreateJPanelPerson(person);
         //changes right part of split pane to the new JPanel
         splitPane.setRightComponent(createJPanel);
         
-    }//GEN-LAST:event_btnCreateActionPerformed
+    }//GEN-LAST:event_btnCreatePersonActionPerformed
 
-    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+    private void btnViewPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPersonActionPerformed
         //instantiates and displays view panel on right pane
-        ViewJPanel viewJPanel = new ViewJPanel(person);
+        ViewJPanelPerson viewJPanel = new ViewJPanelPerson(person);
         splitPane.setRightComponent(viewJPanel);
         
-    }//GEN-LAST:event_btnViewActionPerformed
+    }//GEN-LAST:event_btnViewPersonActionPerformed
+
+    private void btnCreateBankAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateBankAccountActionPerformed
+        // TODO add your handling c        ///instantiates a new CreateJPanel
+        CreateJPanelBankAccount createJPanel = new CreateJPanelBankAccount(person);
+        //changes right part of split pane to the new JPanel
+        splitPane.setRightComponent(createJPanel);
+    }//GEN-LAST:event_btnCreateBankAccountActionPerformed
+
+    private void btnViewBankAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewBankAccountActionPerformed
+        //instantiates and displays view panel on right pane
+        ViewJPanelBankAccount viewJPanel = new ViewJPanelBankAccount(person);
+        splitPane.setRightComponent(viewJPanel);
+    }//GEN-LAST:event_btnViewBankAccountActionPerformed
+
+    private void btnCreateLocalAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateLocalAddressActionPerformed
+        ///instantiates a new CreateJPanel
+        CreateJPanelLocalAddress createJPanel = new CreateJPanelLocalAddress(person);
+        //changes right part of split pane to the new JPanel
+        splitPane.setRightComponent(createJPanel);
+    }//GEN-LAST:event_btnCreateLocalAddressActionPerformed
+
+    private void btnViewLocalAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewLocalAddressActionPerformed
+            //instantiates and displays view panel on right pane
+        ViewJPanelLocalAddress viewJPanel = new ViewJPanelLocalAddress(person);
+        splitPane.setRightComponent(viewJPanel);
+    }//GEN-LAST:event_btnViewLocalAddressActionPerformed
+
+    private void btnCreateHomeAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateHomeAddressActionPerformed
+            ///instantiates a new CreateJPanel
+        CreateJPanelHomeAddress createJPanel = new CreateJPanelHomeAddress(person);
+        //changes right part of split pane to the new JPanel
+        splitPane.setRightComponent(createJPanel);
+    }//GEN-LAST:event_btnCreateHomeAddressActionPerformed
+
+    private void btnViewHomeAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewHomeAddressActionPerformed
+        //instantiates and displays view panel on right pane
+        ViewJPanelHomeAddress viewJPanel = new ViewJPanelHomeAddress(person);
+        splitPane.setRightComponent(viewJPanel);
+    }//GEN-LAST:event_btnViewHomeAddressActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,8 +261,14 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCreate;
-    private javax.swing.JButton btnView;
+    private javax.swing.JButton btnCreateBankAccount;
+    private javax.swing.JButton btnCreateHomeAddress;
+    private javax.swing.JButton btnCreateLocalAddress;
+    private javax.swing.JButton btnCreatePerson;
+    private javax.swing.JButton btnViewBankAccount;
+    private javax.swing.JButton btnViewHomeAddress;
+    private javax.swing.JButton btnViewLocalAddress;
+    private javax.swing.JButton btnViewPerson;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel workArea;

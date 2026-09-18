@@ -10,13 +10,13 @@ import model.Person;
  *
  * @author jtwes
  */
-public class ViewJPanel extends javax.swing.JPanel {
+public class ViewJPanelPerson extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewJPanel
      */
     Person person;
-    public ViewJPanel(Person p) {
+    public ViewJPanelPerson(Person p) {
         initComponents();
         person = p;
     }

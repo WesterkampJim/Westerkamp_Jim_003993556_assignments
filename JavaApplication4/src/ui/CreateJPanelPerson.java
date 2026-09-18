@@ -16,13 +16,13 @@ import model.Person;
  *
  * @author jtwes
  */
-public class CreateJPanel extends javax.swing.JPanel {
+public class CreateJPanelPerson extends javax.swing.JPanel {
 
     /**
      * Creates new form CreateJPanel
      */
     Person person;
-    public CreateJPanel(Person p) {
+    public CreateJPanelPerson(Person p) {
         initComponents();
         //initializing person labelled as p
         person = p;
@@ -223,18 +223,18 @@ public class CreateJPanel extends javax.swing.JPanel {
             }
             if (!firstName.matches("[a-zA-Z ]+")){
                 valid=false;
-                message="please enter a last name with only letters";
+                message="please enter a first name with only letters";
             }
             
             //getting text and validations for last name   
             String lastName = fieldLastName.getText();
             if (lastName.length()>99){
                 valid=false;
-                message="please enter a name less than 100 characters";
+                message="please enter a last name less than 100 characters";
             }
             if (!lastName.matches("[a-zA-Z ]+")){
                 valid=false;
-                message="please enter a name with only letters";
+                message="please enter a last name with only letters";
             }
             
             //getting Age and validation
