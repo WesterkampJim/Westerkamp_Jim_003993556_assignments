@@ -150,15 +150,15 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         lblBankName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblBankName.setText("Bank Name");
-        add(lblBankName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, -1, -1));
+        add(lblBankName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, -1, -1));
 
         lblBalance.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
-        lblBalance.setText("Balance");
-        add(lblBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, -1, -1));
+        lblBalance.setText("Balance  $");
+        add(lblBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, -1, -1));
 
         lblGrowth.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblGrowth.setText("Growth %");
-        add(lblGrowth, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, -1, -1));
+        add(lblGrowth, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, -1, -1));
         add(fieldGrowth, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 100, -1));
         add(fieldBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 100, -1));
         add(fieldBankName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, 100, -1));
@@ -166,24 +166,24 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         lblPIN.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblPIN.setText("PIN");
-        add(lblPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 550, -1, -1));
+        add(lblPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 540, -1, -1));
         add(fieldPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 540, 100, -1));
 
         lblAccountNumber.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblAccountNumber.setText("Account Number");
-        add(lblAccountNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, -1, -1));
+        add(lblAccountNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, -1, -1));
 
         lblStreetName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblStreetName.setText("Street Name");
-        add(lblStreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, -1, -1));
+        add(lblStreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
 
         lblUnitNumber.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblUnitNumber.setText("Unit Number");
-        add(lblUnitNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 430, -1, -1));
+        add(lblUnitNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, -1, -1));
 
         lblCity.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblCity.setText("City");
-        add(lblCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 470, -1, -1));
+        add(lblCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, -1, -1));
         add(fieldCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 460, 100, -1));
         add(fieldUnitNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 100, -1));
         add(fieldStreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 100, -1));
@@ -191,12 +191,12 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         lblCountry.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblCountry.setText("Country");
-        add(lblCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 540, -1, -1));
+        add(lblCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 540, -1, -1));
         add(fieldCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 540, 100, -1));
 
         lblZipCode.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblZipCode.setText("Zip Code");
-        add(lblZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 510, -1, -1));
+        add(lblZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 510, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
   
@@ -208,25 +208,27 @@ public class CreateJPanel extends javax.swing.JPanel {
        boolean valid=true;
        String message = "Successfully saved";
        //ensure all fields are filled and radio buttons have a selection.
-       if (!validateAllFieldsNotEmpty() && validateRadioButtons(radioMarried,radioSingle) ){
+       if (!validateAllFieldsNotEmpty() && !validateRadioButtons(radioMarried,radioSingle) ){
            valid=false;
-           message="Please enter all information.";
-       }
+           message="Please enter all information before saving.";
+           JOptionPane.showMessageDialog(this, message, "Failed to Save",JOptionPane.INFORMATION_MESSAGE);
+
+       }else{
             
             //getting text and validations for first name
             String firstName = fieldFirstName.getText();
-            if (firstName.length()>100){
+            if (firstName.length()>99){
                 valid=false;
-                message="please enter a name less than 100 characters";
+                message="please enter a first name less than 100 characters";
             }
             if (!firstName.matches("[a-zA-Z ]+")){
                 valid=false;
-                message="please enter a name with only letters";
+                message="please enter a last name with only letters";
             }
             
             //getting text and validations for last name   
             String lastName = fieldLastName.getText();
-            if (lastName.length()>100){
+            if (lastName.length()>99){
                 valid=false;
                 message="please enter a name less than 100 characters";
             }
@@ -235,9 +237,8 @@ public class CreateJPanel extends javax.swing.JPanel {
                 message="please enter a name with only letters";
             }
             
-            
-            
-            int age = 0; //weird but needs to start 0 due to the try/catch
+            //getting Age and validation
+            int age = 0; //needs to start 0 due to the try/catch
             //try converting the age field to an integer, if it fails show an error message
             try{
                 age = Integer.parseInt(fieldAge.getText());
@@ -258,17 +259,117 @@ public class CreateJPanel extends javax.swing.JPanel {
             }else{
                 married = false;
             }
-
-
+            
+            //getting text and validations for bank account  
+            String bankAccount = fieldAccountNumber.getText();
+            if (bankAccount.length()>20){
+                valid=false;
+                message="please enter an account number with less than 20 characters";
+            }
+            if (!bankAccount.matches("[0-9]+")){
+                valid=false;
+                message="please enter an account number with only numbers";
+            }
+            
+            //getting text and validations for bank name  
+            String bankName = fieldBankName.getText();
+            if (bankName.length()>100){
+                valid=false;
+                message="please enter a valid Bank name";
+            }
+            if (!bankName.matches("[a-zA-Z]+")){
+                valid=false;
+                message="please enter a bank name with only letters";
+            }
+            
+                        //getting Age and validation
+            double balance = 0; //needs to start 0 due to the try/catch
+            //does not accept values that are larger than 12 digits. protects from overflow
+            if (fieldBalance.getText().length()>12){
+                valid=false;
+                message="please enter a valid balance.";
+            }
+            try{ //try converting the balance field to a double, if it fails show an error message
+                balance = Double.parseDouble(fieldBalance.getText());
+                    }catch (NumberFormatException e){
+                        valid=false;
+                        message="please enter a valid balance using only numbers";
+            }
 
             
+                        //getting text and validations for first name
+            String pin = fieldPIN.getText();
+            if (pin.length()!=4){
+                valid=false;
+                message="please enter a valid 4 digit pin";
+            }
+            if (!pin.matches("[0-9]+")){
+                valid=false;
+                message="please enter a PIN with numbers only";
+            }
 
+            float growth = 0.0f; //needs to start 0 due to the try/catch
+            //does not accept values that are larger than the 12 digits. protects from overflow
+            if (fieldGrowth.getText().length()>12){
+                valid=false;
+                message="please enter a valid growth percentage.";
+            }
+            try{ //try converting the growth field to a float, if it fails show an error message
+                growth = Float.parseFloat(fieldGrowth.getText());
+                    }catch (NumberFormatException e){
+                        valid=false;
+                        message="please enter a valid growth percentage";
+            }
+            
+            
+            //getting text and validations for first name
+            String street = fieldStreetName.getText();
+            if (street.length()>99){
+                valid=false;
+                message="please enter a street name less than 100 characters";
+            }
+            
+                        //getting text and validations for first name
+            String city = fieldCity.getText();
+            if (city.length()>99){
+                valid=false;
+                message="please enter a city name less than 100 characters";
+            }
+            if (!city.matches("[a-zA-Z ]+")){
+                valid=false;
+                message="please enter a city name with only letters";
+            }
+            
+            //getting text and validations for first name
+            String unit = fieldUnitNumber.getText();
+            if (unit.length()>9){
+                valid=false;
+                message="please enter a unit with less than 10 characters";
+            }
 
+            
+            //getting text and validations for first name
+            String country = fieldCountry.getText();
+            if (country.length()>100){
+                valid=false;
+                message="please enter a country with less than 100 characters";
+            }
+            if (!country.matches("[a-zA-Z ]+")){
+                valid=false;
+                message="please enter a country with only letters";
+            }
+
+            //////validation check,
            if (!valid){
                 JOptionPane.showMessageDialog(this, message, "Failed to Save",JOptionPane.INFORMATION_MESSAGE);
            }else{
-               ///save all data to object
+               
+               
+               JOptionPane.showMessageDialog(this, "Saved Successfully", "Saved Successfully",JOptionPane.INFORMATION_MESSAGE);
            }
+       }
+
+
         
 
     }//GEN-LAST:event_btnSaveActionPerformed
