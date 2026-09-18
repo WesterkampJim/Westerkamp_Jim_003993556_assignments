@@ -64,243 +64,94 @@ public class ViewJPanel extends javax.swing.JPanel {
         lblZipCode = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(252, 252, 242));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblHomeAddress.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         lblHomeAddress.setText("Home Address");
+        add(lblHomeAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 325, 196, 58));
 
         lblPersonProfile.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         lblPersonProfile.setText("Person Profile");
+        add(lblPersonProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 51, 215, 90));
 
         lblBankInformation1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         lblBankInformation1.setText("Bank Information");
+        add(lblBankInformation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 323, 196, 58));
 
         radioMarried.setText("Married");
+        add(radioMarried, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 279, -1, -1));
 
         radioSingle.setText("Single");
+        add(radioSingle, new org.netbeans.lib.awtextra.AbsoluteConstraints(357, 279, -1, -1));
 
         lblAge.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblAge.setText("Age");
+        add(lblAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 228, -1, -1));
 
         lblMaritalStatus1.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblMaritalStatus1.setText("Mrital Status");
+        add(lblMaritalStatus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 283, -1, -1));
 
         lblLastName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblLastName.setText("Last Name");
+        add(lblLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 193, -1, -1));
 
         lblFirstName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblFirstName.setText("First Name");
+        add(lblFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 152, -1, -1));
+        add(fieldAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 223, 100, -1));
+        add(fieldLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 188, 100, -1));
+        add(fieldFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 147, 100, -1));
 
         lblBankName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblBankName.setText("Bank Name");
+        add(lblBankName, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 402, -1, -1));
 
         lblBalance.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblBalance.setText("Balance");
+        add(lblBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 443, -1, -1));
 
         lblGrowth.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblGrowth.setText("Growth %");
+        add(lblGrowth, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 478, -1, -1));
+        add(fieldGrowth, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 473, 100, -1));
+        add(fieldBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 438, 100, -1));
+        add(fieldBankName, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 397, 100, -1));
+        add(fieldAccountNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 514, 100, -1));
 
         lblPIN.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblPIN.setText("PIN");
+        add(lblPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 555, -1, -1));
+        add(fieldPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 550, 100, -1));
 
         lblAccountNumber.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblAccountNumber.setText("Account Number");
+        add(lblAccountNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 519, -1, -1));
 
         lblStreetName.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblStreetName.setText("Street Name");
+        add(lblStreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, -1, -1));
 
         lblUnitNumber.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblUnitNumber.setText("Unit Number");
+        add(lblUnitNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, -1, -1));
 
         lblCity.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblCity.setText("City");
+        add(lblCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, -1, -1));
+        add(fieldCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 470, 100, -1));
+        add(fieldUnitNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 430, 100, -1));
+        add(fieldStreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, 100, -1));
+        add(fieldZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 510, 100, -1));
 
         lblCountry.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblCountry.setText("Country");
+        add(lblCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 550, -1, -1));
+        add(fieldCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 550, 100, -1));
 
         lblZipCode.setFont(new java.awt.Font("Minion Pro", 0, 14)); // NOI18N
         lblZipCode.setText("Zip Code");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(131, 131, 131)
-                            .addComponent(lblPersonProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(131, 131, 131)
-                            .addComponent(lblFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(fieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(131, 131, 131)
-                            .addComponent(lblLastName)
-                            .addGap(24, 24, 24)
-                            .addComponent(fieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(131, 131, 131)
-                            .addComponent(lblAge, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(61, 61, 61)
-                            .addComponent(fieldAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(118, 118, 118)
-                            .addComponent(lblMaritalStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(radioMarried, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(radioSingle, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblBankInformation1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(109, 109, 109)
-                            .addComponent(lblHomeAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(lblBankName, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(51, 51, 51)
-                            .addComponent(fieldBankName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(104, 104, 104)
-                            .addComponent(lblStreetName)
-                            .addGap(42, 42, 42)
-                            .addComponent(fieldStreetName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(lblBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(74, 74, 74)
-                            .addComponent(fieldBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(104, 104, 104)
-                            .addComponent(lblUnitNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(33, 33, 33)
-                            .addComponent(fieldUnitNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(lblGrowth, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(59, 59, 59)
-                            .addComponent(fieldGrowth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(104, 104, 104)
-                            .addComponent(lblCity, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(86, 86, 86)
-                            .addComponent(fieldCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(lblAccountNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(fieldAccountNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(105, 105, 105)
-                            .addComponent(lblZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(57, 57, 57)
-                            .addComponent(fieldZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(lblPIN)
-                            .addGap(93, 93, 93)
-                            .addComponent(fieldPIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(105, 105, 105)
-                            .addComponent(lblCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(62, 62, 62)
-                            .addComponent(fieldCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(lblPersonProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(6, 6, 6)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(5, 5, 5)
-                            .addComponent(lblFirstName))
-                        .addComponent(fieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(5, 5, 5)
-                            .addComponent(lblLastName))
-                        .addComponent(fieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(12, 12, 12)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(5, 5, 5)
-                            .addComponent(lblAge))
-                        .addComponent(fieldAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(33, 33, 33)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(4, 4, 4)
-                            .addComponent(lblMaritalStatus1))
-                        .addComponent(radioMarried)
-                        .addComponent(radioSingle))
-                    .addGap(22, 22, 22)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblBankInformation1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(2, 2, 2)
-                            .addComponent(lblHomeAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(7, 7, 7)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(12, 12, 12)
-                            .addComponent(lblBankName))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(7, 7, 7)
-                            .addComponent(fieldBankName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(lblStreetName))
-                        .addComponent(fieldStreetName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(10, 10, 10)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(13, 13, 13)
-                            .addComponent(lblBalance))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(8, 8, 8)
-                            .addComponent(fieldBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(lblUnitNumber))
-                        .addComponent(fieldUnitNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(9, 9, 9)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(8, 8, 8)
-                            .addComponent(lblGrowth))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(3, 3, 3)
-                            .addComponent(fieldGrowth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(lblCity))
-                        .addComponent(fieldCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(12, 12, 12)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(lblAccountNumber))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(4, 4, 4)
-                            .addComponent(fieldAccountNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(lblZipCode))
-                        .addComponent(fieldZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(12, 12, 12)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(5, 5, 5)
-                            .addComponent(lblPIN))
-                        .addComponent(fieldPIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblCountry)
-                        .addComponent(fieldCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        add(lblZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 520, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
