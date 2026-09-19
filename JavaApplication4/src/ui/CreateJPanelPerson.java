@@ -147,7 +147,7 @@ public class CreateJPanelPerson extends javax.swing.JPanel {
        boolean valid=true;
        String message = "Successfully saved";
        //ensure all fields are filled and radio buttons have a selection.
-       if (!validateAllFieldsNotEmpty() && !validateRadioButtons(radioMarried,radioSingle) ){
+       if (!validateAllFieldsNotEmpty() || !validateRadioButtons(radioMarried,radioSingle) ){
            valid=false;
            message="Please enter all information before saving.";
            JOptionPane.showMessageDialog(this, message, "Failed to Save",JOptionPane.INFORMATION_MESSAGE);
