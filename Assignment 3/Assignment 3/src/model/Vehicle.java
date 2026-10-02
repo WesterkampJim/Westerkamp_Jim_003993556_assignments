@@ -19,6 +19,12 @@ public class Vehicle {
     //1 Owner object per Vehicle
     Owner owner;
 
+    
+    @Override
+    public String toString(){
+        return getVehicleID();
+    }
+    
     public void setOwner(Owner owner) {
         this.owner = owner;
     }
