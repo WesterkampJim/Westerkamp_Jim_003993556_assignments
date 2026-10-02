@@ -9,7 +9,7 @@ package model;
  * @author jtwes
  */
 public class Vehicle {
-    String vehicleID;
+    int vehicleID;
     String make;
     String model;
     String registrationNumber;
@@ -22,7 +22,7 @@ public class Vehicle {
     
     @Override
     public String toString(){
-        return getVehicleID();
+        return String.valueOf(getVehicleID());
     }
     
     public void setOwner(Owner owner) {
@@ -33,7 +33,7 @@ public class Vehicle {
         return owner;
     }
 
-    public String getVehicleID() {
+    public int getVehicleID() {
         return vehicleID;
     }
 
@@ -57,7 +57,7 @@ public class Vehicle {
         return serviceOpted;
     }
 
-    public void setVehicleID(String vehicleID) {
+    public void setVehicleID(int vehicleID) {
         this.vehicleID = vehicleID;
     }
 

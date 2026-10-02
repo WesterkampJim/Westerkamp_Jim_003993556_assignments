@@ -8,8 +8,8 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import model.Account;
-import model.AccountDirectory;
+import model.Service;
+import model.ServiceDirectory;
 
 /**
  *
@@ -18,15 +18,15 @@ import model.AccountDirectory;
 public class ViewServiceJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
-    private AccountDirectory accountDirectory;
-    private Account account;
+    private ServiceDirectory serviceDirectory;
+    private Service service;
     /**
-     * Creates new form ViewAccountJPanel
+     * Creates new form ViewServiceJPanel
      */
-    public ViewServiceJPanel( JPanel userProcessContainer, AccountDirectory directory, Account account) {
+    public ViewServiceJPanel( JPanel userProcessContainer, ServiceDirectory directory, Service service) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.account = account;
+        this.service = service;
         
         refreshTextFields();
         setViewMode();
@@ -41,24 +41,33 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblRoutingNumber = new javax.swing.JLabel();
-        lblAccountNumber = new javax.swing.JLabel();
-        lblBankName = new javax.swing.JLabel();
-        txtRoutingNumber = new javax.swing.JTextField();
-        txtAccountNumber = new javax.swing.JTextField();
-        txtBankName = new javax.swing.JTextField();
+        lblServiceID = new javax.swing.JLabel();
+        lblServiceType = new javax.swing.JLabel();
+        lblCost = new javax.swing.JLabel();
+        txtServiceID = new javax.swing.JTextField();
+        txtServiceType = new javax.swing.JTextField();
+        txtCost = new javax.swing.JTextField();
         lblTitle = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        lblMachanicFirstName = new javax.swing.JLabel();
+        txtMechanicFirstName = new javax.swing.JTextField();
+        lblMechanicLastName = new javax.swing.JLabel();
+        txtMechanicLastName = new javax.swing.JTextField();
+        lblServiceDuration = new javax.swing.JLabel();
+        txtServiceDuration = new javax.swing.JTextField();
+        txtOwnerID = new javax.swing.JTextField();
+        lblOwnerID = new javax.swing.JLabel();
 
-        lblRoutingNumber.setText("Routing Number");
+        lblServiceID.setText("Service ID");
 
-        lblAccountNumber.setText("Account Number");
+        lblServiceType.setText("Service Type");
 
-        lblBankName.setText("Bank Name");
+        lblCost.setText("Cost");
 
-        lblTitle.setText("View Account");
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblTitle.setText("View Service");
 
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -81,36 +90,54 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblMachanicFirstName.setText("Mechanic First Name");
+
+        lblMechanicLastName.setText("Mechanic Last Name");
+
+        lblServiceDuration.setText("Service Duration");
+
+        lblOwnerID.setText("Owner ID");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(lblTitle)
-                        .addGap(66, 66, 66))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(192, 192, 192)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(btnSave)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnUpdate)
-                                .addGap(0, 25, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblAccountNumber)
-                                    .addComponent(lblRoutingNumber)
-                                    .addComponent(lblBankName))
+                                    .addComponent(lblServiceType)
+                                    .addComponent(lblServiceID)
+                                    .addComponent(lblCost)
+                                    .addComponent(lblMachanicFirstName))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtAccountNumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                    .addComponent(txtRoutingNumber, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtBankName, javax.swing.GroupLayout.Alignment.TRAILING))))))
-                .addGap(192, 192, 192))
+                                    .addComponent(txtServiceType, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                    .addComponent(txtServiceID, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtCost, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtMechanicFirstName)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblMechanicLastName)
+                                    .addComponent(lblServiceDuration)
+                                    .addComponent(lblOwnerID))
+                                .addGap(104, 104, 104)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtServiceDuration)
+                                    .addComponent(txtMechanicLastName)
+                                    .addComponent(txtOwnerID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSave)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnUpdate)
+                            .addComponent(lblTitle))
+                        .addGap(88, 88, 88)))
+                .addGap(170, 170, 170))
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(btnBack)
@@ -125,45 +152,43 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
                 .addComponent(lblTitle)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRoutingNumber)
-                    .addComponent(txtRoutingNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblServiceID)
+                    .addComponent(txtServiceID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAccountNumber)
-                    .addComponent(txtAccountNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblServiceType)
+                    .addComponent(txtServiceType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblBankName)
-                    .addComponent(txtBankName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                    .addComponent(lblCost)
+                    .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave)
-                    .addComponent(btnUpdate))
-                .addGap(106, 106, 106))
+                    .addComponent(txtMechanicFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMachanicFirstName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMechanicLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMechanicLastName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtServiceDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblServiceDuration))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblOwnerID)
+                    .addComponent(txtOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnSave))
+                .addGap(58, 58, 58))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
-        String routingNumber = txtRoutingNumber.getText();
-        String accountNumber = txtAccountNumber.getText();
-        String bankName = txtBankName.getText();
-
-        if (routingNumber.isBlank() || bankName.isBlank() || accountNumber.isBlank())
-        {
-            JOptionPane.showMessageDialog(this,"All fields are mandatory.","ERROR", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-
-
-        account.setRoutingNumber(routingNumber);
-        account.setAccountNumber(accountNumber);
-        account.setBankName(bankName);
-
-        JOptionPane.showMessageDialog(this,"Account successfully created","Information", JOptionPane.INFORMATION_MESSAGE);
-        setViewMode();
-
+       
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -174,8 +199,8 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] panelStack = userProcessContainer.getComponents();
         JPanel lastPanel = (JPanel) panelStack[panelStack.length - 1];
-        ManageAccountsJPanel manageAccountJPanel = (ManageAccountsJPanel) lastPanel;
-        manageAccountJPanel.populateTable();
+        ManageServicesJPanel manageServiceJPanel = (ManageServicesJPanel) lastPanel;
+        manageServiceJPanel.populateTable();
         
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
@@ -186,25 +211,32 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JLabel lblAccountNumber;
-    private javax.swing.JLabel lblBankName;
-    private javax.swing.JLabel lblRoutingNumber;
+    private javax.swing.JLabel lblCost;
+    private javax.swing.JLabel lblMachanicFirstName;
+    private javax.swing.JLabel lblMechanicLastName;
+    private javax.swing.JLabel lblOwnerID;
+    private javax.swing.JLabel lblServiceDuration;
+    private javax.swing.JLabel lblServiceID;
+    private javax.swing.JLabel lblServiceType;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JTextField txtAccountNumber;
-    private javax.swing.JTextField txtBankName;
-    private javax.swing.JTextField txtRoutingNumber;
+    private javax.swing.JTextField txtCost;
+    private javax.swing.JTextField txtMechanicFirstName;
+    private javax.swing.JTextField txtMechanicLastName;
+    private javax.swing.JTextField txtOwnerID;
+    private javax.swing.JTextField txtServiceDuration;
+    private javax.swing.JTextField txtServiceID;
+    private javax.swing.JTextField txtServiceType;
     // End of variables declaration//GEN-END:variables
 
        private void refreshTextFields(){
-           txtRoutingNumber.setText(account.getRoutingNumber());
-           txtAccountNumber.setText(account.getAccountNumber());
-           txtBankName.setText(account.getBankName());
+
+
        }
        
        private void setViewMode(){
-           txtRoutingNumber.setEnabled(false);
-           txtAccountNumber.setEnabled(false);
-           txtBankName.setEnabled(false);
+           txtServiceID.setEnabled(false);
+           txtServiceType.setEnabled(false);
+           txtCost.setEnabled(false);
            
            btnSave.setEnabled(false);
            btnUpdate.setEnabled(true);
@@ -212,9 +244,9 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
        }
        
        private void setEditMode(){
-           txtRoutingNumber.setEnabled(true);
-           txtAccountNumber.setEnabled(true);
-           txtBankName.setEnabled(true);
+           txtServiceID.setEnabled(true);
+           txtServiceType.setEnabled(true);
+           txtCost.setEnabled(true);
            
            btnSave.setEnabled(true);
            btnUpdate.setEnabled(false);
