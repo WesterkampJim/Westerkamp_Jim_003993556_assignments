@@ -120,12 +120,11 @@
                               <Component id="lblYear" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblRegistrationNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtRegistrationNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="67" max="32767" attributes="0"/>
+                      <EmptySpace pref="79" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -181,6 +180,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtVehicleID">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtMake">
     </Component>
@@ -233,6 +236,9 @@
     <Component class="javax.swing.JTextField" name="txtYear">
     </Component>
     <Component class="javax.swing.JTextField" name="txtServiceDate">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblServiceDate">
       <Properties>
@@ -259,6 +265,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtOwnerID">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

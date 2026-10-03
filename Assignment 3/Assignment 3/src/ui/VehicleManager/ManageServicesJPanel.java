@@ -233,7 +233,7 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
             row[2] = a.getServiceDuration();
             row[3] = a.getMechanicFirstName()+" "+a.getMechanicLastName();
             row[4] = a.getVehical().getOwner().getOwnerFirstName()+" "+a.getVehical().getOwner().getOwnerLastName();
-            row[5] = a.getVehical().getMake()+" "+a.getVehical().getModel();
+            row[5] = a.getVehical().getMake()+" "+a.getVehical().getModel()+" "+a.getVehical().getYear();
             row[6] = a.getCost();
             model.addRow(row);
         }

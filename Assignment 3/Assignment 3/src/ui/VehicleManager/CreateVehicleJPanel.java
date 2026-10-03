@@ -224,6 +224,7 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
     String ownerFirstName = txtFirstName.getText();
     String ownerLastName = txtLastName.getText();
     
+    
     if (make.isBlank() || model.isBlank() || registrationNumber.isBlank() || ownerID.isBlank() || ownerFirstName.isBlank() || ownerLastName.isBlank()) { 
         JOptionPane.showMessageDialog(this, "All fields are mandatory.", "ERROR", JOptionPane.ERROR_MESSAGE); 
         return; 
@@ -264,6 +265,7 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this,"First Name must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
         return;
     } 
+    
     
    Vehicle lastVehicle = vehicleDirectory.getVehicles().get(vehicleDirectory.getVehicles().size()-1);  
    

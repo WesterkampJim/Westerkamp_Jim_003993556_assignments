@@ -6,8 +6,10 @@ package ui.VehicleManager;
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Owner;
 import model.Vehicle;
 import model.VehicleDirectory;
 
@@ -30,6 +32,10 @@ public class ViewVehicleJPanel extends javax.swing.JPanel {
         
         refreshTextFields();
         setViewMode();
+        
+        txtVehicleID.setText(vehicle.getVehicleID().toString());
+        txtOwnerID.setText(vehicle.getOwner().getOwnerID().toString());
+        txtServiceDate.setText(vehicle.getOwner().getServiceDate().toString());
     }
 
     /**
@@ -70,6 +76,9 @@ public class ViewVehicleJPanel extends javax.swing.JPanel {
 
         lblModel.setText("Model");
 
+        txtVehicleID.setToolTipText("");
+        txtVehicleID.setEnabled(false);
+
         lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblTitle.setText("View Vehicle");
 
@@ -98,6 +107,8 @@ public class ViewVehicleJPanel extends javax.swing.JPanel {
 
         lblYear.setText("Year");
 
+        txtServiceDate.setEnabled(false);
+
         lblServiceDate.setText("Service Date");
 
         lblLastName.setText("Last Name");
@@ -105,6 +116,8 @@ public class ViewVehicleJPanel extends javax.swing.JPanel {
         lblFirstName.setText("First Name");
 
         lblOwnerID.setText("Owner ID");
+
+        txtOwnerID.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -189,11 +202,10 @@ public class ViewVehicleJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblYear)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblRegistrationNumber)
                             .addComponent(txtRegistrationNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSave)
                             .addComponent(btnUpdate))
@@ -223,6 +235,69 @@ public class ViewVehicleJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
+        int vehicleID;
+        int year;
+
+        String make = txtMake.getText();
+        String model = txtModel.getText();
+        String registrationNumber = txtRegistrationNumber.getText();
+
+        String ownerID = txtOwnerID.getText();
+        String ownerFirstName = txtFirstName.getText();
+        String ownerLastName = txtLastName.getText();
+
+
+        if (make.isBlank() || model.isBlank() || registrationNumber.isBlank() || ownerID.isBlank() || ownerFirstName.isBlank() || ownerLastName.isBlank()) { 
+            JOptionPane.showMessageDialog(this, "All fields are mandatory.", "ERROR", JOptionPane.ERROR_MESSAGE); 
+            return; 
+        }
+
+        try {
+            vehicleID = Integer.parseInt(txtVehicleID.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Vehicle ID must be a whole number.","Warning",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        try {
+            year = Integer.parseInt(txtYear.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Vehicle year must be a whole number.","Warning",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (year < 0 || year > 10000000) {
+            JOptionPane.showMessageDialog(this,"Please enter a valid vehicle year.","Invalid Year",JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (make.length() > 50 || !make.matches("[a-zA-Z _-]+")) {
+            JOptionPane.showMessageDialog(this,"Make must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (model.length() > 50 || !model.matches("[a-zA-Z _-]+")) {
+            JOptionPane.showMessageDialog(this,"Model must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if (registrationNumber.length() > 50 || !registrationNumber.matches("[a-zA-Z0-9 _-]+")) {
+            JOptionPane.showMessageDialog(this,"Registration Number must be 50 characters or less and may only contain letters, numbers, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
+            return;   
+        }else if (ownerLastName.length() > 50 || !ownerLastName.matches("[a-zA-Z _-]+")) {
+            JOptionPane.showMessageDialog(this,"Last Name must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
+            return;  
+        }else if (ownerFirstName.length() > 50 || !ownerFirstName.matches("[a-zA-Z _-]+")) {
+            JOptionPane.showMessageDialog(this,"First Name must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
+            return;
+        } 
+
+
+
+
+        Owner owner = vehicle.getOwner();
+
+        owner.setOwnerFirstName(ownerFirstName);
+        owner.setOwnerLastName(ownerLastName);
+ 
+        vehicle.setMake(make);
+        vehicle.setModel(model);
+        vehicle.setRegistrationNumber(registrationNumber);
+        vehicle.setYear(year);
+        vehicle.setOwner(owner); 
 
         JOptionPane.showMessageDialog(this,"Vehicle successfully created","Information", JOptionPane.INFORMATION_MESSAGE);
         setViewMode();
@@ -230,6 +305,7 @@ public class ViewVehicleJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+                
         setEditMode();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -270,18 +346,38 @@ public class ViewVehicleJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
 
-       private void refreshTextFields(){
+private void refreshTextFields() {
+    txtFirstName.setText(vehicle.getOwner().getOwnerFirstName());
+    txtLastName.setText(vehicle.getOwner().getOwnerLastName());
+    txtMake.setText(vehicle.getMake());
+    txtModel.setText(vehicle.getModel());
+    txtRegistrationNumber.setText(vehicle.getRegistrationNumber());
+    txtYear.setText(String.valueOf(vehicle.getYear()));
+}
 
-       }
-       
-       private void setViewMode(){
+private void setViewMode() {
+    txtFirstName.setEnabled(false);
+    txtLastName.setEnabled(false);
+    txtMake.setEnabled(false);
+    txtModel.setEnabled(false);
+    txtRegistrationNumber.setEnabled(false);
+    txtYear.setEnabled(false);
+    
+    btnSave.setEnabled(false);
+    btnUpdate.setEnabled(true);
+}
 
-           
-       }
-       
-       private void setEditMode(){
-
-       }
+private void setEditMode() {
+    txtFirstName.setEnabled(true);
+    txtLastName.setEnabled(true);
+    txtMake.setEnabled(true);
+    txtModel.setEnabled(true);
+    txtRegistrationNumber.setEnabled(true);
+    txtYear.setEnabled(true);
+    
+    btnSave.setEnabled(true);
+    btnUpdate.setEnabled(false);
+}
     
     
 

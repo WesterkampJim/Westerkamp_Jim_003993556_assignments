@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Service;
 import model.ServiceDirectory;
+import model.ServiceType;
 
 /**
  *
@@ -30,6 +31,9 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
         
         refreshTextFields();
         setViewMode();
+        
+        txtOwnerID.setText(service.getVehical().getOwner().getOwnerID().toString());
+        txtServiceID.setText(service.getServiceID().toString());
     }
 
     /**
@@ -45,7 +49,6 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
         lblServiceType = new javax.swing.JLabel();
         lblCost = new javax.swing.JLabel();
         txtServiceID = new javax.swing.JTextField();
-        txtServiceType = new javax.swing.JTextField();
         txtCost = new javax.swing.JTextField();
         lblTitle = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
@@ -59,12 +62,15 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
         txtServiceDuration = new javax.swing.JTextField();
         txtOwnerID = new javax.swing.JTextField();
         lblOwnerID = new javax.swing.JLabel();
+        comboServiceType = new javax.swing.JComboBox<>();
 
         lblServiceID.setText("Service ID");
 
         lblServiceType.setText("Service Type");
 
         lblCost.setText("Cost");
+
+        txtServiceID.setEnabled(false);
 
         lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblTitle.setText("View Service");
@@ -96,7 +102,11 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
 
         lblServiceDuration.setText("Service Duration");
 
+        txtOwnerID.setEnabled(false);
+
         lblOwnerID.setText("Owner ID");
+
+        comboServiceType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -115,10 +125,10 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
                                     .addComponent(lblMachanicFirstName))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtServiceType, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                    .addComponent(txtServiceID, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtServiceID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                                     .addComponent(txtCost, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtMechanicFirstName)))
+                                    .addComponent(txtMechanicFirstName)
+                                    .addComponent(comboServiceType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblMechanicLastName)
@@ -155,10 +165,10 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
                     .addComponent(lblServiceID)
                     .addComponent(txtServiceID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblServiceType)
-                    .addComponent(txtServiceType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(comboServiceType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCost))
@@ -178,7 +188,7 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblOwnerID)
                     .addComponent(txtOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate)
                     .addComponent(btnSave))
@@ -187,7 +197,63 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        float cost;
+        int duration;
+        
+       
+       String mechanicFirstName = txtMechanicFirstName.getText();
+       String mechanicLastName = txtMechanicLastName.getText();
+       
+       if (mechanicFirstName.isBlank() || mechanicLastName.isBlank()|| txtCost.getText().isBlank()|| txtServiceDuration.getText().isBlank())
+       {
+           JOptionPane.showMessageDialog(this,"All fields are mandatory.","ERROR", JOptionPane.ERROR_MESSAGE);
+           return;
+       }
+       
+    
+        ServiceType serviceType = ServiceType.valueOf(comboServiceType.getSelectedItem().toString());
 
+           
+        try {
+          cost = Float.parseFloat(txtCost.getText());
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(this,"Please use only decimal numbers for the cost.","Warning",JOptionPane.WARNING_MESSAGE);
+         return;
+        }
+        
+        try {
+         duration = Integer.parseInt(txtServiceDuration.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Please use only a whole number for the cost.","Warning",JOptionPane.WARNING_MESSAGE);
+        return;
+        }
+       
+        if (mechanicFirstName.length() > 50 || !mechanicFirstName.matches("[a-zA-Z _-]+")) {
+            JOptionPane.showMessageDialog(this,"Mechanic first name must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid First Name",JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if (mechanicLastName.length() > 50 || !mechanicLastName.matches("[a-zA-Z _-]+")) {
+            JOptionPane.showMessageDialog(this,"Mechanic last name must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid First Name",JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (cost < 0 || cost > 10000000) {
+            JOptionPane.showMessageDialog(this,"Cost must be between 0 and 10,000,000.","Invalid Cost",JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (duration < 0 || duration > 10000000) {
+            JOptionPane.showMessageDialog(this,"Service duration must be between 0 and 10,000,000 minutes.","Invalid Duration",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        
+
+        Service a = service;           
+        
+        a.setServiceType(serviceType);
+        a.setCost(cost);
+        a.setMechanicFirstName(mechanicFirstName);
+        a.setMechanicLastName(mechanicLastName);
+        a.setServiceDuration(duration);
+       
+        JOptionPane.showMessageDialog(this,"Service successfully created","Information", JOptionPane.INFORMATION_MESSAGE);
+        setViewMode();
        
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -211,6 +277,7 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> comboServiceType;
     private javax.swing.JLabel lblCost;
     private javax.swing.JLabel lblMachanicFirstName;
     private javax.swing.JLabel lblMechanicLastName;
@@ -225,7 +292,6 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtOwnerID;
     private javax.swing.JTextField txtServiceDuration;
     private javax.swing.JTextField txtServiceID;
-    private javax.swing.JTextField txtServiceType;
     // End of variables declaration//GEN-END:variables
 
        private void refreshTextFields(){
@@ -234,9 +300,11 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
        }
        
        private void setViewMode(){
-           txtServiceID.setEnabled(false);
-           txtServiceType.setEnabled(false);
+
+           comboServiceType.setEnabled(false);
            txtCost.setEnabled(false);
+           txtMechanicLastName.setEnabled(false);
+           txtMechanicFirstName.setEnabled(false);
            
            btnSave.setEnabled(false);
            btnUpdate.setEnabled(true);
@@ -244,8 +312,7 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
        }
        
        private void setEditMode(){
-           txtServiceID.setEnabled(true);
-           txtServiceType.setEnabled(true);
+           comboServiceType.setEnabled(true);
            txtCost.setEnabled(true);
            
            btnSave.setEnabled(true);

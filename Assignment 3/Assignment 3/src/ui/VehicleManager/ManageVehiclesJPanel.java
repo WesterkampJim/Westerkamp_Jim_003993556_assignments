@@ -5,6 +5,7 @@
 package ui.VehicleManager;
 
 import java.awt.CardLayout;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -65,17 +66,17 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
 
         tblVehicles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Vehicle ID", "Vehicle", "Owner", "Service Type"
+                "Vehicle ID", "Vehicle", "Owner", "Service Type", "Service Date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -230,12 +231,10 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
         for (Vehicle a:vehicleDirectory.getVehicles()){
             Object[] row = new Object[7];
             row[0] = a;
-            row[1] = a.getRegistrationNumber();
-            row[2] = a.getYear();
-            row[3] = a.getMake();
-            row[4] = a.getModel();
-            row[5] = a.getOwner();
-            row[6] = a.getServiceOpted();
+            row[1] = a.getMake()+" "+a.getModel()+" "+a.getYear();
+            row[2] = a.getOwner().getOwnerFirstName()+" "+a.getOwner().getOwnerLastName();
+            row[3] = a.getServiceOpted();
+            row[4] = a.getOwner().getServiceDate().format(DateTimeFormatter.ISO_LOCAL_DATE).toString();
             
             
             
