@@ -37,7 +37,7 @@ public class VehicleDirectory {
     
     public Vehicle searchVehicle(String serviceID){
         for(Vehicle a : services){
-            if(a.getVehicleID().contains(serviceID)){
+            if(String.valueOf(a.getVehicleID()).contains(serviceID)){
                 return a;
             }
         }

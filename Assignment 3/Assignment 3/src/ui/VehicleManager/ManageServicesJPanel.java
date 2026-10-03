@@ -16,7 +16,7 @@ import model.ServiceDirectory;
  * @author jtwes
  */
 public class ManageServicesJPanel extends javax.swing.JPanel {
-    JPanel userProcessContainer;
+    JPanel ContentPanel;
     ServiceDirectory serviceDirectory;
     /**
      * Creates new form ManageServicesJPanel
@@ -24,7 +24,7 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
     public ManageServicesJPanel(JPanel container, ServiceDirectory directory) {
         initComponents();
         
-        userProcessContainer = container;
+        ContentPanel = container;
         serviceDirectory= directory;
         populateTable();
     }
@@ -54,7 +54,7 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnDelete.setText("Delete Account");
+        btnDelete.setText("Delete Service");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -65,17 +65,17 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
 
         tblServices.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Bank Name", "Routing Number", "Account Number", "Balance"
+                "Service ID", "Service Type", "Duration", "Mechanic", "Owner", "Vehicle", "Cost"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -111,19 +111,18 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
                         .addGap(258, 258, 258)
                         .addComponent(lblTitle))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(btnSearch)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSearchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnViewDetails)
-                                .addComponent(btnDelete))))
+                        .addGap(135, 135, 135)
+                        .addComponent(btnSearch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSearchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnDelete)
+                            .addComponent(btnViewDetails))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -148,9 +147,9 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        ContentPanel.remove(this);
+        CardLayout layout = (CardLayout) ContentPanel.getLayout();
+        layout.previous(ContentPanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnViewDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailsActionPerformed
@@ -159,10 +158,10 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
         if (selectedRow >=0){
             Service selectedService = (Service) tblServices.getValueAt(selectedRow,0);
             
-            ViewServiceJPanel panel = new ViewServiceJPanel(userProcessContainer, serviceDirectory, selectedService);
-            userProcessContainer.add("ViewServiceJPanel", panel);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
+            ViewServiceJPanel panel = new ViewServiceJPanel(ContentPanel, serviceDirectory, selectedService);
+            ContentPanel.add("ViewServiceJPanel", panel);
+            CardLayout layout = (CardLayout) ContentPanel.getLayout();
+            layout.next(ContentPanel);
             
         }else{
             JOptionPane.showConfirmDialog(null, "Please select an service from the list.","Warning",JOptionPane.WARNING_MESSAGE);
@@ -196,10 +195,10 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
         Service foundService = serviceDirectory.searchService(serviceNumber);
         
             if(foundService!=null){
-                ViewServiceJPanel panel = new ViewServiceJPanel(userProcessContainer, serviceDirectory, foundService);
-                userProcessContainer.add("ViewServiceJPanel",panel);
-                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-                layout.next(userProcessContainer);
+                ViewServiceJPanel panel = new ViewServiceJPanel(ContentPanel, serviceDirectory, foundService);
+                ContentPanel.add("ViewServiceJPanel",panel);
+                CardLayout layout = (CardLayout) ContentPanel.getLayout();
+                layout.next(ContentPanel);
             }else{
             JOptionPane.showConfirmDialog(null, "Service not found, please check the service number and try again","Warning",JOptionPane.WARNING_MESSAGE);
             }
@@ -228,13 +227,14 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for (Service a:serviceDirectory.getServices()){
-            Object[] row = new Object[5];
+            Object[] row = new Object[7];
             row[0] = a;
             row[1] = a.getServiceType();
             row[2] = a.getServiceDuration();
-            row[3] = a.getMechanicFirstName();
-            row[4] = a.getMechanicLastName();
-            
+            row[3] = a.getMechanicFirstName()+" "+a.getMechanicLastName();
+            row[4] = a.getVehical().getOwner().getOwnerFirstName()+" "+a.getVehical().getOwner().getOwnerLastName();
+            row[5] = a.getVehical().getMake()+" "+a.getVehical().getModel();
+            row[6] = a.getCost();
             model.addRow(row);
         }
     }

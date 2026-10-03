@@ -71,11 +71,11 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Bank Name", "Routing Number", "Account Number", "Balance"
+                "Vehicle ID", "Vehicle", "Owner", "Service Type"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, true, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

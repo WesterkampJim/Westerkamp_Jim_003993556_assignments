@@ -56,13 +56,13 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                       <Component id="btnServices" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                       <Component id="btnVehicalAndOwner" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="123" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                       <Component id="btnManageVehicles" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+                      <EmptySpace pref="103" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -83,18 +83,24 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="btnServices">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Services"/>
+                <Property name="text" type="java.lang.String" value="Manage Services"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnServicesActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnVehicalAndOwner">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Vehicle &amp; Owner"/>
+                <Property name="text" type="java.lang.String" value="Register Vehicle &amp; Owner for Service"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnManageVehicles">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Manage Vehicles"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageVehiclesActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

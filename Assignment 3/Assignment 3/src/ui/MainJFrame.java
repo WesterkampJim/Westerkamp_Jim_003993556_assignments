@@ -4,17 +4,33 @@
  */
 package ui;
 
+import java.awt.CardLayout;
+import java.time.LocalDateTime;
+import model.Owner;
+import model.Service;
+import model.ServiceDirectory;
+import model.ServiceType;
+import model.Vehicle;
+import model.VehicleDirectory;
+import ui.VehicleManager.ManageServicesJPanel;
+import ui.VehicleManager.ManageVehiclesJPanel;
+
 /**
  *
  * @author jtwes
  */
 public class MainJFrame extends javax.swing.JFrame {
-
+    private ServiceDirectory serviceDirectory;
+    private VehicleDirectory vehicleDirectory;
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
+        contentPanel.setLayout(new CardLayout());
+        this.serviceDirectory = new ServiceDirectory();
+        this.vehicleDirectory = new VehicleDirectory();
+        generateDemoData();
     }
 
     /**
@@ -40,24 +56,34 @@ public class MainJFrame extends javax.swing.JFrame {
 
         navPanel.setBackground(new java.awt.Color(242, 222, 242));
 
-        btnServices.setText("Services");
+        btnServices.setText("Manage Services");
+        btnServices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnServicesActionPerformed(evt);
+            }
+        });
 
-        btnVehicalAndOwner.setText("Vehicle & Owner");
+        btnVehicalAndOwner.setText("Register Vehicle & Owner for Service");
 
         btnManageVehicles.setText("Manage Vehicles");
+        btnManageVehicles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageVehiclesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout navPanelLayout = new javax.swing.GroupLayout(navPanel);
         navPanel.setLayout(navPanelLayout);
         navPanelLayout.setHorizontalGroup(
             navPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navPanelLayout.createSequentialGroup()
-                .addGap(113, 113, 113)
+                .addGap(96, 96, 96)
                 .addComponent(btnServices)
-                .addGap(155, 155, 155)
+                .addGap(75, 75, 75)
                 .addComponent(btnVehicalAndOwner)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addGap(63, 63, 63)
                 .addComponent(btnManageVehicles)
-                .addGap(98, 98, 98))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         navPanelLayout.setVerticalGroup(
             navPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,6 +137,22 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicesActionPerformed
+        ManageServicesJPanel panel = new ManageServicesJPanel(contentPanel, serviceDirectory);
+        contentPanel.add("ManageServicesJPanel",panel);
+        
+        CardLayout layout = (CardLayout) contentPanel.getLayout();
+        layout.next(contentPanel);        
+    }//GEN-LAST:event_btnServicesActionPerformed
+
+    private void btnManageVehiclesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageVehiclesActionPerformed
+        ManageVehiclesJPanel panel = new ManageVehiclesJPanel(contentPanel, vehicleDirectory);
+        contentPanel.add("ManageVehiclesJPanel",panel);
+        
+        CardLayout layout = (CardLayout) contentPanel.getLayout();
+        layout.next(contentPanel);  
+    }//GEN-LAST:event_btnManageVehiclesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -145,6 +187,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
     }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageVehicles;
@@ -155,4 +198,38 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel navPanel;
     // End of variables declaration//GEN-END:variables
+
+
+    private void generateDemoData(){
+        
+        Owner newOwner = new Owner();
+        newOwner.setOwnerFirstName("John");
+        newOwner.setOwnerLastName("Doe");
+        newOwner.setOwnerID("1");
+        newOwner.setServiceDate(LocalDateTime.of(2026, 1, 1, 0, 0));
+        
+        Vehicle newVehicle = vehicleDirectory.addVehicle();
+        newVehicle.setMake("Kia");
+        newVehicle.setModel("Soul SE");
+        newVehicle.setYear(2014);
+        newVehicle.setVehicleID(1);
+        newVehicle.setRegistrationNumber("65465564");
+        newVehicle.setOwner(newOwner);
+        
+        Service newService = serviceDirectory.addService();
+        newService.setCost(55.5f);
+        newService.setMechanicFirstName("Bob");
+        newService.setMechanicLastName("Fixit");
+        newService.setServiceDuration(95);
+        newService.setServiceID("1");
+        newService.setServiceType(ServiceType.OIL_CHANGE);
+        newService.setVehical(newVehicle);
+        newVehicle.setServiceOpted(newService.getServiceType());
+
+
+
+
+    }
+
+
 }
