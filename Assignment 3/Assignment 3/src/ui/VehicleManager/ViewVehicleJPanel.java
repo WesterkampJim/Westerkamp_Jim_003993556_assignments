@@ -9,7 +9,8 @@ import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Owner;
-import model.ServiceType;
+import model.Service;
+import model.ServiceDirectory;
 import model.Vehicle;
 import model.VehicleDirectory;
 
@@ -21,21 +22,23 @@ public class ViewVehicleJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private VehicleDirectory vehicleDirectory;
+    private ServiceDirectory serviceDirectory;
     private Vehicle vehicle;
-    ServiceType serviceTypes;
+
     /**
      * Creates new form ViewVehicleJPanel
      */
-    public ViewVehicleJPanel( JPanel userProcessContainer, VehicleDirectory directory, Vehicle vehicle, ServiceType serviceTypes) {
+    public ViewVehicleJPanel( JPanel userProcessContainer, VehicleDirectory vehicleDirectory, Vehicle vehicle, ServiceDirectory serviceDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.vehicle = vehicle;
-        this.serviceTypes = serviceTypes;
+        this.serviceDirectory = serviceDirectory;
+        this.vehicleDirectory = vehicleDirectory;
+
 
         comboServiceOpted.removeAllItems();
-
-        for (String type : serviceTypes.getServiceTypes()) {
-            comboServiceOpted.addItem(type);
+        for (Service service : serviceDirectory.getServices()) {
+            comboServiceOpted.addItem(service);
         }
         
         refreshTextFields();
@@ -47,6 +50,8 @@ public class ViewVehicleJPanel extends javax.swing.JPanel {
         
 
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -130,8 +135,6 @@ public class ViewVehicleJPanel extends javax.swing.JPanel {
         lblOwnerID.setText("Owner ID");
 
         txtOwnerID.setEnabled(false);
-
-        comboServiceOpted.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblServiceOpted.setText("Service Opted");
 
@@ -274,7 +277,7 @@ public class ViewVehicleJPanel extends javax.swing.JPanel {
         String ownerID = txtOwnerID.getText();
         String ownerFirstName = txtFirstName.getText();
         String ownerLastName = txtLastName.getText();
-        String serviceOpted = (String) comboServiceOpted.getSelectedItem();
+        Service serviceOpted = (Service) comboServiceOpted.getSelectedItem();
 
         if (make.isBlank() || model.isBlank() || registrationNumber.isBlank() || ownerID.isBlank() || ownerFirstName.isBlank() || ownerLastName.isBlank()) { 
             JOptionPane.showMessageDialog(this, "All fields are mandatory.", "ERROR", JOptionPane.ERROR_MESSAGE); 
@@ -327,7 +330,7 @@ public class ViewVehicleJPanel extends javax.swing.JPanel {
         vehicle.setRegistrationNumber(registrationNumber);
         vehicle.setYear(year);
         vehicle.setOwner(owner); 
-        vehicle.setServiceOpted((Object) serviceOpted);
+        vehicle.setServiceOpted(serviceOpted);
 
         JOptionPane.showMessageDialog(this,"Vehicle successfully updated","Information", JOptionPane.INFORMATION_MESSAGE);
         setViewMode();
@@ -355,7 +358,7 @@ public class ViewVehicleJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> comboServiceOpted;
+    private javax.swing.JComboBox<Service> comboServiceOpted;
     private javax.swing.JLabel lblFirstName;
     private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblMake;

@@ -157,7 +157,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnServicesActionPerformed
 
     private void btnManageVehiclesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageVehiclesActionPerformed
-        ManageVehiclesJPanel panel = new ManageVehiclesJPanel(contentPanel, vehicleDirectory, serviceTypes);
+        ManageVehiclesJPanel panel = new ManageVehiclesJPanel(contentPanel, vehicleDirectory, serviceDirectory);
         contentPanel.add("ManageVehiclesJPanel",panel);
         
         CardLayout layout = (CardLayout) contentPanel.getLayout();
@@ -268,7 +268,7 @@ public class MainJFrame extends javax.swing.JFrame {
         newService2.setServiceType(serviceTypes.getServiceTypes().get(1));
         newVehicle2.setServiceOpted(newService2);
 
-
+        System.out.print(serviceDirectory.getServices());
 
     }
 

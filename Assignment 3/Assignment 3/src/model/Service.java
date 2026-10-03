@@ -22,7 +22,7 @@ public class Service {
     
     @Override
     public String toString(){
-        return getServiceID().toString();
+        return getServiceID().toString() +":"+ getServiceType();
     }
     
     public Integer getServiceID() {

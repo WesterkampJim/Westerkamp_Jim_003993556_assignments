@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.ServiceDirectory;
 import model.ServiceType;
 import model.VehicleDirectory;
 import model.Vehicle;
@@ -20,15 +21,17 @@ import model.Vehicle;
 public class ManageVehiclesJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     VehicleDirectory vehicleDirectory;
+    ServiceDirectory serviceDirectory;
     ServiceType serviceTypes;
     /**
      * Creates new form ManageVehiclesJPanel
      */
-    public ManageVehiclesJPanel(JPanel container, VehicleDirectory directory, ServiceType serviceTypes) {
+    public ManageVehiclesJPanel(JPanel container, VehicleDirectory directory, ServiceDirectory serviceDirectory) {
         initComponents();
         
         userProcessContainer = container;
         vehicleDirectory= directory;
+        this.serviceDirectory = serviceDirectory;
         this.serviceTypes = serviceTypes;
         populateTable();
     }
@@ -163,7 +166,7 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
         if (selectedRow >=0){
             Vehicle selectedVehicle = (Vehicle) tblVehicles.getValueAt(selectedRow,0);
             
-            ViewVehicleJPanel panel = new ViewVehicleJPanel(userProcessContainer, vehicleDirectory, selectedVehicle, serviceTypes);
+            ViewVehicleJPanel panel = new ViewVehicleJPanel(userProcessContainer, vehicleDirectory, selectedVehicle, serviceDirectory);
             userProcessContainer.add("ViewVehicleJPanel", panel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
