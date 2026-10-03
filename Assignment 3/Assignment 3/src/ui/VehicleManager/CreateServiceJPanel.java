@@ -221,9 +221,9 @@ public class CreateServiceJPanel extends javax.swing.JPanel {
         }
         
         
-        Service lastService = serviceDirectory.getServices().get(serviceDirectory.getServices().size()-1);
-        Service a = serviceDirectory.addService();           
-        a.setServiceID(lastService.getServiceID() + 1);
+        Service lastService = serviceDirectory.getServices().isEmpty() ? null : serviceDirectory.getServices().get(serviceDirectory.getServices().size() - 1);
+        Service a = serviceDirectory.addService();
+        a.setServiceID(lastService == null ? 1 : lastService.getServiceID() + 1);
         
         a.setServiceType(serviceType);
         if (!serviceTypes.getServiceTypes().contains(serviceType)) {

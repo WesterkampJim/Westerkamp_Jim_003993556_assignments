@@ -50,30 +50,17 @@
                                   <Component id="txtYear" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblOwnerID" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="lblLastName" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblFirstName" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lblLastName" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblFirstName" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtFirstName" alignment="1" pref="120" max="32767" attributes="0"/>
-                          <Component id="txtOwnerID" alignment="1" max="32767" attributes="0"/>
                           <Component id="txtLastName" alignment="1" max="32767" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="313" max="-2" attributes="0"/>
-                      <Component id="txtServiceDate" min="-2" pref="120" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
@@ -91,10 +78,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblServiceOpted" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblServiceDate" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="lblServiceOpted" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -110,12 +94,7 @@
               <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtOwnerID" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblOwnerID" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtFirstName" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblFirstName" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -154,12 +133,7 @@
                   <Component id="comboServiceOpted" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblServiceOpted" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblServiceDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtServiceDate" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace pref="46" max="32767" attributes="0"/>
               <Component id="btnCreate" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
           </Group>
@@ -183,8 +157,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtOwnerID">
-    </Component>
     <Component class="javax.swing.JLabel" name="lblRegistrationNumber">
       <Properties>
         <Property name="text" type="java.lang.String" value="Registration Number"/>
@@ -198,13 +170,6 @@
     <Component class="javax.swing.JTextField" name="txtRegistrationNumber">
     </Component>
     <Component class="javax.swing.JTextField" name="txtYear">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtServiceDate">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblServiceDate">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Service Date"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblLastName">
       <Properties>
@@ -231,11 +196,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtMake">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblOwnerID">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Owner ID"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtModel">
     </Component>

@@ -7,6 +7,7 @@ package ui;
 import java.awt.CardLayout;
 import java.time.LocalDateTime;
 import model.Owner;
+import model.OwnersDirectory;
 import model.Service;
 import model.ServiceDirectory;
 import model.ServiceType;
@@ -23,6 +24,7 @@ import ui.VehicleManager.ManageVehiclesJPanel;
 public class MainJFrame extends javax.swing.JFrame {
     private ServiceDirectory serviceDirectory;
     private VehicleDirectory vehicleDirectory;
+    private OwnersDirectory ownersDirectory;
     public ServiceType serviceTypes;
     /**
      * Creates new form MainJFrame
@@ -33,6 +35,7 @@ public class MainJFrame extends javax.swing.JFrame {
         this.serviceDirectory = new ServiceDirectory();
         this.vehicleDirectory = new VehicleDirectory();
         this.serviceTypes = new ServiceType();
+        this.ownersDirectory = new OwnersDirectory();
         generateDemoData();
     }
 
@@ -162,7 +165,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnManageVehiclesActionPerformed
 
     private void btnVehicalAndOwnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehicalAndOwnerActionPerformed
-        CreateVehicleJPanel panel = new CreateVehicleJPanel(contentPanel, vehicleDirectory, serviceDirectory, serviceTypes);
+        CreateVehicleJPanel panel = new CreateVehicleJPanel(contentPanel, vehicleDirectory, serviceDirectory, serviceTypes, ownersDirectory);
         contentPanel.add("CreateVehicleJPanel",panel);
         
         CardLayout layout = (CardLayout) contentPanel.getLayout();
@@ -218,7 +221,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void generateDemoData(){
         
-        Owner newOwner = new Owner();
+        Owner newOwner = ownersDirectory.addOwners();
         newOwner.setOwnerFirstName("John");
         newOwner.setOwnerLastName("Doe");
         newOwner.setOwnerID(1);
@@ -242,7 +245,7 @@ public class MainJFrame extends javax.swing.JFrame {
         newVehicle.setServiceOpted(serviceTypes.getServiceTypes().get(1));
 
         
-        Owner newOwner2 = new Owner();
+        Owner newOwner2 = ownersDirectory.addOwners();
         newOwner2.setOwnerFirstName("John");
         newOwner2.setOwnerLastName("Doe");
         newOwner2.setOwnerID(2);

@@ -5,11 +5,12 @@
 package ui.VehicleManager;
 
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Owner;
-import model.Service;
+import model.OwnersDirectory;
 import model.ServiceDirectory;
 import model.ServiceType;
 import model.Vehicle;
@@ -24,17 +25,25 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
     VehicleDirectory vehicleDirectory;
     ServiceDirectory serviceDirectory;
     ServiceType serviceTypes;
+    OwnersDirectory ownersDirectory;
     /**
      * Creates new form CreateVehicleJPanel
      */
-    public CreateVehicleJPanel(JPanel container, VehicleDirectory vehicleDirectory, ServiceDirectory serviceDirectory, ServiceType serviceType) {
+    public CreateVehicleJPanel(JPanel container, VehicleDirectory vehicleDirectory, ServiceDirectory serviceDirectory, ServiceType serviceType, OwnersDirectory ownersDirectory) {
         initComponents();
         
         userProcessContainer = container;
         this.serviceDirectory = serviceDirectory;
         this.vehicleDirectory = vehicleDirectory;
+        this.ownersDirectory = ownersDirectory;
         this.serviceTypes = serviceTypes;
 
+        comboServiceOpted.removeAllItems();
+
+        for (String type : serviceType.getServiceTypes()) {
+            comboServiceOpted.addItem(type);
+        }
+        
     }
 
     /**
@@ -48,13 +57,10 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
 
         btnBack = new javax.swing.JButton();
         btnCreate = new javax.swing.JButton();
-        txtOwnerID = new javax.swing.JTextField();
         lblRegistrationNumber = new javax.swing.JLabel();
         lblYear = new javax.swing.JLabel();
         txtRegistrationNumber = new javax.swing.JTextField();
         txtYear = new javax.swing.JTextField();
-        txtServiceDate = new javax.swing.JTextField();
-        lblServiceDate = new javax.swing.JLabel();
         lblLastName = new javax.swing.JLabel();
         lblMake = new javax.swing.JLabel();
         txtLastName = new javax.swing.JTextField();
@@ -62,7 +68,6 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
         txtFirstName = new javax.swing.JTextField();
         lblFirstName = new javax.swing.JLabel();
         txtMake = new javax.swing.JTextField();
-        lblOwnerID = new javax.swing.JLabel();
         txtModel = new javax.swing.JTextField();
         lblTitle = new javax.swing.JLabel();
         comboServiceOpted = new javax.swing.JComboBox<>();
@@ -86,8 +91,6 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
 
         lblYear.setText("Year");
 
-        lblServiceDate.setText("Service Date");
-
         lblLastName.setText("Last Name");
 
         lblMake.setText("Make");
@@ -95,8 +98,6 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
         lblModel.setText("Model");
 
         lblFirstName.setText("First Name");
-
-        lblOwnerID.setText("Owner ID");
 
         lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblTitle.setText("Register Vehicle");
@@ -137,22 +138,13 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
                                     .addComponent(txtRegistrationNumber)
                                     .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(58, 58, 58)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(lblOwnerID)
-                                        .addGap(10, 10, 10))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblLastName)
-                                            .addComponent(lblFirstName))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblLastName)
+                                    .addComponent(lblFirstName))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtFirstName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                            .addComponent(txtOwnerID, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtLastName, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(313, 313, 313)
-                        .addComponent(txtServiceDate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtLastName, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(69, 69, 69))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -165,9 +157,7 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
                         .addComponent(btnCreate))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(237, 237, 237)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblServiceOpted)
-                            .addComponent(lblServiceDate))))
+                        .addComponent(lblServiceOpted)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -179,11 +169,7 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
                 .addComponent(lblTitle)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblOwnerID))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(93, 93, 93)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblFirstName))
@@ -212,11 +198,7 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboServiceOpted, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblServiceOpted))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblServiceDate)
-                    .addComponent(txtServiceDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(btnCreate)
                 .addGap(16, 16, 16))
         );
@@ -224,8 +206,14 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         userProcessContainer.remove(this);
+        Component[] panelStack = userProcessContainer.getComponents();
+        JPanel lastPanel = (JPanel) panelStack[panelStack.length - 1];
+        ManageVehiclesJPanel manageVehiclesJPanel = (ManageVehiclesJPanel) lastPanel;
+        manageVehiclesJPanel.populateTable();
+        
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+        
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
@@ -236,13 +224,13 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
     String make = txtMake.getText();
     String model = txtModel.getText();
     String registrationNumber = txtRegistrationNumber.getText();
-    
-    String ownerID = txtOwnerID.getText();
+    String serviceOpted = (String) comboServiceOpted.getSelectedItem();
+
     String ownerFirstName = txtFirstName.getText();
     String ownerLastName = txtLastName.getText();
     
     
-    if (make.isBlank() || model.isBlank() || registrationNumber.isBlank() || ownerID.isBlank() || ownerFirstName.isBlank() || ownerLastName.isBlank()) { 
+    if (make.isBlank() || model.isBlank() || registrationNumber.isBlank() || ownerFirstName.isBlank() || ownerLastName.isBlank()) { 
         JOptionPane.showMessageDialog(this, "All fields are mandatory.", "ERROR", JOptionPane.ERROR_MESSAGE); 
         return; 
     }
@@ -275,24 +263,25 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
     } 
     
     
-   Vehicle lastVehicle = vehicleDirectory.getVehicles().get(vehicleDirectory.getVehicles().size()-1);  
-   
-    Owner owner = new Owner();
-    owner.setOwnerID(lastVehicle.getOwner().getOwnerID() + 1);
+    Vehicle lastVehicle = vehicleDirectory.getVehicles().isEmpty() ? null : vehicleDirectory.getVehicles().get(vehicleDirectory.getVehicles().size() - 1);
+    Owner lastOwner = ownersDirectory.getOwners().isEmpty() ? null : ownersDirectory.getOwners().get(ownersDirectory.getOwners().size() - 1); 
+    Owner owner = ownersDirectory.addOwners();
+    
+    owner.setOwnerID(lastOwner == null ? 1 : lastOwner.getOwnerID() + 1);
 
     owner.setOwnerFirstName(ownerFirstName);
     owner.setOwnerLastName(ownerLastName);
     owner.setServiceDate(LocalDateTime.now());
 
-   
     Vehicle vehicle = vehicleDirectory.addVehicle();
-    vehicle.setVehicleID(lastVehicle.getVehicleID() + 1);
-    
+    vehicle.setVehicleID(lastVehicle == null ? 1 : lastVehicle.getVehicleID() + 1);
+
     vehicle.setMake(make);
     vehicle.setModel(model);
     vehicle.setRegistrationNumber(registrationNumber);
     vehicle.setYear(year);
-    vehicle.setOwner(owner); 
+    vehicle.setOwner(owner);
+    vehicle.setServiceOpted(serviceOpted);
     
     JOptionPane.showMessageDialog(this,"Vehicle successfully created","Information",JOptionPane.INFORMATION_MESSAGE);
                
@@ -307,9 +296,7 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblMake;
     private javax.swing.JLabel lblModel;
-    private javax.swing.JLabel lblOwnerID;
     private javax.swing.JLabel lblRegistrationNumber;
-    private javax.swing.JLabel lblServiceDate;
     private javax.swing.JLabel lblServiceOpted;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblYear;
@@ -317,9 +304,7 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtMake;
     private javax.swing.JTextField txtModel;
-    private javax.swing.JTextField txtOwnerID;
     private javax.swing.JTextField txtRegistrationNumber;
-    private javax.swing.JTextField txtServiceDate;
     private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
 }
