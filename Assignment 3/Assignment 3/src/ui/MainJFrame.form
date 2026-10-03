@@ -93,6 +93,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Register Vehicle &amp; Owner for Service"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVehicalAndOwnerActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnManageVehicles">
               <Properties>

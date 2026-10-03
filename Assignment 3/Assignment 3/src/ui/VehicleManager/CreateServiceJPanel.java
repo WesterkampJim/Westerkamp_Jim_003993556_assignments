@@ -211,6 +211,25 @@ public class CreateServiceJPanel extends javax.swing.JPanel {
         return;
         }
        
+        if (serviceID.length() > 50 || !serviceID.matches("[a-zA-Z _-]+")) {
+            JOptionPane.showMessageDialog(this,"Service ID must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid Service ID",JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if (mechanicFirstName.length() > 50 || !mechanicFirstName.matches("[a-zA-Z _-]+")) {
+            JOptionPane.showMessageDialog(this,"Mechanic first name must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid First Name",JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if (mechanicLastName.length() > 50 || !mechanicLastName.matches("[a-zA-Z _-]+")) {
+            JOptionPane.showMessageDialog(this,"Mechanic last name must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid First Name",JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (cost < 0 || cost > 10000000) {
+            JOptionPane.showMessageDialog(this,"Cost must be between 0 and 10,000,000.","Invalid Cost",JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (duration < 0 || duration > 10000000) {
+            JOptionPane.showMessageDialog(this,"Service duration must be between 0 and 10,000,000 minutes.","Invalid Duration",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        
+        
         Service a = serviceDirectory.addService();
        
         a.setServiceID(serviceID);

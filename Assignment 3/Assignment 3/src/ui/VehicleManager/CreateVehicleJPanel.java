@@ -5,8 +5,10 @@
 package ui.VehicleManager;
 
 import java.awt.CardLayout;
+import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Owner;
 import model.Vehicle;
 import model.VehicleDirectory;
 
@@ -206,9 +208,85 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
 
-       
+    int vehicleID;
+    int year;
 
+    String make = txtMake.getText();
+    String model = txtModel.getText();
+    String registrationNumber = txtRegistrationNumber.getText();
+    
+    String ownerID = txtOwnerID.getText();
+    String ownerFirstName = txtFirstName.getText();
+    String ownerLastName = txtLastName.getText();
+    
+    if (make.isBlank() || model.isBlank() || registrationNumber.isBlank() || ownerID.isBlank() || ownerFirstName.isBlank() || ownerLastName.isBlank()) { 
+        JOptionPane.showMessageDialog(this, "All fields are mandatory.", "ERROR", JOptionPane.ERROR_MESSAGE); 
+        return; 
+    }
+    
+    try {
+        vehicleID = Integer.parseInt(txtVehicleID.getText());
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this,"Vehicle ID must be a whole number.","Warning",JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    try {
+        year = Integer.parseInt(txtYear.getText());
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this,"Vehicle year must be a whole number.","Warning",JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+  /*  
+    if (vehicleID < 0 || vehicleID > 10000000) {
+        JOptionPane.showMessageDialog(this,"Vehicle ID must be between 0 and 10,000,000.","Invalid Vehicle ID",JOptionPane.ERROR_MESSAGE);
+        return;
+    }else if (year < 0 || year > 10000000) {
+        JOptionPane.showMessageDialog(this,"Please enter a valid vehicle year.","Invalid Year",JOptionPane.ERROR_MESSAGE);
+        return;
+    } else if (make.length() > 50 || !make.matches("[a-zA-Z _-]+")) {
+        JOptionPane.showMessageDialog(this,"Make must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
+        return;
+    } else if (model.length() > 50 || !model.matches("[a-zA-Z _-]+")) {
+        JOptionPane.showMessageDialog(this,"Model must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
+        return;
+    }else if (registrationNumber.length() > 50 || !registrationNumber.matches("[a-zA-Z0-9 _-]+")) {
+        JOptionPane.showMessageDialog(this,"Registration Number must be 50 characters or less and may only contain letters, numbers, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
+        return;   
+    }else if (ownerID.length() > 50 || !ownerID.matches("[a-zA-Z0-9 _-]+")) {
+        JOptionPane.showMessageDialog(this,"Owner ID must be 50 characters or less and may only contain letters, numbers, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
+        return;  
+    }else if (ownerLastName.length() > 50 || !ownerLastName.matches("[a-zA-Z _-]+")) {
+        JOptionPane.showMessageDialog(this,"Last Name must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
+        return;  
+    }else if (ownerFirstName.length() > 50 || !ownerFirstName.matches("[a-zA-Z _-]+")) {
+        JOptionPane.showMessageDialog(this,"First Name must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
+        return;
+    }   
+    */    
+    Owner owner = new Owner();
 
+    owner.setOwnerID(ownerID);
+    owner.setOwnerFirstName(ownerFirstName);
+    owner.setOwnerLastName(ownerLastName);
+    owner.setServiceDate(LocalDateTime.now());
+    
+    Vehicle vehicle = vehicleDirectory.addVehicle();
+
+    vehicle.setVehicleID(vehicleID);
+    vehicle.setMake(make);
+    vehicle.setModel(model);
+    vehicle.setRegistrationNumber(registrationNumber);
+    vehicle.setYear(year);
+    vehicle.setOwner(owner); 
+    
+    JOptionPane.showMessageDialog(this,"Vehicle successfully created","Information",JOptionPane.INFORMATION_MESSAGE);
+    
+    CreateServiceJPanel panel = new CreateServiceJPanel(contentPanel, serviceDirectory, vehicle);
+    contentPanel.add("CreateServiceJPanel",panel);
+        
+    //CardLayout layout = (CardLayout) contentPanel.getLayout();
+    //layout.next(contentPanel);
+        
     }//GEN-LAST:event_btnCreateActionPerformed
 
 

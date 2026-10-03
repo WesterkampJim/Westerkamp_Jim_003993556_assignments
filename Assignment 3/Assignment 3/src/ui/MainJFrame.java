@@ -12,6 +12,7 @@ import model.ServiceDirectory;
 import model.ServiceType;
 import model.Vehicle;
 import model.VehicleDirectory;
+import ui.VehicleManager.CreateVehicleJPanel;
 import ui.VehicleManager.ManageServicesJPanel;
 import ui.VehicleManager.ManageVehiclesJPanel;
 
@@ -64,6 +65,11 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnVehicalAndOwner.setText("Register Vehicle & Owner for Service");
+        btnVehicalAndOwner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVehicalAndOwnerActionPerformed(evt);
+            }
+        });
 
         btnManageVehicles.setText("Manage Vehicles");
         btnManageVehicles.addActionListener(new java.awt.event.ActionListener() {
@@ -152,6 +158,14 @@ public class MainJFrame extends javax.swing.JFrame {
         CardLayout layout = (CardLayout) contentPanel.getLayout();
         layout.next(contentPanel);  
     }//GEN-LAST:event_btnManageVehiclesActionPerformed
+
+    private void btnVehicalAndOwnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehicalAndOwnerActionPerformed
+        CreateVehicleJPanel panel = new CreateVehicleJPanel(contentPanel, vehicleDirectory);
+        contentPanel.add("CreateVehicleJPanel",panel);
+        
+        CardLayout layout = (CardLayout) contentPanel.getLayout();
+        layout.next(contentPanel);
+    }//GEN-LAST:event_btnVehicalAndOwnerActionPerformed
 
     /**
      * @param args the command line arguments
