@@ -242,7 +242,7 @@ public class MainJFrame extends javax.swing.JFrame {
         newService.setServiceDuration(95);
         newService.setServiceID(1);
         newService.setServiceType(serviceTypes.getServiceTypes().get(1));
-        newVehicle.setServiceOpted(serviceTypes.getServiceTypes().get(1));
+        newVehicle.setServiceOpted(newService);
 
         
         Owner newOwner2 = ownersDirectory.addOwners();
@@ -266,7 +266,7 @@ public class MainJFrame extends javax.swing.JFrame {
         newService2.setServiceDuration(55);
         newService2.setServiceID(2);
         newService2.setServiceType(serviceTypes.getServiceTypes().get(1));
-        newVehicle2.setServiceOpted(serviceTypes.getServiceTypes().get(2));
+        newVehicle2.setServiceOpted(newService2);
 
 
 

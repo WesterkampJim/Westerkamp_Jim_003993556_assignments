@@ -15,9 +15,18 @@ public class Vehicle {
     String registrationNumber;
     int year;
     //enum to keep data consistent.
-    String serviceOpted;
+  //  String serviceOpted;
     //1 Owner object per Vehicle
     Owner owner;
+    Service serviceOpted;
+
+    public Service getServiceOpted() {
+        return serviceOpted;
+    }
+
+    public void setServiceOpted(Service serviceOpted) {
+        this.serviceOpted = serviceOpted;
+    }
 
     
     @Override
@@ -53,10 +62,6 @@ public class Vehicle {
         return year;
     }
 
-    public String getServiceOpted() {
-        return serviceOpted;
-    }
-
     public void setVehicleID(Integer vehicleID) {
         this.vehicleID = vehicleID;
     }
@@ -77,9 +82,7 @@ public class Vehicle {
         this.year = year;
     }
 
-    public void setServiceOpted(String serviceOpted) {
-        this.serviceOpted = serviceOpted;
-    }
+
     
     
     

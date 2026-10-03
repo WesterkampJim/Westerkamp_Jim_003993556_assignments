@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Owner;
 import model.OwnersDirectory;
+import model.Service;
 import model.ServiceDirectory;
 import model.ServiceType;
 import model.Vehicle;
@@ -224,7 +225,7 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
     String make = txtMake.getText();
     String model = txtModel.getText();
     String registrationNumber = txtRegistrationNumber.getText();
-    String serviceOpted = (String) comboServiceOpted.getSelectedItem();
+    Object serviceOpted = comboServiceOpted.getSelectedItem();
 
     String ownerFirstName = txtFirstName.getText();
     String ownerLastName = txtLastName.getText();
@@ -281,7 +282,7 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
     vehicle.setRegistrationNumber(registrationNumber);
     vehicle.setYear(year);
     vehicle.setOwner(owner);
-    vehicle.setServiceOpted(serviceOpted);
+    vehicle.setServiceOpted((Service) serviceOpted);
     
     JOptionPane.showMessageDialog(this,"Vehicle successfully created","Information",JOptionPane.INFORMATION_MESSAGE);
                

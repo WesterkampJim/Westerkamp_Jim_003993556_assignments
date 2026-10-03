@@ -20,6 +20,7 @@ import model.Vehicle;
 public class ManageVehiclesJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     VehicleDirectory vehicleDirectory;
+    ServiceType serviceTypes;
     /**
      * Creates new form ManageVehiclesJPanel
      */
@@ -28,6 +29,7 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
         
         userProcessContainer = container;
         vehicleDirectory= directory;
+        this.serviceTypes = serviceTypes;
         populateTable();
     }
 
@@ -67,17 +69,17 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
 
         tblVehicles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Vehicle ID", "Vehicle", "Owner", "Service Type", "Service Date"
+                "Vehicle ID", "Vehicle", "Owner", "Service Type", "Service Date", "Registration"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -161,7 +163,7 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
         if (selectedRow >=0){
             Vehicle selectedVehicle = (Vehicle) tblVehicles.getValueAt(selectedRow,0);
             
-            ViewVehicleJPanel panel = new ViewVehicleJPanel(userProcessContainer, vehicleDirectory, selectedVehicle);
+            ViewVehicleJPanel panel = new ViewVehicleJPanel(userProcessContainer, vehicleDirectory, selectedVehicle, serviceTypes);
             userProcessContainer.add("ViewVehicleJPanel", panel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
@@ -193,22 +195,47 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
        
-        if (!txtSearchBox.getText().isBlank()){
-        String vehicleNumber = txtSearchBox.getText();
-        Vehicle foundVehicle = vehicleDirectory.searchVehicle(vehicleNumber);
+String searchText = txtSearchBox.getText().trim();
+
+    if (searchText.isBlank()) {
+        JOptionPane.showMessageDialog(this, "Please type a Vehicle ID or Car Model, Owner Name, Or Owner ID to search.", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    DefaultTableModel model = (DefaultTableModel) tblVehicles.getModel();
+    model.setRowCount(0);
+
+    boolean foundItems = false;
+
+    for (Vehicle a : vehicleDirectory.getVehicles()) {
+        if (String.valueOf(a.getVehicleID()).equalsIgnoreCase(searchText) ||
+                        a.getModel().equalsIgnoreCase(searchText) ||
+                        a.getMake().equalsIgnoreCase(searchText) ||
+                        a.getOwner().getOwnerFirstName().equalsIgnoreCase(searchText) || 
+                        a.getOwner().getOwnerLastName().equalsIgnoreCase(searchText) ||
+                        a.getOwner().getOwnerID().toString().equalsIgnoreCase(searchText) || 
+                        a.getRegistrationNumber().equalsIgnoreCase(searchText)
+                                )
+        {
         
-            if(foundVehicle!=null){
-                ViewVehicleJPanel panel = new ViewVehicleJPanel(userProcessContainer, vehicleDirectory, foundVehicle);
-                userProcessContainer.add("ViewVehicleJPanel",panel);
-                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-                layout.next(userProcessContainer);
-            }else{
-            JOptionPane.showConfirmDialog(null, "Vehicle not found, please check the vehicle number and try again","Warning",JOptionPane.WARNING_MESSAGE);
-            }
-        }else{
-           JOptionPane.showConfirmDialog(null, "Please type the vehicle number to view","Warning",JOptionPane.WARNING_MESSAGE);
-  
-            }
+
+
+            Object[] row = new Object[6];
+            row[0] = a;
+            row[1] = a.getMake()+" "+a.getModel()+" "+a.getYear();
+            row[2] = a.getOwner().getOwnerFirstName()+" "+a.getOwner().getOwnerLastName();
+            row[3] = a.getServiceOpted();
+            row[4] = a.getOwner().getServiceDate().format(DateTimeFormatter.ISO_LOCAL_DATE).toString();
+            row[5] = a.getRegistrationNumber();
+
+            model.addRow(row);
+            foundItems = true;
+        }
+    }
+
+    if (foundItems==false) {
+        JOptionPane.showMessageDialog(this, "No vehicles found matching your search.", "Warning", JOptionPane.WARNING_MESSAGE);
+        populateTable();
+    }
 
         
     }//GEN-LAST:event_btnSearchActionPerformed

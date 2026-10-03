@@ -204,23 +204,35 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
        
-        if (!txtSearchBox.getText().isBlank()){
-        String serviceNumber = txtSearchBox.getText();
-        Service foundService = serviceDirectory.searchService(serviceNumber);
-        
-            if(foundService!=null){
-                ViewServiceJPanel panel = new ViewServiceJPanel(ContentPanel, serviceDirectory, foundService, serviceTypes);
-                ContentPanel.add("ViewServiceJPanel",panel);
-                CardLayout layout = (CardLayout) ContentPanel.getLayout();
-                layout.next(ContentPanel);
-            }else{
-            JOptionPane.showConfirmDialog(null, "Service not found, please check the service number and try again","Warning",JOptionPane.WARNING_MESSAGE);
-            }
-        }else{
-           JOptionPane.showConfirmDialog(null, "Please type the service number to view","Warning",JOptionPane.WARNING_MESSAGE);
-  
-            }
+    String searchText = txtSearchBox.getText().trim();
 
+    if (searchText.isBlank()) {
+        JOptionPane.showMessageDialog(this, "Please type a Service ID or Service Type to search.", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    DefaultTableModel model = (DefaultTableModel) tblServices.getModel();
+    model.setRowCount(0);
+
+    boolean foundItems = false;
+
+    for (Service a : serviceDirectory.getServices()) {
+        if (String.valueOf(a.getServiceID()).equalsIgnoreCase(searchText) || a.getServiceType().toString().equalsIgnoreCase(searchText)) {
+            Object[] row = new Object[5];
+            row[0] = a;
+            row[1] = a.getServiceType();
+            row[2] = a.getServiceDuration();
+            row[3] = a.getMechanicFirstName() + " " + a.getMechanicLastName();
+            row[4] = a.getCost();
+            model.addRow(row);
+            foundItems = true;
+        }
+    }
+
+    if (foundItems==false) {
+        JOptionPane.showMessageDialog(this, "No services found matching your search.", "Warning", JOptionPane.WARNING_MESSAGE);
+        populateTable();
+    }
         
     }//GEN-LAST:event_btnSearchActionPerformed
 
