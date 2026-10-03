@@ -33,10 +33,7 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
         
         refreshTextFields();
         setViewMode();
-        
-        txtOwnerID.setText(service.getVehical().getOwner().getOwnerID().toString());
-        txtServiceID.setText(service.getServiceID().toString());
-        
+
     }
 
     /**
@@ -62,8 +59,6 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
         txtMechanicLastName = new javax.swing.JTextField();
         lblServiceDuration = new javax.swing.JLabel();
         txtServiceDuration = new javax.swing.JTextField();
-        txtOwnerID = new javax.swing.JTextField();
-        lblOwnerID = new javax.swing.JLabel();
         txtServiceType = new javax.swing.JTextField();
         lblServiceType1 = new javax.swing.JLabel();
 
@@ -103,10 +98,6 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
 
         lblServiceDuration.setText("Service Duration");
 
-        txtOwnerID.setEnabled(false);
-
-        lblOwnerID.setText("Owner ID");
-
         lblServiceType1.setText("Service Type");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -139,20 +130,22 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(lblMechanicLastName)
-                                            .addComponent(lblServiceDuration)
-                                            .addComponent(lblOwnerID))
+                                            .addComponent(lblServiceDuration))
                                         .addGap(104, 104, 104)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtServiceDuration)
-                                            .addComponent(txtMechanicLastName)
-                                            .addComponent(txtOwnerID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))))
+                                            .addComponent(txtServiceDuration, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                            .addComponent(txtMechanicLastName)))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnSave)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnUpdate)
-                                    .addComponent(lblTitle))
-                                .addGap(88, 88, 88)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lblTitle)
+                                        .addGap(88, 88, 88))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(btnSave)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(btnUpdate)
+                                        .addGap(70, 70, 70)))))
                         .addGap(170, 170, 170))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack)
@@ -189,15 +182,11 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtServiceDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblServiceDuration))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblOwnerID)
-                    .addComponent(txtOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnSave))
-                .addGap(58, 58, 58))
+                    .addComponent(btnSave)
+                    .addComponent(btnUpdate))
+                .addGap(87, 87, 87))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -287,7 +276,6 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblCost;
     private javax.swing.JLabel lblMachanicFirstName;
     private javax.swing.JLabel lblMechanicLastName;
-    private javax.swing.JLabel lblOwnerID;
     private javax.swing.JLabel lblServiceDuration;
     private javax.swing.JLabel lblServiceID;
     private javax.swing.JLabel lblServiceType1;
@@ -295,14 +283,18 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtCost;
     private javax.swing.JTextField txtMechanicFirstName;
     private javax.swing.JTextField txtMechanicLastName;
-    private javax.swing.JTextField txtOwnerID;
     private javax.swing.JTextField txtServiceDuration;
     private javax.swing.JTextField txtServiceID;
     private javax.swing.JTextField txtServiceType;
     // End of variables declaration//GEN-END:variables
 
        private void refreshTextFields(){
-
+        txtServiceID.setText(service.getServiceID().toString());
+        txtMechanicFirstName.setText(service.getMechanicFirstName());
+        txtMechanicLastName.setText(service.getMechanicLastName());
+        txtCost.setText(String.valueOf(service.getCost()));
+        txtServiceType.setText(String.valueOf(service.getServiceType()));
+        txtServiceDuration.setText(String.valueOf(service.getServiceDuration()));
 
        }
        

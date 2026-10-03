@@ -239,7 +239,6 @@ public class MainJFrame extends javax.swing.JFrame {
         newService.setServiceDuration(95);
         newService.setServiceID(1);
         newService.setServiceType(serviceTypes.getServiceTypes().get(1));
-        newService.setVehical(newVehicle);
         newVehicle.setServiceOpted(serviceTypes.getServiceTypes().get(1));
 
         
@@ -264,7 +263,6 @@ public class MainJFrame extends javax.swing.JFrame {
         newService2.setServiceDuration(55);
         newService2.setServiceID(2);
         newService2.setServiceType(serviceTypes.getServiceTypes().get(1));
-        newService2.setVehical(newVehicle2);
         newVehicle2.setServiceOpted(serviceTypes.getServiceTypes().get(2));
 
 

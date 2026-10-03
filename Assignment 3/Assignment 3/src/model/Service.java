@@ -15,7 +15,7 @@ public class Service {
     float cost;
     String mechanicFirstName;
     String mechanicLastName;
-    Vehicle vehicle;
+
     
     ///in Minutes
     int serviceDuration;
@@ -23,14 +23,6 @@ public class Service {
     @Override
     public String toString(){
         return getServiceID().toString();
-    }
-    
-    public Vehicle getVehical() {
-        return vehicle;
-    }
-
-    public void setVehical(Vehicle vehicle) {
-        this.vehicle = vehicle;
     }
     
     public Integer getServiceID() {

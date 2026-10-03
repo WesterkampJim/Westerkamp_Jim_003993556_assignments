@@ -48,6 +48,7 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
         tblServices = new javax.swing.JTable();
         btnSearch = new javax.swing.JButton();
         btnViewDetails = new javax.swing.JButton();
+        btnCreateNewService = new javax.swing.JButton();
 
         btnBack.setText("<-Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -67,17 +68,17 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
 
         tblServices.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Service ID", "Service Type", "Duration", "Mechanic", "Owner", "Vehicle", "Cost"
+                "Service ID", "Service Type", "Duration", "Mechanic", "Cost"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -100,6 +101,13 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnCreateNewService.setText("Create New Service");
+        btnCreateNewService.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateNewServiceActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,8 +118,10 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
                         .addGap(25, 25, 25)
                         .addComponent(btnBack))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(258, 258, 258)
-                        .addComponent(lblTitle))
+                        .addGap(194, 194, 194)
+                        .addComponent(lblTitle)
+                        .addGap(45, 45, 45)
+                        .addComponent(btnCreateNewService))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(135, 135, 135)
                         .addComponent(btnSearch)
@@ -133,7 +143,9 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(btnBack)
                 .addGap(18, 18, 18)
-                .addComponent(lblTitle)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCreateNewService)
+                    .addComponent(lblTitle))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -144,7 +156,7 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
                 .addComponent(btnViewDetails)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDelete)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -212,9 +224,18 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void btnCreateNewServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNewServiceActionPerformed
+        CreateServiceJPanel panel = new CreateServiceJPanel(ContentPanel, serviceDirectory, serviceTypes);
+        ContentPanel.add("CreateServiceJPanel",panel);
+
+        CardLayout layout = (CardLayout) ContentPanel.getLayout();
+        layout.next(ContentPanel);     // TODO add your handling code here:
+    }//GEN-LAST:event_btnCreateNewServiceActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnCreateNewService;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnViewDetails;
@@ -234,9 +255,7 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
             row[1] = a.getServiceType();
             row[2] = a.getServiceDuration();
             row[3] = a.getMechanicFirstName()+" "+a.getMechanicLastName();
-            row[4] = a.getVehical().getOwner().getOwnerFirstName()+" "+a.getVehical().getOwner().getOwnerLastName();
-            row[5] = a.getVehical().getMake()+" "+a.getVehical().getModel()+" "+a.getVehical().getYear();
-            row[6] = a.getCost();
+            row[4] = a.getCost();
             model.addRow(row);
         }
     }

@@ -5,6 +5,7 @@
 package ui.VehicleManager;
 
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Service;
@@ -19,19 +20,22 @@ import model.Vehicle;
 public class CreateServiceJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     ServiceDirectory serviceDirectory;
+    ServiceType serviceTypes;
     /**
      * Creates new form CreateServiceJPanel
      */
     
     private Vehicle vehicle;
     
-    public CreateServiceJPanel(JPanel container, ServiceDirectory directory, Vehicle vehicle) {
+    public CreateServiceJPanel(JPanel container, ServiceDirectory directory, ServiceType serviceTypes) {
         initComponents();
         
         userProcessContainer = container;
         serviceDirectory= directory;
         this.vehicle = vehicle;
-  
+        this.serviceTypes = serviceTypes;
+        
+
     }
 
     /**
@@ -157,8 +161,14 @@ public class CreateServiceJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         userProcessContainer.remove(this);
+        Component[] panelStack = userProcessContainer.getComponents();
+        JPanel lastPanel = (JPanel) panelStack[panelStack.length - 1];
+        ManageServicesJPanel manageServicesJPanel = (ManageServicesJPanel) lastPanel;
+        manageServicesJPanel.populateTable();
+        
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+        
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
@@ -216,10 +226,13 @@ public class CreateServiceJPanel extends javax.swing.JPanel {
         a.setServiceID(lastService.getServiceID() + 1);
         
         a.setServiceType(serviceType);
+        if (!serviceTypes.getServiceTypes().contains(serviceType)) {
+            serviceTypes.addServiceType(serviceType);
+        }
+        
         a.setCost(cost);
         a.setMechanicFirstName(mechanicFirstName);
         a.setMechanicLastName(mechanicLastName);
-        a.setVehical(vehicle);
         a.setServiceDuration(duration);
        
         JOptionPane.showMessageDialog(this,"Service successfully created","Information", JOptionPane.INFORMATION_MESSAGE);
