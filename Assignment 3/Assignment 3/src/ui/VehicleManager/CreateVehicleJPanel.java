@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Owner;
+import model.Service;
+import model.ServiceDirectory;
 import model.Vehicle;
 import model.VehicleDirectory;
 
@@ -19,14 +21,17 @@ import model.VehicleDirectory;
 public class CreateVehicleJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     VehicleDirectory vehicleDirectory;
+    ServiceDirectory serviceDirectory;
     /**
      * Creates new form CreateVehicleJPanel
      */
-    public CreateVehicleJPanel(JPanel container, VehicleDirectory directory) {
+    public CreateVehicleJPanel(JPanel container, VehicleDirectory vehicleDirectory, ServiceDirectory serviceDirectory) {
         initComponents();
         
         userProcessContainer = container;
-        vehicleDirectory= directory;
+        this.serviceDirectory = serviceDirectory;
+        this.vehicleDirectory = vehicleDirectory;
+
     }
 
     /**
@@ -236,7 +241,7 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this,"Vehicle year must be a whole number.","Warning",JOptionPane.WARNING_MESSAGE);
         return;
     }
-  /*  
+    
     if (vehicleID < 0 || vehicleID > 10000000) {
         JOptionPane.showMessageDialog(this,"Vehicle ID must be between 0 and 10,000,000.","Invalid Vehicle ID",JOptionPane.ERROR_MESSAGE);
         return;
@@ -252,27 +257,27 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
     }else if (registrationNumber.length() > 50 || !registrationNumber.matches("[a-zA-Z0-9 _-]+")) {
         JOptionPane.showMessageDialog(this,"Registration Number must be 50 characters or less and may only contain letters, numbers, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
         return;   
-    }else if (ownerID.length() > 50 || !ownerID.matches("[a-zA-Z0-9 _-]+")) {
-        JOptionPane.showMessageDialog(this,"Owner ID must be 50 characters or less and may only contain letters, numbers, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
-        return;  
     }else if (ownerLastName.length() > 50 || !ownerLastName.matches("[a-zA-Z _-]+")) {
         JOptionPane.showMessageDialog(this,"Last Name must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
         return;  
     }else if (ownerFirstName.length() > 50 || !ownerFirstName.matches("[a-zA-Z _-]+")) {
         JOptionPane.showMessageDialog(this,"First Name must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
         return;
-    }   
-    */    
+    } 
+    
+   Vehicle lastVehicle = vehicleDirectory.getVehicles().get(vehicleDirectory.getVehicles().size()-1);  
+   
     Owner owner = new Owner();
+    owner.setOwnerID(lastVehicle.getOwner().getOwnerID() + 1);
 
-    owner.setOwnerID(ownerID);
     owner.setOwnerFirstName(ownerFirstName);
     owner.setOwnerLastName(ownerLastName);
     owner.setServiceDate(LocalDateTime.now());
-    
-    Vehicle vehicle = vehicleDirectory.addVehicle();
 
-    vehicle.setVehicleID(vehicleID);
+   
+    Vehicle vehicle = vehicleDirectory.addVehicle();
+    vehicle.setVehicleID(lastVehicle.getVehicleID() + 1);
+    
     vehicle.setMake(make);
     vehicle.setModel(model);
     vehicle.setRegistrationNumber(registrationNumber);
@@ -280,12 +285,13 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
     vehicle.setOwner(owner); 
     
     JOptionPane.showMessageDialog(this,"Vehicle successfully created","Information",JOptionPane.INFORMATION_MESSAGE);
-    
-    CreateServiceJPanel panel = new CreateServiceJPanel(contentPanel, serviceDirectory, vehicle);
-    contentPanel.add("CreateServiceJPanel",panel);
         
-    //CardLayout layout = (CardLayout) contentPanel.getLayout();
-    //layout.next(contentPanel);
+    
+    CreateServiceJPanel panel = new CreateServiceJPanel(userProcessContainer, serviceDirectory, vehicle);
+    userProcessContainer.add("CreateServiceJPanel",panel);
+        
+    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+    layout.next(userProcessContainer);
         
     }//GEN-LAST:event_btnCreateActionPerformed
 

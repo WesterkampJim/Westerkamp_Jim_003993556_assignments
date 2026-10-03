@@ -160,7 +160,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnManageVehiclesActionPerformed
 
     private void btnVehicalAndOwnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehicalAndOwnerActionPerformed
-        CreateVehicleJPanel panel = new CreateVehicleJPanel(contentPanel, vehicleDirectory);
+        CreateVehicleJPanel panel = new CreateVehicleJPanel(contentPanel, vehicleDirectory, serviceDirectory);
         contentPanel.add("CreateVehicleJPanel",panel);
         
         CardLayout layout = (CardLayout) contentPanel.getLayout();
@@ -219,7 +219,7 @@ public class MainJFrame extends javax.swing.JFrame {
         Owner newOwner = new Owner();
         newOwner.setOwnerFirstName("John");
         newOwner.setOwnerLastName("Doe");
-        newOwner.setOwnerID("1");
+        newOwner.setOwnerID(1);
         newOwner.setServiceDate(LocalDateTime.of(2026, 1, 1, 0, 0));
         
         Vehicle newVehicle = vehicleDirectory.addVehicle();
@@ -235,11 +235,35 @@ public class MainJFrame extends javax.swing.JFrame {
         newService.setMechanicFirstName("Bob");
         newService.setMechanicLastName("Fixit");
         newService.setServiceDuration(95);
-        newService.setServiceID("1");
+        newService.setServiceID(1);
         newService.setServiceType(ServiceType.OIL_CHANGE);
         newService.setVehical(newVehicle);
         newVehicle.setServiceOpted(newService.getServiceType());
 
+        
+        Owner newOwner2 = new Owner();
+        newOwner2.setOwnerFirstName("John");
+        newOwner2.setOwnerLastName("Doe");
+        newOwner2.setOwnerID(2);
+        newOwner2.setServiceDate(LocalDateTime.of(2026, 1, 1, 0, 0));
+        
+        Vehicle newVehicle2 = vehicleDirectory.addVehicle();
+        newVehicle2.setMake("Ford");
+        newVehicle2.setModel("Taurus xl");
+        newVehicle2.setYear(2010);
+        newVehicle2.setVehicleID(2);
+        newVehicle2.setRegistrationNumber("26234126123");
+        newVehicle2.setOwner(newOwner2);
+        
+        Service newService2 = serviceDirectory.addService();
+        newService2.setCost(55.5f);
+        newService2.setMechanicFirstName("Bill");
+        newService2.setMechanicLastName("Fixit Jr");
+        newService2.setServiceDuration(55);
+        newService2.setServiceID(2);
+        newService2.setServiceType(ServiceType.PUNCTURE);
+        newService2.setVehical(newVehicle2);
+        newVehicle2.setServiceOpted(newService.getServiceType());
 
 
 

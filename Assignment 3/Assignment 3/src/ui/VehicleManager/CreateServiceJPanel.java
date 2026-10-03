@@ -49,10 +49,8 @@ public class CreateServiceJPanel extends javax.swing.JPanel {
 
         btnBack = new javax.swing.JButton();
         btnCreate = new javax.swing.JButton();
-        lblServiceID = new javax.swing.JLabel();
         lblServiceType = new javax.swing.JLabel();
         lblCost = new javax.swing.JLabel();
-        txtServiceID = new javax.swing.JTextField();
         lblMachanicFirstName = new javax.swing.JLabel();
         txtMechanicFirstName = new javax.swing.JTextField();
         txtCost = new javax.swing.JTextField();
@@ -76,8 +74,6 @@ public class CreateServiceJPanel extends javax.swing.JPanel {
                 btnCreateActionPerformed(evt);
             }
         });
-
-        lblServiceID.setText("Service ID");
 
         lblServiceType.setText("Service Type");
 
@@ -111,7 +107,6 @@ public class CreateServiceJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(lblServiceType)
-                                .addComponent(lblServiceID)
                                 .addComponent(lblCost)
                                 .addComponent(lblMachanicFirstName))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -121,7 +116,6 @@ public class CreateServiceJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtServiceID, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtCost, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtMechanicFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE))
@@ -141,13 +135,9 @@ public class CreateServiceJPanel extends javax.swing.JPanel {
                 .addComponent(btnBack)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(lblTitle)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblServiceID)
-                    .addComponent(txtServiceID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblServiceType)
                     .addComponent(comboServiceType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,19 +172,19 @@ public class CreateServiceJPanel extends javax.swing.JPanel {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         float cost;
         int duration;
+        
        
-       String serviceID = txtServiceID.getText();
        String mechanicFirstName = txtMechanicFirstName.getText();
        String mechanicLastName = txtMechanicLastName.getText();
        
-       if (serviceID.isBlank() || mechanicFirstName.isBlank() || mechanicLastName.isBlank())
+       if (mechanicFirstName.isBlank() || mechanicLastName.isBlank()|| txtCost.getText().isBlank()|| txtServiceDuration.getText().isBlank())
        {
            JOptionPane.showMessageDialog(this,"All fields are mandatory.","ERROR", JOptionPane.ERROR_MESSAGE);
            return;
        }
        
     
-        ServiceType serviceType = (ServiceType) comboServiceType.getSelectedItem();
+        ServiceType serviceType = ServiceType.valueOf(comboServiceType.getSelectedItem().toString());
 
            
         try {
@@ -211,10 +201,7 @@ public class CreateServiceJPanel extends javax.swing.JPanel {
         return;
         }
        
-        if (serviceID.length() > 50 || !serviceID.matches("[a-zA-Z _-]+")) {
-            JOptionPane.showMessageDialog(this,"Service ID must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid Service ID",JOptionPane.ERROR_MESSAGE);
-            return;
-        }else if (mechanicFirstName.length() > 50 || !mechanicFirstName.matches("[a-zA-Z _-]+")) {
+        if (mechanicFirstName.length() > 50 || !mechanicFirstName.matches("[a-zA-Z _-]+")) {
             JOptionPane.showMessageDialog(this,"Mechanic first name must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid First Name",JOptionPane.ERROR_MESSAGE);
             return;
         }else if (mechanicLastName.length() > 50 || !mechanicLastName.matches("[a-zA-Z _-]+")) {
@@ -229,10 +216,10 @@ public class CreateServiceJPanel extends javax.swing.JPanel {
         }
         
         
+        Service lastService = serviceDirectory.getServices().get(serviceDirectory.getServices().size()-1);
+        Service a = serviceDirectory.addService();           
+        a.setServiceID(lastService.getServiceID() + 1);
         
-        Service a = serviceDirectory.addService();
-       
-        a.setServiceID(serviceID);
         a.setServiceType(serviceType);
         a.setCost(cost);
         a.setMechanicFirstName(mechanicFirstName);
@@ -241,7 +228,6 @@ public class CreateServiceJPanel extends javax.swing.JPanel {
         a.setServiceDuration(duration);
        
         JOptionPane.showMessageDialog(this,"Service successfully created","Information", JOptionPane.INFORMATION_MESSAGE);
-        txtServiceID.setText("");
         txtCost.setText("");
         txtMechanicFirstName.setText("");
         txtMechanicLastName.setText("");
@@ -259,13 +245,11 @@ public class CreateServiceJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblMachanicFirstName;
     private javax.swing.JLabel lblMechanicLastName;
     private javax.swing.JLabel lblServiceDuration;
-    private javax.swing.JLabel lblServiceID;
     private javax.swing.JLabel lblServiceType;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextField txtCost;
     private javax.swing.JTextField txtMechanicFirstName;
     private javax.swing.JTextField txtMechanicLastName;
     private javax.swing.JTextField txtServiceDuration;
-    private javax.swing.JTextField txtServiceID;
     // End of variables declaration//GEN-END:variables
 }

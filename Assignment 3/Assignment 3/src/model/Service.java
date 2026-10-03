@@ -10,7 +10,7 @@ package model;
  */
 public class Service {
     
-    String serviceID;
+    Integer serviceID;
     ServiceType serviceType;
     float cost;
     String mechanicFirstName;
@@ -22,7 +22,7 @@ public class Service {
     
     @Override
     public String toString(){
-        return getServiceID();
+        return getServiceID().toString();
     }
     
     public Vehicle getVehical() {
@@ -33,7 +33,7 @@ public class Service {
         this.vehicle = vehicle;
     }
     
-    public String getServiceID() {
+    public Integer getServiceID() {
         return serviceID;
     }
 
@@ -53,11 +53,11 @@ public class Service {
         return mechanicLastName;
     }
 
-    public int getServiceDuration() {
+    public Integer getServiceDuration() {
         return serviceDuration;
     }
 
-    public void setServiceID(String serviceID) {
+    public void setServiceID(int serviceID) {
         this.serviceID = serviceID;
     }
 

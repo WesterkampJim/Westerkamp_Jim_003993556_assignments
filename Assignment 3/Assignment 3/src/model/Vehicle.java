@@ -9,7 +9,7 @@ package model;
  * @author jtwes
  */
 public class Vehicle {
-    int vehicleID;
+    Integer vehicleID;
     String make;
     String model;
     String registrationNumber;
@@ -33,7 +33,7 @@ public class Vehicle {
         return owner;
     }
 
-    public int getVehicleID() {
+    public Integer getVehicleID() {
         return vehicleID;
     }
 
@@ -57,7 +57,7 @@ public class Vehicle {
         return serviceOpted;
     }
 
-    public void setVehicleID(int vehicleID) {
+    public void setVehicleID(Integer vehicleID) {
         this.vehicleID = vehicleID;
     }
 

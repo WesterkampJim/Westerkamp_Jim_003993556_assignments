@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
  * @author jtwes
  */
 public class Owner {
-    String ownerID;
+    Integer ownerID;
     String ownerFirstName;
     String ownerLastName;
     
@@ -19,10 +19,10 @@ public class Owner {
     ///change the name of the object to the ownerID when java tries to show the "string name" of the object.
     @Override
     public String toString(){
-        return getOwnerID();
+        return getOwnerID().toString();
     }
     
-    public String getOwnerID() {
+    public Integer getOwnerID() {
         return ownerID;
     }
 
@@ -38,7 +38,7 @@ public class Owner {
         return serviceDate;
     }
 
-    public void setOwnerID(String ownerID) {
+    public void setOwnerID(Integer ownerID) {
         this.ownerID = ownerID;
     }
 

@@ -30,7 +30,6 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Component id="lblServiceType" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblServiceID" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblCost" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblMachanicFirstName" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -43,7 +42,6 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtServiceID" alignment="1" max="32767" attributes="0"/>
                                   <Component id="txtCost" alignment="1" max="32767" attributes="0"/>
                                   <Component id="txtMechanicFirstName" alignment="0" pref="120" max="32767" attributes="0"/>
                               </Group>
@@ -72,14 +70,9 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="46" max="32767" attributes="0"/>
+              <EmptySpace pref="52" max="32767" attributes="0"/>
               <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblServiceID" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtServiceID" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblServiceType" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboServiceType" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -128,11 +121,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblServiceID">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Service ID"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblServiceType">
       <Properties>
         <Property name="text" type="java.lang.String" value="Service Type"/>
@@ -142,8 +130,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cost"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtServiceID">
     </Component>
     <Component class="javax.swing.JLabel" name="lblMachanicFirstName">
       <Properties>

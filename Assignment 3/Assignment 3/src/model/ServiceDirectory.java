@@ -37,7 +37,7 @@ public class ServiceDirectory {
     
     public Service searchService(String serviceID){
         for(Service a : services){
-            if(a.getServiceID().contains(serviceID)){
+            if(a.getServiceID().toString().contains(serviceID)){
                 return a;
             }
         }
