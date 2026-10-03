@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.ServiceType;
 import model.VehicleDirectory;
 import model.Vehicle;
 
@@ -22,7 +23,7 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageVehiclesJPanel
      */
-    public ManageVehiclesJPanel(JPanel container, VehicleDirectory directory) {
+    public ManageVehiclesJPanel(JPanel container, VehicleDirectory directory, ServiceType serviceTypes) {
         initComponents();
         
         userProcessContainer = container;

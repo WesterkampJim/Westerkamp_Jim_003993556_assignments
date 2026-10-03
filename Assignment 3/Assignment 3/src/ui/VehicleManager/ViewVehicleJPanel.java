@@ -299,7 +299,7 @@ public class ViewVehicleJPanel extends javax.swing.JPanel {
         vehicle.setYear(year);
         vehicle.setOwner(owner); 
 
-        JOptionPane.showMessageDialog(this,"Vehicle successfully created","Information", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this,"Vehicle successfully updated","Information", JOptionPane.INFORMATION_MESSAGE);
         setViewMode();
 
     }//GEN-LAST:event_btnSaveActionPerformed

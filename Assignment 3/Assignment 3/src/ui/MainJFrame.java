@@ -23,6 +23,7 @@ import ui.VehicleManager.ManageVehiclesJPanel;
 public class MainJFrame extends javax.swing.JFrame {
     private ServiceDirectory serviceDirectory;
     private VehicleDirectory vehicleDirectory;
+    public ServiceType serviceTypes;
     /**
      * Creates new form MainJFrame
      */
@@ -31,6 +32,7 @@ public class MainJFrame extends javax.swing.JFrame {
         contentPanel.setLayout(new CardLayout());
         this.serviceDirectory = new ServiceDirectory();
         this.vehicleDirectory = new VehicleDirectory();
+        this.serviceTypes = new ServiceType();
         generateDemoData();
     }
 
@@ -144,7 +146,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicesActionPerformed
-        ManageServicesJPanel panel = new ManageServicesJPanel(contentPanel, serviceDirectory);
+        ManageServicesJPanel panel = new ManageServicesJPanel(contentPanel, serviceDirectory, serviceTypes);
         contentPanel.add("ManageServicesJPanel",panel);
         
         CardLayout layout = (CardLayout) contentPanel.getLayout();
@@ -152,7 +154,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnServicesActionPerformed
 
     private void btnManageVehiclesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageVehiclesActionPerformed
-        ManageVehiclesJPanel panel = new ManageVehiclesJPanel(contentPanel, vehicleDirectory);
+        ManageVehiclesJPanel panel = new ManageVehiclesJPanel(contentPanel, vehicleDirectory, serviceTypes);
         contentPanel.add("ManageVehiclesJPanel",panel);
         
         CardLayout layout = (CardLayout) contentPanel.getLayout();
@@ -160,7 +162,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnManageVehiclesActionPerformed
 
     private void btnVehicalAndOwnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehicalAndOwnerActionPerformed
-        CreateVehicleJPanel panel = new CreateVehicleJPanel(contentPanel, vehicleDirectory, serviceDirectory);
+        CreateVehicleJPanel panel = new CreateVehicleJPanel(contentPanel, vehicleDirectory, serviceDirectory, serviceTypes);
         contentPanel.add("CreateVehicleJPanel",panel);
         
         CardLayout layout = (CardLayout) contentPanel.getLayout();
@@ -236,9 +238,9 @@ public class MainJFrame extends javax.swing.JFrame {
         newService.setMechanicLastName("Fixit");
         newService.setServiceDuration(95);
         newService.setServiceID(1);
-        newService.setServiceType(ServiceType.OIL_CHANGE);
+        newService.setServiceType(serviceTypes.getServiceTypes().get(1));
         newService.setVehical(newVehicle);
-        newVehicle.setServiceOpted(newService.getServiceType());
+        newVehicle.setServiceOpted(serviceTypes.getServiceTypes().get(1));
 
         
         Owner newOwner2 = new Owner();
@@ -261,9 +263,9 @@ public class MainJFrame extends javax.swing.JFrame {
         newService2.setMechanicLastName("Fixit Jr");
         newService2.setServiceDuration(55);
         newService2.setServiceID(2);
-        newService2.setServiceType(ServiceType.PUNCTURE);
+        newService2.setServiceType(serviceTypes.getServiceTypes().get(1));
         newService2.setVehical(newVehicle2);
-        newVehicle2.setServiceOpted(newService.getServiceType());
+        newVehicle2.setServiceOpted(serviceTypes.getServiceTypes().get(2));
 
 
 

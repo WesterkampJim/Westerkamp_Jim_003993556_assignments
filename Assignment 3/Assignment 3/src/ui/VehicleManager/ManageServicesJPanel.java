@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.Service;
 import model.ServiceDirectory;
+import model.ServiceType;
 
 /**
  *
@@ -18,12 +19,13 @@ import model.ServiceDirectory;
 public class ManageServicesJPanel extends javax.swing.JPanel {
     JPanel ContentPanel;
     ServiceDirectory serviceDirectory;
+    ServiceType serviceTypes;
     /**
      * Creates new form ManageServicesJPanel
      */
-    public ManageServicesJPanel(JPanel container, ServiceDirectory directory) {
+    public ManageServicesJPanel(JPanel container, ServiceDirectory directory, ServiceType serviceTypes) {
         initComponents();
-        
+        this.serviceTypes = serviceTypes;
         ContentPanel = container;
         serviceDirectory= directory;
         populateTable();
@@ -158,7 +160,7 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
         if (selectedRow >=0){
             Service selectedService = (Service) tblServices.getValueAt(selectedRow,0);
             
-            ViewServiceJPanel panel = new ViewServiceJPanel(ContentPanel, serviceDirectory, selectedService);
+            ViewServiceJPanel panel = new ViewServiceJPanel(ContentPanel, serviceDirectory, selectedService, serviceTypes);
             ContentPanel.add("ViewServiceJPanel", panel);
             CardLayout layout = (CardLayout) ContentPanel.getLayout();
             layout.next(ContentPanel);
@@ -195,7 +197,7 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
         Service foundService = serviceDirectory.searchService(serviceNumber);
         
             if(foundService!=null){
-                ViewServiceJPanel panel = new ViewServiceJPanel(ContentPanel, serviceDirectory, foundService);
+                ViewServiceJPanel panel = new ViewServiceJPanel(ContentPanel, serviceDirectory, foundService, serviceTypes);
                 ContentPanel.add("ViewServiceJPanel",panel);
                 CardLayout layout = (CardLayout) ContentPanel.getLayout();
                 layout.next(ContentPanel);

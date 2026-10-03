@@ -11,7 +11,7 @@ package model;
 public class Service {
     
     Integer serviceID;
-    ServiceType serviceType;
+    String serviceType;
     float cost;
     String mechanicFirstName;
     String mechanicLastName;
@@ -37,7 +37,7 @@ public class Service {
         return serviceID;
     }
 
-    public ServiceType getServiceType() {
+    public String getServiceType() {
         return serviceType;
     }
 
@@ -61,7 +61,7 @@ public class Service {
         this.serviceID = serviceID;
     }
 
-    public void setServiceType(ServiceType serviceType) {
+    public void setServiceType(String serviceType) {
         this.serviceType = serviceType;
     }
 

@@ -8,9 +8,30 @@ package model;
  *
  * @author jtwes
  */
-public enum ServiceType {
-    OIL_CHANGE,
-    CAR_WASH,
-    PUNCTURE    
+
+import java.util.ArrayList;
+
+public class ServiceType {
+ private ArrayList<String> serviceTypes;
+
+    public ServiceType() {
+        serviceTypes = new ArrayList<>();
+        serviceTypes.add("Oil Change");
+        serviceTypes.add("Car Wash");
+        serviceTypes.add("Puncture");
+    }
+
+
+    public ArrayList<String> getServiceTypes() {
+        return serviceTypes;
+    }
+
+    public void addServiceType(String serviceType) {
+        serviceTypes.add(serviceType);
+    }
+
+    public void removeServiceType(String serviceType) {
+        serviceTypes.remove(serviceType);
+    }
 }
 

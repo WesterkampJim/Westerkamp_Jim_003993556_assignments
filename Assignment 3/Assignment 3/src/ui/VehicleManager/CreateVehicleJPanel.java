@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import model.Owner;
 import model.Service;
 import model.ServiceDirectory;
+import model.ServiceType;
 import model.Vehicle;
 import model.VehicleDirectory;
 
@@ -22,15 +23,17 @@ public class CreateVehicleJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     VehicleDirectory vehicleDirectory;
     ServiceDirectory serviceDirectory;
+    ServiceType serviceTypes;
     /**
      * Creates new form CreateVehicleJPanel
      */
-    public CreateVehicleJPanel(JPanel container, VehicleDirectory vehicleDirectory, ServiceDirectory serviceDirectory) {
+    public CreateVehicleJPanel(JPanel container, VehicleDirectory vehicleDirectory, ServiceDirectory serviceDirectory, ServiceType serviceType) {
         initComponents();
         
         userProcessContainer = container;
         this.serviceDirectory = serviceDirectory;
         this.vehicleDirectory = vehicleDirectory;
+        this.serviceTypes = serviceTypes;
 
     }
 
