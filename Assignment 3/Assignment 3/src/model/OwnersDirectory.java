@@ -34,10 +34,10 @@ public class OwnersDirectory {
     public void deleteOwner(Owner account){
         owners.remove(account);
     }
-    
-    public Owner searchOwner(String serviceID){
+    //simple search for ID
+    public Owner searchOwner(String ownerID){
         for(Owner a : owners){
-            if(a.getOwnerID().toString().contains(serviceID)){
+            if(a.getOwnerID().toString().contains(ownerID)){
                 return a;
             }
         }

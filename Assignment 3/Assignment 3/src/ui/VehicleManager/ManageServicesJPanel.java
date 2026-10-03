@@ -17,6 +17,7 @@ import model.ServiceType;
  * @author jtwes
  */
 public class ManageServicesJPanel extends javax.swing.JPanel {
+    //declare vars
     JPanel ContentPanel;
     ServiceDirectory serviceDirectory;
     ServiceType serviceTypes;
@@ -25,6 +26,7 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
      */
     public ManageServicesJPanel(JPanel container, ServiceDirectory directory, ServiceType serviceTypes) {
         initComponents();
+        //assign vars to passed through objects
         this.serviceTypes = serviceTypes;
         ContentPanel = container;
         serviceDirectory= directory;
@@ -49,6 +51,8 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
         btnSearch = new javax.swing.JButton();
         btnViewDetails = new javax.swing.JButton();
         btnCreateNewService = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(212, 200, 242));
 
         btnBack.setText("<-Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -115,34 +119,35 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addGap(32, 32, 32)
                         .addComponent(btnBack))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(lblTitle)
-                        .addGap(45, 45, 45)
-                        .addComponent(btnCreateNewService))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(btnSearch)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSearchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnDelete)
-                            .addComponent(btnViewDetails))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(108, 108, 108)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(188, 188, 188)
+                                .addComponent(lblTitle)
+                                .addGap(45, 45, 45)
+                                .addComponent(btnCreateNewService))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(129, 129, 129)
+                                .addComponent(btnSearch)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSearchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(87, 87, 87)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnDelete)
+                                    .addComponent(btnViewDetails))))))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(26, 26, 26)
                 .addComponent(btnBack)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreateNewService)
                     .addComponent(lblTitle))
@@ -156,16 +161,16 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
                 .addComponent(btnViewDetails)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDelete)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    //return to home card
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         ContentPanel.remove(this);
         CardLayout layout = (CardLayout) ContentPanel.getLayout();
         layout.previous(ContentPanel);
     }//GEN-LAST:event_btnBackActionPerformed
-
+    //view selected row data
     private void btnViewDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailsActionPerformed
         int selectedRow = tblServices.getSelectedRow();
         
@@ -183,7 +188,7 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btnViewDetailsActionPerformed
-
+    //delete selected row
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int selectedRow = tblServices.getSelectedRow();
         
@@ -201,21 +206,22 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btnDeleteActionPerformed
-
+    //search for item that matches search term
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-       
+       //remove extra spaces
     String searchText = txtSearchBox.getText().trim();
-
+    //no blank terms allowed
     if (searchText.isBlank()) {
         JOptionPane.showMessageDialog(this, "Please type a Service ID or Service Type to search.", "Warning", JOptionPane.WARNING_MESSAGE);
         return;
     }
-
+    //reset table
     DefaultTableModel model = (DefaultTableModel) tblServices.getModel();
     model.setRowCount(0);
 
+    //check for finding items, so we can send info message if this never flips true
     boolean foundItems = false;
-
+    //iterate through objs in serviceDirectory, if match, add row with objs data
     for (Service a : serviceDirectory.getServices()) {
         if (String.valueOf(a.getServiceID()).equalsIgnoreCase(searchText) || a.getServiceType().toString().equalsIgnoreCase(searchText)) {
             Object[] row = new Object[5];
@@ -228,14 +234,14 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
             foundItems = true;
         }
     }
-
+    //if no row was generated, throw false and refresh table
     if (foundItems==false) {
         JOptionPane.showMessageDialog(this, "No services found matching your search.", "Warning", JOptionPane.WARNING_MESSAGE);
         populateTable();
     }
         
     }//GEN-LAST:event_btnSearchActionPerformed
-
+    //go to the create service panel.
     private void btnCreateNewServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNewServiceActionPerformed
         CreateServiceJPanel panel = new CreateServiceJPanel(ContentPanel, serviceDirectory, serviceTypes);
         ContentPanel.add("CreateServiceJPanel",panel);
@@ -257,6 +263,7 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtSearchBox;
     // End of variables declaration//GEN-END:variables
     
+    //refreshes table
     public void populateTable(){
         DefaultTableModel model = (DefaultTableModel) tblServices.getModel();
         model.setRowCount(0);

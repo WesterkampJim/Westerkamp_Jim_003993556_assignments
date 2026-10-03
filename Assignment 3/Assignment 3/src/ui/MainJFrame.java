@@ -31,11 +31,13 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     public MainJFrame() {
         initComponents();
+        //initialize all the objects on start of application
         contentPanel.setLayout(new CardLayout());
         this.serviceDirectory = new ServiceDirectory();
         this.vehicleDirectory = new VehicleDirectory();
         this.serviceTypes = new ServiceType();
         this.ownersDirectory = new OwnersDirectory();
+        //insert demo objects to directories
         generateDemoData();
     }
 
@@ -54,7 +56,7 @@ public class MainJFrame extends javax.swing.JFrame {
         btnVehicalAndOwner = new javax.swing.JButton();
         btnManageVehicles = new javax.swing.JButton();
         contentPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,24 +114,25 @@ public class MainJFrame extends javax.swing.JFrame {
         contentPanel.setBackground(new java.awt.Color(222, 242, 242));
         contentPanel.setToolTipText("");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Welcome to Vehicle Service Management Application");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("WELCOME TO THE SERVICE MANAGMENT SYSTEM");
+        jLabel2.setAlignmentY(0.0F);
 
         javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
         contentPanel.setLayout(contentPanelLayout);
         contentPanelLayout.setHorizontalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
-                .addContainerGap(110, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+                .addContainerGap())
         );
         contentPanelLayout.setVerticalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentPanelLayout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addGap(78, 78, 78)
+                .addComponent(jLabel2)
+                .addContainerGap(385, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(contentPanel);
@@ -213,12 +216,12 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnServices;
     private javax.swing.JButton btnVehicalAndOwner;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel navPanel;
     // End of variables declaration//GEN-END:variables
 
-
+/// All the demo data for the cars, services and owners
     private void generateDemoData(){
         
         Owner newOwner = ownersDirectory.addOwners();
@@ -246,8 +249,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
         
         Owner newOwner2 = ownersDirectory.addOwners();
-        newOwner2.setOwnerFirstName("John");
-        newOwner2.setOwnerLastName("Doe");
+        newOwner2.setOwnerFirstName("Bill");
+        newOwner2.setOwnerLastName("TheKid");
         newOwner2.setOwnerID(2);
         newOwner2.setServiceDate(LocalDateTime.of(2026, 1, 1, 0, 0));
         
@@ -268,8 +271,74 @@ public class MainJFrame extends javax.swing.JFrame {
         newService2.setServiceType(serviceTypes.getServiceTypes().get(1));
         newVehicle2.setServiceOpted(newService2);
 
-        System.out.print(serviceDirectory.getServices());
+        Owner newOwner3 = ownersDirectory.addOwners();
+        newOwner3.setOwnerFirstName("Joey");
+        newOwner3.setOwnerLastName("Smith");
+        newOwner3.setOwnerID(3);
+        newOwner3.setServiceDate(LocalDateTime.of(2026, 3, 15, 0, 0));
 
+        Vehicle newVehicle3 = vehicleDirectory.addVehicle();
+        newVehicle3.setMake("Toyota");
+        newVehicle3.setModel("Camry");
+        newVehicle3.setYear(2018);
+        newVehicle3.setVehicleID(3);
+        newVehicle3.setRegistrationNumber("373452aa37234");
+        newVehicle3.setOwner(newOwner3);
+
+        Service newService3 = serviceDirectory.addService();
+        newService3.setCost(80.0f);
+        newService3.setMechanicFirstName("Mike");
+        newService3.setMechanicLastName("Wrench");
+        newService3.setServiceDuration(40);
+        newService3.setServiceID(3);
+        newService3.setServiceType(serviceTypes.getServiceTypes().get(2));
+        newVehicle3.setServiceOpted(newService3);
+        
+        Owner newOwner4 = ownersDirectory.addOwners();
+        newOwner4.setOwnerFirstName("Alex");
+        newOwner4.setOwnerLastName("Washington");
+        newOwner4.setOwnerID(4);
+        newOwner4.setServiceDate(LocalDateTime.of(2026, 6, 20, 0, 0));
+
+        Vehicle newVehicle4 = vehicleDirectory.addVehicle();
+        newVehicle4.setMake("Honda");
+        newVehicle4.setModel("Civic");
+        newVehicle4.setYear(2001);
+        newVehicle4.setVehicleID(4);
+        newVehicle4.setRegistrationNumber("3744566435348345");
+        newVehicle4.setOwner(newOwner4);
+
+        Service newService4 = serviceDirectory.addService();
+        newService4.setCost(120.75f);
+        newService4.setMechanicFirstName("Omar");
+        newService4.setMechanicLastName("Johnson");
+        newService4.setServiceDuration(90);
+        newService4.setServiceID(4);
+        newService4.setServiceType(serviceTypes.getServiceTypes().get(0));
+        newVehicle4.setServiceOpted(newService4);
+        
+        Owner newOwner5 = ownersDirectory.addOwners();
+        newOwner5.setOwnerFirstName("Maria");
+        newOwner5.setOwnerLastName("Basil");
+        newOwner5.setOwnerID(5);
+        newOwner5.setServiceDate(LocalDateTime.of(2026, 9, 5, 0, 0));
+
+        Vehicle newVehicle5 = vehicleDirectory.addVehicle();
+        newVehicle5.setMake("Chevrolet");
+        newVehicle5.setModel("Malibu");
+        newVehicle5.setYear(2009);
+        newVehicle5.setVehicleID(5);
+        newVehicle5.setRegistrationNumber("594559456");
+        newVehicle5.setOwner(newOwner5);
+
+        Service newService5 = serviceDirectory.addService();
+        newService5.setCost(64.99f);
+        newService5.setMechanicFirstName("Ted");
+        newService5.setMechanicLastName("Brooks");
+        newService5.setServiceDuration(30);
+        newService5.setServiceID(5);
+        newService5.setServiceType(serviceTypes.getServiceTypes().get(1));
+        newVehicle5.setServiceOpted(newService5);
     }
 
 

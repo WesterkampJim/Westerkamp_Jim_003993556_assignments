@@ -35,9 +35,9 @@ public class VehicleDirectory {
         services.remove(account);
     }
     
-    public Vehicle searchVehicle(String serviceID){
+    public Vehicle searchVehicle(String vehicleID){
         for(Vehicle a : services){
-            if(String.valueOf(a.getVehicleID()).contains(serviceID)){
+            if(String.valueOf(a.getVehicleID()).contains(vehicleID)){
                 return a;
             }
         }

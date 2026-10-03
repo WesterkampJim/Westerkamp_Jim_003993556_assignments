@@ -106,99 +106,94 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
+                .addComponent(btnBack)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(160, 160, 160)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(lblServiceID)
-                                                .addComponent(lblCost)
-                                                .addComponent(lblMachanicFirstName))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(57, 57, 57)
-                                                .addComponent(lblServiceType1)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtServiceID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                            .addComponent(txtCost, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtMechanicFirstName)
-                                            .addComponent(txtServiceType, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblMechanicLastName)
-                                            .addComponent(lblServiceDuration))
-                                        .addGap(104, 104, 104)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtServiceDuration, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                            .addComponent(txtMechanicLastName)))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(lblTitle)
-                                        .addGap(88, 88, 88))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(btnSave)
-                                        .addGap(37, 37, 37)
-                                        .addComponent(btnUpdate)
-                                        .addGap(70, 70, 70)))))
-                        .addGap(170, 170, 170))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(196, 196, 196)
+                        .addComponent(btnSave)
+                        .addGap(35, 35, 35)
+                        .addComponent(btnUpdate)
+                        .addGap(99, 99, 99))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(254, 254, 254)
+                            .addComponent(lblTitle)
+                            .addGap(88, 88, 88))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(113, 113, 113)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblServiceType1)
+                                        .addComponent(lblServiceID)
+                                        .addComponent(lblCost)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblMechanicLastName, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblMachanicFirstName, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblServiceDuration, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtServiceID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                                .addComponent(txtCost, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtMechanicLastName)
+                                .addComponent(txtServiceDuration)
+                                .addComponent(txtMechanicFirstName, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtServiceType)))))
+                .addGap(222, 222, 222))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addComponent(btnBack)
-                .addGap(35, 35, 35)
-                .addComponent(lblTitle)
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblServiceID)
-                    .addComponent(txtServiceID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtServiceType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblServiceType1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCost))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMechanicFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMachanicFirstName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMechanicLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMechanicLastName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtServiceDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblServiceDuration))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave)
-                    .addComponent(btnUpdate))
-                .addGap(87, 87, 87))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTitle)
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtServiceID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblServiceID))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtServiceType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblServiceType1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCost))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMechanicFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMachanicFirstName))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMechanicLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMechanicLastName))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtServiceDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblServiceDuration))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnUpdate)
+                            .addComponent(btnSave)))
+                    .addComponent(btnBack))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+        //save updaes
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         float cost;
         int duration;
         
-       
+       //grab field text
        String mechanicFirstName = txtMechanicFirstName.getText();
        String mechanicLastName = txtMechanicLastName.getText();
        String serviceType = txtServiceType.getText();
        
+       //check for blanks
        if (mechanicFirstName.isBlank() || mechanicLastName.isBlank()|| txtCost.getText().isBlank()|| txtServiceDuration.getText().isBlank())
        {
            JOptionPane.showMessageDialog(this,"All fields are mandatory.","ERROR", JOptionPane.ERROR_MESSAGE);
@@ -206,20 +201,21 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
        }
        
 
-           
+           //error handle for mismatched data types
         try {
           cost = Float.parseFloat(txtCost.getText());
         } catch (Exception e) {
              JOptionPane.showMessageDialog(this,"Please use only decimal numbers for the cost.","Warning",JOptionPane.WARNING_MESSAGE);
          return;
         }
-        
+        //error handle for mismatched data types
         try {
          duration = Integer.parseInt(txtServiceDuration.getText());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,"Please use only a whole number for the duration.","Warning",JOptionPane.WARNING_MESSAGE);
         return;
         }
+        //validation tree, check for character and lengths, and reasonable number values.
        
         if (mechanicFirstName.length() > 50 || !mechanicFirstName.matches("[a-zA-Z _-]+")) {
             JOptionPane.showMessageDialog(this,"Mechanic first name must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid First Name",JOptionPane.ERROR_MESSAGE);
@@ -239,7 +235,7 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
         }
         
         
-
+        //update serive obj
         Service a = service;           
         
         a.setServiceType(serviceType);
@@ -256,7 +252,7 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         setEditMode();
     }//GEN-LAST:event_btnUpdateActionPerformed
-
+    //return to manage screen, repopulate table
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         userProcessContainer.remove(this);
         Component[] panelStack = userProcessContainer.getComponents();
@@ -288,6 +284,7 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtServiceType;
     // End of variables declaration//GEN-END:variables
 
+        //refreshes fields to match obj current data.
        private void refreshTextFields(){
         txtServiceID.setText(service.getServiceID().toString());
         txtMechanicFirstName.setText(service.getMechanicFirstName());
@@ -297,7 +294,7 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
         txtServiceDuration.setText(String.valueOf(service.getServiceDuration()));
 
        }
-       
+       //disables fields so no editing can occur
        private void setViewMode(){
 
            txtServiceType.setEnabled(false);
@@ -310,7 +307,7 @@ public class ViewServiceJPanel extends javax.swing.JPanel {
            btnUpdate.setEnabled(true);
            
        }
-       
+       //enables fields so editing can occur
        private void setEditMode(){
            txtServiceType.setEnabled(true);
            txtCost.setEnabled(true);

@@ -28,7 +28,7 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
      */
     public ManageVehiclesJPanel(JPanel container, VehicleDirectory directory, ServiceDirectory serviceDirectory) {
         initComponents();
-        
+        //panel for holding cards
         userProcessContainer = container;
         vehicleDirectory= directory;
         this.serviceDirectory = serviceDirectory;
@@ -53,6 +53,8 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
         tblVehicles = new javax.swing.JTable();
         btnSearch = new javax.swing.JButton();
         btnViewDetails = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(242, 242, 212));
 
         btnBack.setText("<-Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -115,30 +117,31 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
                         .addGap(25, 25, 25)
                         .addComponent(btnBack))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(258, 258, 258)
-                        .addComponent(lblTitle))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
+                        .addGap(108, 108, 108)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(btnSearch)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSearchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnViewDetails)
-                                .addComponent(btnDelete))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(252, 252, 252)
+                                .addComponent(lblTitle))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(87, 87, 87)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(42, 42, 42)
+                                        .addComponent(btnSearch)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtSearchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(btnViewDetails)
+                                        .addComponent(btnDelete))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(btnBack)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -150,22 +153,24 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
                 .addComponent(btnViewDetails)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDelete)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //go back out to previuos screen.
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    //view details of selected item in table
     private void btnViewDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailsActionPerformed
         int selectedRow = tblVehicles.getSelectedRow();
         
         if (selectedRow >=0){
             Vehicle selectedVehicle = (Vehicle) tblVehicles.getValueAt(selectedRow,0);
-            
+            //send user to view panel layout with vehicle information/directories
             ViewVehicleJPanel panel = new ViewVehicleJPanel(userProcessContainer, vehicleDirectory, selectedVehicle, serviceDirectory);
             userProcessContainer.add("ViewVehicleJPanel", panel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -177,7 +182,7 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btnViewDetailsActionPerformed
-
+        //remove selected item from vehicle directory.
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int selectedRow = tblVehicles.getSelectedRow();
         
@@ -187,6 +192,7 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
             if(dialogResult == JOptionPane.YES_OPTION){
                 Vehicle selectedVehicle = (Vehicle) tblVehicles.getValueAt(selectedRow,0);
                 vehicleDirectory.deleteVehicle(selectedVehicle);
+                //refreshes table
                 populateTable();
             }
         }else{
@@ -195,20 +201,24 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btnDeleteActionPerformed
-
+    //search comparing search term to a few different fields
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
        
-String searchText = txtSearchBox.getText().trim();
-
+        //sanitize extra spaces
+    String searchText = txtSearchBox.getText().trim();
+        //no blank search box allowed
     if (searchText.isBlank()) {
         JOptionPane.showMessageDialog(this, "Please type a Vehicle ID or Car Model, Owner Name, Or Owner ID to search.", "Warning", JOptionPane.WARNING_MESSAGE);
         return;
     }
+    //reset the table
     DefaultTableModel model = (DefaultTableModel) tblVehicles.getModel();
     model.setRowCount(0);
-
+    
+    //start with false check flag on found items.
     boolean foundItems = false;
 
+    //iterate through vehicle objects, if they match a certain value to text...
     for (Vehicle a : vehicleDirectory.getVehicles()) {
         if (String.valueOf(a.getVehicleID()).equalsIgnoreCase(searchText) ||
                         a.getModel().equalsIgnoreCase(searchText) ||
@@ -219,9 +229,8 @@ String searchText = txtSearchBox.getText().trim();
                         a.getRegistrationNumber().equalsIgnoreCase(searchText)
                                 )
         {
-        
-
-
+ 
+            //display vehicle row for each item that has a match in this loops
             Object[] row = new Object[6];
             row[0] = a;
             row[1] = a.getMake()+" "+a.getModel()+" "+a.getYear();
@@ -231,10 +240,11 @@ String searchText = txtSearchBox.getText().trim();
             row[5] = a.getRegistrationNumber();
 
             model.addRow(row);
+            //check flag to make sure table has something.
             foundItems = true;
         }
     }
-
+        // if the check flag never flips to true, we show an error.
     if (foundItems==false) {
         JOptionPane.showMessageDialog(this, "No vehicles found matching your search.", "Warning", JOptionPane.WARNING_MESSAGE);
         populateTable();
@@ -255,17 +265,20 @@ String searchText = txtSearchBox.getText().trim();
     private javax.swing.JTextField txtSearchBox;
     // End of variables declaration//GEN-END:variables
     
+    
+    //populates the table with all items from vehicle directory.
     public void populateTable(){
         DefaultTableModel model = (DefaultTableModel) tblVehicles.getModel();
         model.setRowCount(0);
         
         for (Vehicle a:vehicleDirectory.getVehicles()){
-            Object[] row = new Object[7];
+            Object[] row = new Object[6];
             row[0] = a;
             row[1] = a.getMake()+" "+a.getModel()+" "+a.getYear();
             row[2] = a.getOwner().getOwnerFirstName()+" "+a.getOwner().getOwnerLastName();
             row[3] = a.getServiceOpted();
             row[4] = a.getOwner().getServiceDate().format(DateTimeFormatter.ISO_LOCAL_DATE).toString();
+            row[5] = a.getRegistrationNumber();
             
             
             
