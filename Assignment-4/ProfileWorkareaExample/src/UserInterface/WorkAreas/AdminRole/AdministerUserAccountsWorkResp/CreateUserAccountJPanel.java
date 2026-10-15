@@ -7,7 +7,14 @@ package UserInterface.WorkAreas.AdminRole.AdministerUserAccountsWorkResp;
 
 import Business.Business;
 import Business.Person.Person;
-import Business.Person.PersonDirectory;
+import Business.Profiles.EmployeeDirectory;
+import Business.Profiles.EmployeeProfile;
+import Business.Profiles.FacultyDirectory;
+import Business.Profiles.FacultyProfile;
+import Business.Profiles.Profile;
+import Business.Profiles.StudentDirectory;
+import Business.Profiles.StudentProfile;
+import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -34,9 +41,20 @@ public class CreateUserAccountJPanel extends javax.swing.JPanel {
         this.business = bz;
         this.userAccountDirectory = business.getUserAccountDirectory();
         initComponents();
+        populatePersonComboBox();
+
 
 
     }
+    
+    private void populatePersonComboBox() {
+        cmbPerson.removeAllItems();
+
+        for (Person person : business.getPersonDirectory().getPersonList()) {
+            cmbPerson.addItem(person.getPersonId());
+        }
+    }
+    
 
 
 
@@ -51,9 +69,15 @@ public class CreateUserAccountJPanel extends javax.swing.JPanel {
 
         Back = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        txtPersonID = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
         lblPersonID1 = new javax.swing.JLabel();
+        cmbPerson = new javax.swing.JComboBox<>();
+        lblPersonID2 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JTextField();
+        lblPersonID3 = new javax.swing.JLabel();
+        lblPersonID4 = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
+        cmbProfile = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(null);
@@ -68,24 +92,45 @@ public class CreateUserAccountJPanel extends javax.swing.JPanel {
         Back.setBounds(30, 290, 74, 23);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel2.setText("Manage Person Profile");
+        jLabel2.setText("Create User Account");
         add(jLabel2);
         jLabel2.setBounds(21, 20, 550, 28);
-        add(txtPersonID);
-        txtPersonID.setBounds(260, 180, 170, 22);
 
-        btnUpdate.setText("Update Person");
+        btnUpdate.setText("Create Account");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
         add(btnUpdate);
-        btnUpdate.setBounds(230, 290, 112, 23);
+        btnUpdate.setBounds(250, 290, 112, 23);
 
-        lblPersonID1.setText("ID");
+        lblPersonID1.setText("Profile");
         add(lblPersonID1);
-        lblPersonID1.setBounds(210, 180, 57, 16);
+        lblPersonID1.setBounds(180, 220, 57, 16);
+
+        add(cmbPerson);
+        cmbPerson.setBounds(260, 90, 150, 22);
+
+        lblPersonID2.setText("Person");
+        add(lblPersonID2);
+        lblPersonID2.setBounds(180, 90, 57, 16);
+        add(txtPassword);
+        txtPassword.setBounds(260, 170, 170, 22);
+
+        lblPersonID3.setText("Password");
+        add(lblPersonID3);
+        lblPersonID3.setBounds(180, 170, 57, 16);
+
+        lblPersonID4.setText("Username");
+        add(lblPersonID4);
+        lblPersonID4.setBounds(180, 130, 57, 16);
+        add(txtUsername);
+        txtUsername.setBounds(260, 130, 170, 22);
+
+        cmbProfile.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "Faculty", "Employee" }));
+        add(cmbProfile);
+        cmbProfile.setBounds(260, 220, 150, 22);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -105,38 +150,79 @@ public class CreateUserAccountJPanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 
-        String ID;
+        String personId = (String) cmbPerson.getSelectedItem();
+        String role = (String) cmbProfile.getSelectedItem();
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
 
-        // grab text from fields and populate
-        ID = txtPersonID.getText();
 
-
-        //validate text fields are not blank
-        if (ID.isBlank()) {
-            JOptionPane.showMessageDialog(this, "All fields are mandatory.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if (ID.length() > 50 || !ID.matches("[a-zA-Z _-]+")) {
-            JOptionPane.showMessageDialog(this,"ID must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
+        if (personId.isBlank() || role.isBlank() || username.trim().isBlank()|| password.trim().isBlank()) {
+            JOptionPane.showMessageDialog(this, "All fields are mandatory.",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
+        if (!username.matches("[A-Za-z0-9 ._-]+") || username.length() > 25 ) {
+            JOptionPane.showMessageDialog(this,"Username must be 1–25 characters and may contain letters, numbers, periods, underscores, and hyphens.","Invalid Username", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-        //populate object
+        // check the role combo box, then see if that person ID exists in any of the directories already.
+        Profile profile = null;
+        if (role.equalsIgnoreCase("Employee")) {
+            profile = business.getEmployeeDirectory().findEmployee(personId);
+        } else if (role.equalsIgnoreCase("Student")) {
+            profile = business.getStudentDirectory().findStudent(personId);
+        } else if (role.equalsIgnoreCase("Faculty")) {
+            profile = business.getFacultyDirectory().findFaculty(personId);
+        }
+
         
+        UserAccountDirectory accounts = business.getUserAccountDirectory();
+        for (UserAccount account : accounts.getUserAccountList()) {
+            if (account.getUserLoginName().equalsIgnoreCase(username)) {
+                JOptionPane.showMessageDialog(this, "That username is already in use.","Duplicate Username", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (account.getAssociatedPersonProfile() == profile) {
+                JOptionPane.showMessageDialog(this, "That profile already has a user account.","Duplicate Account", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+        
+        
+        Profile newprofile = null;
+        Person p= business.getPersonDirectory().findPerson(personId);
+        
+        if (role.equalsIgnoreCase("Employee")) {
+            newprofile = business.getEmployeeDirectory().newEmployeeProfile(p);
+        } else if (role.equalsIgnoreCase("Student")) {
+            newprofile = business.getStudentDirectory().newStudentProfile(p);
+        } else if (role.equalsIgnoreCase("Faculty")) {
+            newprofile = business.getFacultyDirectory().newFacultyProfile(p);
+        }else{
+            JOptionPane.showMessageDialog(this, "Try that again","Account Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        UserAccount ua = business.getUserAccountDirectory().newUserAccount(newprofile, username.trim(), password); /// new faculty profile objest with person02
        
-
-        JOptionPane.showMessageDialog(this,"User Account successfully created","Information",JOptionPane.INFORMATION_MESSAGE);
-
+        JOptionPane.showMessageDialog(this, "User account successfully created.","Information", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cmbPerson;
+    private javax.swing.JComboBox<String> cmbProfile;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblPersonID1;
-    private javax.swing.JTextField txtPersonID;
+    private javax.swing.JLabel lblPersonID2;
+    private javax.swing.JLabel lblPersonID3;
+    private javax.swing.JLabel lblPersonID4;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
 }

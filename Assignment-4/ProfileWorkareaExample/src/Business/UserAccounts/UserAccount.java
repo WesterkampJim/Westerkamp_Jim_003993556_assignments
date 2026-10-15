@@ -25,7 +25,16 @@ public class UserAccount {
          this.profile = profile;
 
     }
+    
+    
+    public void setUserName(String username) {
+        this.username = username;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     public String getPersonId(){
         return profile.getPerson().getPersonId();
     }
@@ -49,6 +58,11 @@ public class UserAccount {
         
         public Profile getAssociatedPersonProfile(){
             return profile;
+        }
+        
+                
+        public void setAssociatedPersonProfile(Profile p){
+            this.profile = p;
         }
         
     @Override

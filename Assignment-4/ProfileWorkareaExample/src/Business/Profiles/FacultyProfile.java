@@ -13,7 +13,7 @@ import Business.Person.Person;
  */
 public class FacultyProfile extends Profile {
 
-    Person person;
+
 //    Transcript transcript;
     //   EmploymentHistroy employmenthistory;
 

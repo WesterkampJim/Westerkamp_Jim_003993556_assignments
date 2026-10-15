@@ -6,8 +6,10 @@
 package UserInterface.WorkAreas.AdminRole.AdministerUserAccountsWorkResp;
 
 import Business.Business;
+import Business.Person.Person;
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
+import UserInterface.WorkAreas.AdminRole.ManagePersonnelWorkResp.AdministerPersonJPanel;
 import javax.swing.JOptionPane;
 
 
@@ -186,11 +188,20 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
 
     private void NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextActionPerformed
         // TODO add your handling code here:
-        if(selecteduseraccount==null) return;
-        AdminUserAccount mppd = new AdminUserAccount(selecteduseraccount, CardSequencePanel);
-        CardSequencePanel.add(mppd);
-        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+        int selectedRow = UserAccountTable.getSelectedRow();
+        
+        if (selectedRow >=0){
+            UserAccount selectedAccount = (UserAccount) UserAccountTable.getValueAt(selectedRow,0);
+            
+            AdminUserAccount mppd = new AdminUserAccount(selectedAccount, CardSequencePanel, business);
+            CardSequencePanel.add(mppd);
+            ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
+            
+        }else{
+            JOptionPane.showConfirmDialog(null, "Please select a user account from the list.","Warning",JOptionPane.WARNING_MESSAGE);
+
+        }
     }//GEN-LAST:event_NextActionPerformed
 
     private void UserAccountTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserAccountTableMousePressed
@@ -227,7 +238,7 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
         boolean foundItems = false;
         //iterate through objs in serviceDirectory, if match, add row with objs data
         for (UserAccount a : userAccountDirectory.getAccountList()) {
-            if (String.valueOf(a.getPersonId()).equalsIgnoreCase(searchText) || a.getPersonId().toString().equalsIgnoreCase(searchText)) {
+            if (String.valueOf(a.getPersonId()).equalsIgnoreCase(searchText) || a.getUserLoginName().toString().equalsIgnoreCase(searchText)) {
                 Object[] row = new Object[1];
                 row[0] = a;
                 model.addRow(row);

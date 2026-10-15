@@ -23,6 +23,10 @@ public class StudentDirectory {
      studentlist = new ArrayList();
 
     }
+    
+    public void removeStudentProfile(StudentProfile profile) {
+        studentlist.remove(profile);
+    }
 
     public StudentProfile newStudentProfile(Person p) {
 

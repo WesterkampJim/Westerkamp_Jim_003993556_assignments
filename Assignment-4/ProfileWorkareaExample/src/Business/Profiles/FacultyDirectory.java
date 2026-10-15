@@ -23,6 +23,10 @@ public class FacultyDirectory {
      facultylist = new ArrayList();
 
     }
+    
+    public void removeFacultyProfile(FacultyProfile profile) {
+        facultylist.remove(profile);
+    }
 
     public FacultyProfile newFacultyProfile(Person p) {
 

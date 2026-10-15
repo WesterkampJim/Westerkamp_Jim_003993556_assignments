@@ -25,6 +25,10 @@ public class EmployeeDirectory {
         employeelist = new ArrayList();
 
     }
+    
+    public void removeEmployeeProfile(EmployeeProfile profile) {
+        employeelist.remove(profile);
+    }
 
     public EmployeeProfile newEmployeeProfile(Person p) {
 

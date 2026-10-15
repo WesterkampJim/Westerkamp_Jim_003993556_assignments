@@ -5,7 +5,15 @@
  */
 package UserInterface.WorkAreas.AdminRole.AdministerUserAccountsWorkResp;
 
+import Business.Business;
+import Business.Person.Person;
+import Business.Profiles.EmployeeProfile;
+import Business.Profiles.FacultyProfile;
+import Business.Profiles.Profile;
+import Business.Profiles.StudentProfile;
 import Business.UserAccounts.UserAccount;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -19,16 +27,47 @@ public class AdminUserAccount extends javax.swing.JPanel {
      * Creates new form ManageSuppliersJPanel
      */
     JPanel CardSequencePanel;
-
+    Business business;
     UserAccount selecteduseraccount;
 
-    public AdminUserAccount(UserAccount sua, JPanel jp) {
+    public AdminUserAccount(UserAccount sua, JPanel jp, Business business) {
 
         CardSequencePanel = jp;
         selecteduseraccount= sua;
+        this.business = business;
         initComponents();
+        populatePersonComboBox();
+        populateData();
         //display user details here
 
+    }
+    
+    private void populatePersonComboBox() {
+        cmbPerson.removeAllItems();
+        for (Person person : business.getPersonDirectory().getPersonList()) {
+            cmbPerson.addItem(person.getPersonId());
+        }
+    }
+      
+    
+    private void populateData() {
+        txtUsername.setText(selecteduseraccount.getUserLoginName());
+        cmbPerson.setSelectedItem(selecteduseraccount.getPersonId());
+        cmbProfile.setSelectedItem(selecteduseraccount.getAssociatedPersonProfile());
+        // Leave the password blank; an empty password field means keep the existing password.
+    }
+    
+    private String getProfileType(Profile profile) {
+        if (profile instanceof EmployeeProfile) {
+            return "Employee";
+        }
+        if (profile instanceof StudentProfile) {
+            return "Student";
+        }
+        if (profile instanceof FacultyProfile) {
+            return "Faculty";
+        }
+        return null;
     }
 
     /**
@@ -40,88 +79,193 @@ public class AdminUserAccount extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Back = new javax.swing.JButton();
+        Update = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        Back1 = new javax.swing.JButton();
-        txtPersonID = new javax.swing.JTextField();
+        Back = new javax.swing.JButton();
+        txtPassword = new javax.swing.JTextField();
         lblPersonID1 = new javax.swing.JLabel();
-        txtPersonID1 = new javax.swing.JTextField();
-        lblPersonID2 = new javax.swing.JLabel();
-        txtPersonID2 = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
         lblPersonID3 = new javax.swing.JLabel();
+        cmbPerson = new javax.swing.JComboBox<>();
+        lblPersonID4 = new javax.swing.JLabel();
+        cmbProfile = new javax.swing.JComboBox<>();
+        lblPersonID5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(null);
 
-        Back.setText("Update>>");
-        Back.addActionListener(new java.awt.event.ActionListener() {
+        Update.setText("Update>>");
+        Update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackActionPerformed(evt);
+                UpdateActionPerformed(evt);
             }
         });
-        add(Back);
-        Back.setBounds(280, 290, 100, 23);
+        add(Update);
+        Update.setBounds(280, 290, 100, 23);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel2.setText("Administer User Account");
         add(jLabel2);
         jLabel2.setBounds(21, 20, 550, 28);
 
-        Back1.setText("<< Back");
-        Back1.addActionListener(new java.awt.event.ActionListener() {
+        Back.setText("<< Back");
+        Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Back1ActionPerformed(evt);
+                BackActionPerformed(evt);
             }
         });
-        add(Back1);
-        Back1.setBounds(40, 290, 100, 23);
-        add(txtPersonID);
-        txtPersonID.setBounds(240, 240, 170, 22);
+        add(Back);
+        Back.setBounds(40, 290, 100, 23);
+        add(txtPassword);
+        txtPassword.setBounds(240, 200, 170, 22);
 
         lblPersonID1.setText("Password");
         add(lblPersonID1);
-        lblPersonID1.setBounds(170, 240, 57, 16);
-        add(txtPersonID1);
-        txtPersonID1.setBounds(240, 200, 170, 22);
-
-        lblPersonID2.setText("ID");
-        add(lblPersonID2);
-        lblPersonID2.setBounds(190, 200, 30, 16);
-        add(txtPersonID2);
-        txtPersonID2.setBounds(240, 160, 170, 22);
+        lblPersonID1.setBounds(180, 210, 57, 16);
+        add(txtUsername);
+        txtUsername.setBounds(240, 160, 170, 22);
 
         lblPersonID3.setText("Username");
         add(lblPersonID3);
         lblPersonID3.setBounds(170, 160, 57, 16);
+
+        add(cmbPerson);
+        cmbPerson.setBounds(260, 110, 150, 22);
+
+        lblPersonID4.setText("Person");
+        add(lblPersonID4);
+        lblPersonID4.setBounds(180, 110, 57, 16);
+
+        cmbProfile.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "Faculty", "Employee" }));
+        add(cmbProfile);
+        cmbProfile.setBounds(260, 240, 150, 22);
+
+        lblPersonID5.setText("Profile");
+        add(lblPersonID5);
+        lblPersonID5.setBounds(180, 240, 57, 16);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
         // TODO add your handling code here:
+        String personId = (String) cmbPerson.getSelectedItem();
+        String role = (String) cmbProfile.getSelectedItem();
+        String username = txtUsername.getText().trim();
+        String password = txtPassword.getText();
 
+        if (personId == null || role == null || username.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Person, profile, and username are required.","ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!username.matches("[A-Za-z0-9 ._-]+") || username.length()>25) {
+            JOptionPane.showMessageDialog(this,
+                    "Username must be 1–25 characters and may contain letters, numbers, periods, underscores, and hyphens.","Invalid Username", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (password.length() > 20) {
+            JOptionPane.showMessageDialog(this, "Password must be 20 characters or fewer.","Invalid Password", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Person person = business.getPersonDirectory().findPerson(personId);
+        if (person == null) {
+            JOptionPane.showMessageDialog(this, "The selected person could not be found.","Person Not Found", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        for (UserAccount account : business.getUserAccountDirectory().getUserAccountList()) {
+            if (account != selecteduseraccount
+                    && account.getUserLoginName().equalsIgnoreCase(username)) {
+                JOptionPane.showMessageDialog(this, "That username is already in use.","Duplicate Username", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+
+        Profile oldProfile = selecteduseraccount.getAssociatedPersonProfile();
+        String oldRole = getProfileType(oldProfile);
+        Profile newProfile =null;
+        
+        if ("Employee".equalsIgnoreCase(role)) {
+            newProfile =  business.getEmployeeDirectory().findEmployee(personId);
+        }
+        if ("Student".equalsIgnoreCase(role)) {
+            newProfile = business.getStudentDirectory().findStudent(personId);
+        }
+        if ("Faculty".equalsIgnoreCase(role)) {
+            newProfile = business.getFacultyDirectory().findFaculty(personId);
+        }
+        
+        if (newProfile != null && newProfile != oldProfile) {
+            for (UserAccount account : business.getUserAccountDirectory().getUserAccountList()) {
+                if (account != selecteduseraccount && account.getAssociatedPersonProfile() == newProfile) {
+                    JOptionPane.showMessageDialog(this,"That person already has a user account.","Duplicate Account", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+        }
+        if (newProfile == null) {
+            if ("Employee".equalsIgnoreCase(role)) {
+                    newProfile =  business.getEmployeeDirectory().newEmployeeProfile(person);
+                }else if ("Student".equalsIgnoreCase(role)) {
+                    newProfile =  business.getStudentDirectory().newStudentProfile(person);
+                }else if ("Faculty".equalsIgnoreCase(role)) {
+                    newProfile =  business.getFacultyDirectory().newFacultyProfile(person);
+            } 
+        }
+
+        if (!role.equals(oldRole)) {
+            deleteProfile(oldProfile);
+        }
+        selecteduseraccount.setAssociatedPersonProfile(newProfile);
+        selecteduseraccount.setUserName(username);
+        if (!password.isEmpty()) {
+            selecteduseraccount.setPassword(password);
+        }
+
+        JOptionPane.showMessageDialog(this, "User account successfully updated.",
+                "Information", JOptionPane.INFORMATION_MESSAGE);
+    
+
+    }//GEN-LAST:event_UpdateActionPerformed
+
+    
+    private void deleteProfile(Profile profile) {
+        if (profile instanceof EmployeeProfile) {
+            business.getEmployeeDirectory().removeEmployeeProfile((EmployeeProfile) profile);
+        } else if (profile instanceof StudentProfile) {
+            business.getStudentDirectory().removeStudentProfile((StudentProfile) profile);
+        } else if (profile instanceof FacultyProfile) {
+            business.getFacultyDirectory().removeFacultyProfile((FacultyProfile) profile);
+        }
+    }
+    
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         CardSequencePanel.remove(this);
+        
+        Component[] panelStack = CardSequencePanel.getComponents();
+        JPanel lastPanel = (JPanel) panelStack[panelStack.length - 1];
+        ManageUserAccountsJPanel manageUserAccountsJPanel = (ManageUserAccountsJPanel) lastPanel;
+        manageUserAccountsJPanel.refreshTable();
+        
+        
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+
+
 
     }//GEN-LAST:event_BackActionPerformed
-
-    private void Back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back1ActionPerformed
-        // TODO add your handling code here:
-         CardSequencePanel.remove(this);
-        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
-
-
-    }//GEN-LAST:event_Back1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
-    private javax.swing.JButton Back1;
+    private javax.swing.JButton Update;
+    private javax.swing.JComboBox<String> cmbPerson;
+    private javax.swing.JComboBox<String> cmbProfile;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblPersonID1;
-    private javax.swing.JLabel lblPersonID2;
     private javax.swing.JLabel lblPersonID3;
-    private javax.swing.JTextField txtPersonID;
-    private javax.swing.JTextField txtPersonID1;
-    private javax.swing.JTextField txtPersonID2;
+    private javax.swing.JLabel lblPersonID4;
+    private javax.swing.JLabel lblPersonID5;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
 }

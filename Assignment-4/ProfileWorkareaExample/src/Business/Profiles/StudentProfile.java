@@ -15,7 +15,7 @@ import Business.Person.Person;
 
 public class StudentProfile extends Profile {
 
-    Person person;
+
     String NUID;
     //Transcript transcript;
     //   EmploymentHistroy employmenthistory;
