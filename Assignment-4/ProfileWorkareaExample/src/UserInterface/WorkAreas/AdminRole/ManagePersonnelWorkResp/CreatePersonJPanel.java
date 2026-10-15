@@ -67,7 +67,7 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
         Back.setBounds(30, 290, 74, 23);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel2.setText("Manage Person Profile");
+        jLabel2.setText("Create Person Profile");
         add(jLabel2);
         jLabel2.setBounds(21, 20, 550, 28);
         add(txtPersonID);

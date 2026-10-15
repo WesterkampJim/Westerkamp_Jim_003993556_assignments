@@ -5,6 +5,7 @@
  */
 package Business.UserAccounts;
 
+import Business.Person.Person;
 import Business.Profiles.Profile;
 
 import java.util.ArrayList;
@@ -21,6 +22,14 @@ public class UserAccountDirectory {
           
        useraccountlist = new ArrayList();
 
+    }
+      
+    public void deleteAccount(UserAccount ua){
+        useraccountlist.remove(ua);
+    } 
+
+    public ArrayList<UserAccount> getAccountList() {
+        return useraccountlist;
     }
 
     public UserAccount newUserAccount(Profile p, String un, String pw) {

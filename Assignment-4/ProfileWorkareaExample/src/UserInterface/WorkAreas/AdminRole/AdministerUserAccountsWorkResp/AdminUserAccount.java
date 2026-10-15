@@ -43,6 +43,12 @@ public class AdminUserAccount extends javax.swing.JPanel {
         Back = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Back1 = new javax.swing.JButton();
+        txtPersonID = new javax.swing.JTextField();
+        lblPersonID1 = new javax.swing.JLabel();
+        txtPersonID1 = new javax.swing.JTextField();
+        lblPersonID2 = new javax.swing.JLabel();
+        txtPersonID2 = new javax.swing.JTextField();
+        lblPersonID3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(null);
@@ -54,12 +60,12 @@ public class AdminUserAccount extends javax.swing.JPanel {
             }
         });
         add(Back);
-        Back.setBounds(480, 290, 100, 32);
+        Back.setBounds(280, 290, 100, 23);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel2.setText("Administer User Account");
         add(jLabel2);
-        jLabel2.setBounds(21, 20, 550, 29);
+        jLabel2.setBounds(21, 20, 550, 28);
 
         Back1.setText("<< Back");
         Back1.addActionListener(new java.awt.event.ActionListener() {
@@ -68,7 +74,25 @@ public class AdminUserAccount extends javax.swing.JPanel {
             }
         });
         add(Back1);
-        Back1.setBounds(40, 290, 100, 32);
+        Back1.setBounds(40, 290, 100, 23);
+        add(txtPersonID);
+        txtPersonID.setBounds(240, 240, 170, 22);
+
+        lblPersonID1.setText("Password");
+        add(lblPersonID1);
+        lblPersonID1.setBounds(170, 240, 57, 16);
+        add(txtPersonID1);
+        txtPersonID1.setBounds(240, 200, 170, 22);
+
+        lblPersonID2.setText("ID");
+        add(lblPersonID2);
+        lblPersonID2.setBounds(190, 200, 30, 16);
+        add(txtPersonID2);
+        txtPersonID2.setBounds(240, 160, 170, 22);
+
+        lblPersonID3.setText("Username");
+        add(lblPersonID3);
+        lblPersonID3.setBounds(170, 160, 57, 16);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -92,6 +116,12 @@ public class AdminUserAccount extends javax.swing.JPanel {
     private javax.swing.JButton Back;
     private javax.swing.JButton Back1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblPersonID1;
+    private javax.swing.JLabel lblPersonID2;
+    private javax.swing.JLabel lblPersonID3;
+    private javax.swing.JTextField txtPersonID;
+    private javax.swing.JTextField txtPersonID1;
+    private javax.swing.JTextField txtPersonID2;
     // End of variables declaration//GEN-END:variables
 
 }

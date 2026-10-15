@@ -8,6 +8,7 @@ package UserInterface.WorkAreas.AdminRole.AdministerUserAccountsWorkResp;
 import Business.Business;
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
+import javax.swing.JOptionPane;
 
 
 import javax.swing.JPanel;
@@ -16,7 +17,11 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author kal bugrara
+ *
  */
+
+
+
 public class ManageUserAccountsJPanel extends javax.swing.JPanel {
 
     /**
@@ -25,11 +30,13 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
     JPanel CardSequencePanel;
     Business business;
     UserAccount selecteduseraccount;
+    UserAccountDirectory userAccountDirectory;
 
 
     public ManageUserAccountsJPanel(Business bz, JPanel jp) {
         CardSequencePanel = jp;
         this.business = bz;
+        this.userAccountDirectory = business.getUserAccountDirectory();
         initComponents();
         refreshTable();
 
@@ -38,6 +45,7 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
     public void refreshTable() {
 
 //clear supplier table
+
         int rc = UserAccountTable.getRowCount();
         int i;
         for (i = rc - 1; i >= 0; i--) {
@@ -60,6 +68,8 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
 
             ((DefaultTableModel) UserAccountTable.getModel()).addRow(row);
         }
+        
+        
 
     }
 
@@ -79,6 +89,10 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         UserAccountTable = new javax.swing.JTable();
+        btnSearch = new javax.swing.JButton();
+        txtSearchBox = new javax.swing.JTextField();
+        btnDelete = new javax.swing.JButton();
+        btnCreateNewUserAccount = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(null);
@@ -90,7 +104,7 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
             }
         });
         add(Back);
-        Back.setBounds(30, 300, 76, 32);
+        Back.setBounds(30, 300, 74, 23);
 
         Next.setText("Next >>");
         Next.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +113,7 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
             }
         });
         add(Next);
-        Next.setBounds(500, 300, 80, 32);
+        Next.setBounds(500, 300, 80, 23);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("User Accounts");
@@ -109,7 +123,7 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel2.setText("Manage User Accounts");
         add(jLabel2);
-        jLabel2.setBounds(21, 20, 550, 29);
+        jLabel2.setBounds(21, 20, 550, 28);
 
         UserAccountTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,6 +145,35 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1);
         jScrollPane1.setBounds(30, 110, 550, 130);
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        add(btnSearch);
+        btnSearch.setBounds(180, 320, 72, 23);
+        add(txtSearchBox);
+        txtSearchBox.setBounds(270, 320, 120, 22);
+
+        btnDelete.setText("Delete User Account");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        add(btnDelete);
+        btnDelete.setBounds(320, 70, 180, 23);
+
+        btnCreateNewUserAccount.setText("Create New User Account");
+        btnCreateNewUserAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateNewUserAccountActionPerformed(evt);
+            }
+        });
+        add(btnCreateNewUserAccount);
+        btnCreateNewUserAccount.setBounds(141, 70, 160, 23);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -152,6 +195,7 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
 
     private void UserAccountTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserAccountTableMousePressed
         // Extracts the row (uaser account) in the table that is selected by the user
+     /*
         int size = UserAccountTable.getRowCount();
         int selectedrow = UserAccountTable.getSelectionModel().getLeadSelectionIndex();
 
@@ -161,21 +205,79 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
         selecteduseraccount = (UserAccount) UserAccountTable.getValueAt(selectedrow, 0);
         if (selecteduseraccount == null) {
             return;
-        
+        }
+    */
         
             
     }//GEN-LAST:event_UserAccountTableMousePressed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        //remove extra spaces
+        String searchText = txtSearchBox.getText().trim();
+        //no blank terms allowed
+        if (searchText.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Please type a term to search.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        //reset table
+        DefaultTableModel model = (DefaultTableModel) UserAccountTable.getModel();
+        model.setRowCount(0);
+
+        //check for finding items, so we can send info message if this never flips true
+        boolean foundItems = false;
+        //iterate through objs in serviceDirectory, if match, add row with objs data
+        for (UserAccount a : userAccountDirectory.getAccountList()) {
+            if (String.valueOf(a.getPersonId()).equalsIgnoreCase(searchText) || a.getPersonId().toString().equalsIgnoreCase(searchText)) {
+                Object[] row = new Object[1];
+                row[0] = a;
+                model.addRow(row);
+                foundItems = true;
+            }
+        }
+        //if no row was generated, throw false and refresh table
+        if (foundItems==false) {
+            JOptionPane.showMessageDialog(this, "No person found matching your search.", "Warning", JOptionPane.WARNING_MESSAGE);
+            refreshTable();
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int selectedRow = UserAccountTable.getSelectedRow();
+
+        if (selectedRow >= 0){
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the selected person?","Warning",JOptionPane.WARNING_MESSAGE);
+            if(dialogResult == JOptionPane.YES_OPTION){
+                UserAccount selectedaccount = (UserAccount) UserAccountTable.getValueAt(selectedRow,0);
+                userAccountDirectory.deleteAccount(selectedaccount);
+                refreshTable();
+            }
+        }else{
+            JOptionPane.showConfirmDialog(null, "Please select a person from the list.","Warning",JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnCreateNewUserAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNewUserAccountActionPerformed
+        CreateUserAccountJPanel mppd = new CreateUserAccountJPanel(business, CardSequencePanel);
+        CardSequencePanel.add(mppd);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+    }//GEN-LAST:event_btnCreateNewUserAccountActionPerformed
     
-    }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JButton Next;
     private javax.swing.JTable UserAccountTable;
+    private javax.swing.JButton btnCreateNewUserAccount;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField txtSearchBox;
     // End of variables declaration//GEN-END:variables
 
 }
