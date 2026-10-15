@@ -10,6 +10,8 @@ import Business.Person.Person;
 import Business.Person.PersonDirectory;
 import Business.Profiles.EmployeeDirectory;
 import Business.Profiles.EmployeeProfile;
+import Business.Profiles.FacultyDirectory;
+import Business.Profiles.FacultyProfile;
 import Business.Profiles.StudentDirectory;
 import Business.Profiles.StudentProfile;
 
@@ -46,6 +48,9 @@ class ConfigureABusiness {
         StudentDirectory studentdirectory = business.getStudentDirectory();
         StudentProfile studentprofile0 = studentdirectory.newStudentProfile(person003);
         
+        FacultyDirectory facultydirectory = business.getFacultyDirectory();
+        FacultyProfile facultyprofile0 = facultydirectory.newFacultyProfile(person002);
+        
 
 
    
@@ -53,6 +58,7 @@ class ConfigureABusiness {
         UserAccountDirectory uadirectory = business.getUserAccountDirectory();
         UserAccount ua3 = uadirectory.newUserAccount(employeeprofile0, "admin", "****"); /// order products for one of the customers and performed by a sales person
         UserAccount ua4 = uadirectory.newUserAccount(studentprofile0, "adam", "****"); /// order products for one of the customers and performed by a sales person
+        UserAccount ua5 = uadirectory.newUserAccount(facultyprofile0, "gina", "****"); /// new faculty profile objest with person02
 
         return business;
 
