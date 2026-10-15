@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Business.Person.PersonDirectory;
 import Business.Profiles.EmployeeProfile;
 import Business.Profiles.FacultyProfile;
 import Business.Profiles.Profile;
@@ -33,6 +34,8 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
     public ProfileWorkAreaMainFrame() {
         initComponents();
         business = ConfigureABusiness.initialize();
+
+        
         
 
     }
@@ -150,7 +153,7 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
 
         if (profile instanceof EmployeeProfile) {
 
-            adminworkarea = new AdminRoleWorkAreaJPanel(business, CardSequencePanel);
+            adminworkarea = new AdminRoleWorkAreaJPanel(business, CardSequencePanel, business.persondirectory);
             CardSequencePanel.removeAll();
             CardSequencePanel.add("Admin", adminworkarea);
             ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);

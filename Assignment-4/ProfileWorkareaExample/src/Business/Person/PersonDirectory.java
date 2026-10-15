@@ -20,6 +20,14 @@ public class PersonDirectory {
        personlist = new ArrayList();
 
     }
+    
+    public void deletePerson(Person p){
+        personlist.remove(p);
+    } 
+
+    public ArrayList<Person> getPersonList() {
+        return personlist;
+    }
 
     public Person newPerson(String id) {
 

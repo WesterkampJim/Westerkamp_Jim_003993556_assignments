@@ -11,10 +11,13 @@ import Business.Person.Person;
  *
  * @author kal bugrara
  */
+
+
 public class StudentProfile extends Profile {
 
     Person person;
-//    Transcript transcript;
+    String NUID;
+    //Transcript transcript;
     //   EmploymentHistroy employmenthistory;
 
     public StudentProfile(Person p) {
@@ -24,6 +27,15 @@ public class StudentProfile extends Profile {
 //        employmenthistory = new EmploymentHistroy();
     }
 
+    public void setNUID(String NUID) {
+        this.NUID = NUID;
+    }
+
+    public String getNUID() {
+        return NUID;
+    }
+
+    
     @Override
     public String getRole() {
         return "Student";

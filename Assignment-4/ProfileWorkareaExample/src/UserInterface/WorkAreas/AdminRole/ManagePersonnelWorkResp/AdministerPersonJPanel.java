@@ -6,6 +6,9 @@
 package UserInterface.WorkAreas.AdminRole.ManagePersonnelWorkResp;
 
 import Business.Business;
+import Business.Person.Person;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 
 import javax.swing.JPanel;
 
@@ -21,18 +24,21 @@ public class AdministerPersonJPanel extends javax.swing.JPanel {
     JPanel CardSequencePanel;
 
     Business business;
+    Person person;
 
-    public AdministerPersonJPanel(Business bz, JPanel jp) {
+    public AdministerPersonJPanel(Business bz, JPanel jp, Person person) {
 
         CardSequencePanel = jp;
         this.business = bz;
+        this.person = person;
         initComponents();
-
+        populateData();
 
     }
 
-    public void refreshTable() {
-
+    public void populateData() {
+        txtPersonID.setText(person.getPersonId());
+       
     }
 
     /**
@@ -46,6 +52,9 @@ public class AdministerPersonJPanel extends javax.swing.JPanel {
 
         Back = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        txtPersonID = new javax.swing.JTextField();
+        btnUpdate = new javax.swing.JButton();
+        lblPersonID1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(null);
@@ -57,26 +66,77 @@ public class AdministerPersonJPanel extends javax.swing.JPanel {
             }
         });
         add(Back);
-        Back.setBounds(30, 290, 76, 32);
+        Back.setBounds(30, 290, 74, 23);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel2.setText("Manage Person Profile");
         add(jLabel2);
-        jLabel2.setBounds(21, 20, 550, 29);
+        jLabel2.setBounds(21, 20, 550, 28);
+        add(txtPersonID);
+        txtPersonID.setBounds(260, 180, 170, 22);
+
+        btnUpdate.setText("Update Person");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        add(btnUpdate);
+        btnUpdate.setBounds(230, 290, 112, 23);
+
+        lblPersonID1.setText("ID");
+        add(lblPersonID1);
+        lblPersonID1.setBounds(210, 180, 57, 16);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
         CardSequencePanel.remove(this);
+        Component[] panelStack = CardSequencePanel.getComponents();
+        JPanel lastPanel = (JPanel) panelStack[panelStack.length - 1];
+        ManagePersonsJPanel managePersonJPanel = (ManagePersonsJPanel) lastPanel;
+        managePersonJPanel.populateTable();
+ 
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
 
     }//GEN-LAST:event_BackActionPerformed
 
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+
+        String ID;
+        String role;
+
+        // grab text from fields and populate
+        ID = txtPersonID.getText();
+
+
+        //validate text fields are not blank
+        if (ID.isBlank()) {
+            JOptionPane.showMessageDialog(this, "All fields are mandatory.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (ID.length() > 50 || !ID.matches("[a-zA-Z _-]+")) {
+            JOptionPane.showMessageDialog(this,"ID must be 50 characters or less and may only contain letters, spaces, underscores, and hyphens.","Invalid",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+
+        //populate object
+        person.setId(ID);
+       
+
+        JOptionPane.showMessageDialog(this,"Person successfully updated","Information",JOptionPane.INFORMATION_MESSAGE);
+
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblPersonID1;
+    private javax.swing.JTextField txtPersonID;
     // End of variables declaration//GEN-END:variables
 
 }

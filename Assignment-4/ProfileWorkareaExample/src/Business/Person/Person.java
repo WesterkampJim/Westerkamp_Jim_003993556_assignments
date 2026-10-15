@@ -13,6 +13,10 @@ public class Person {
 
     String id;
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Person(String id) {
 
         this.id = id;
