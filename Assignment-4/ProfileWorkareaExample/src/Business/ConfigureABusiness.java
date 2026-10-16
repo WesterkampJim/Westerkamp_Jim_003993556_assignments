@@ -47,6 +47,9 @@ class ConfigureABusiness {
         
         StudentDirectory studentdirectory = business.getStudentDirectory();
         StudentProfile studentprofile0 = studentdirectory.newStudentProfile(person003);
+        StudentProfile studentprofile2 = studentdirectory.newStudentProfile(person005);
+        StudentProfile studentprofile3 = studentdirectory.newStudentProfile(person006);
+        
         
         FacultyDirectory facultydirectory = business.getFacultyDirectory();
         FacultyProfile facultyprofile0 = facultydirectory.newFacultyProfile(person002);
@@ -59,11 +62,15 @@ class ConfigureABusiness {
         UserAccount ua3 = uadirectory.newUserAccount(employeeprofile0, "admin", "****"); /// order products for one of the customers and performed by a sales person
         UserAccount ua4 = uadirectory.newUserAccount(studentprofile0, "adam", "****"); /// order products for one of the customers and performed by a sales person
         UserAccount ua5 = uadirectory.newUserAccount(facultyprofile0, "gina", "****"); /// new faculty profile objest with person02
-
+        UserAccount ua6 = uadirectory.newUserAccount(studentprofile2, "jim", "****"); /// order products for one of the customers and performed by a sales person
+        UserAccount ua7 = uadirectory.newUserAccount(studentprofile3, "anna", "****"); /// order products for one of the customers and performed by a sales person
+              
         ua3.setStatus("active");
         ua4.setStatus("active");
         ua5.setStatus("active");
-        
+        ua5.setStatus("active");
+        ua6.setStatus("active");
+        ua7.setStatus("expelled");
         
         return business;
 

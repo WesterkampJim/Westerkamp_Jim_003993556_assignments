@@ -6,6 +6,7 @@
 package Business.Profiles;
 
 import Business.Person.Person;
+import Business.UserAccounts.UserAccount;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,10 @@ public class StudentDirectory {
 
      studentlist = new ArrayList();
 
+    }
+    
+    public ArrayList<StudentProfile> getStudentList() {
+        return studentlist;
     }
     
     public void removeStudentProfile(StudentProfile profile) {

@@ -48,7 +48,13 @@ public class EmployeeProfile extends Profile {
     }
     @Override
     public String getRole(){
-        return  "Admin";
+        return  "Employee";
+    }
+
+    @Override
+    public String toString(){
+
+        return getPerson().toString();
     }
 
 }

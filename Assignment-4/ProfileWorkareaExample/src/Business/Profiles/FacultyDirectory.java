@@ -23,7 +23,10 @@ public class FacultyDirectory {
      facultylist = new ArrayList();
 
     }
-    
+    public ArrayList<FacultyProfile> getFacultyList() {
+        return facultylist;
+    }
+        
     public void removeFacultyProfile(FacultyProfile profile) {
         facultylist.remove(profile);
     }

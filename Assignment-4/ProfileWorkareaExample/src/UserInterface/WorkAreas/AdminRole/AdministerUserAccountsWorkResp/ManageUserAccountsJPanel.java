@@ -137,7 +137,15 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
             new String [] {
                 "User Name", "Status", "Last Activity", "Last Updated"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         UserAccountTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 UserAccountTableMousePressed(evt);
@@ -236,7 +244,7 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
 
         //check for finding items, so we can send info message if this never flips true
         boolean foundItems = false;
-        //iterate through objs in serviceDirectory, if match, add row with objs data
+        //iterate through objs in userAccountDirectory, if match, add row with objs data
         for (UserAccount a : userAccountDirectory.getAccountList()) {
             if (String.valueOf(a.getPersonId()).equalsIgnoreCase(searchText) || a.getUserLoginName().toString().equalsIgnoreCase(searchText)) {
                 Object[] row = new Object[1];

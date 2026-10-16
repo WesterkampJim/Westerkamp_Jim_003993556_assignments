@@ -26,6 +26,10 @@ public class EmployeeDirectory {
 
     }
     
+        public ArrayList<EmployeeProfile> getEmployeeList() {
+        return employeelist;
+    }
+    
     public void removeEmployeeProfile(EmployeeProfile profile) {
         employeelist.remove(profile);
     }
