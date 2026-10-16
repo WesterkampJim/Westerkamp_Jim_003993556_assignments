@@ -49,7 +49,9 @@ class ConfigureABusiness {
         StudentProfile studentprofile0 = studentdirectory.newStudentProfile(person003);
         StudentProfile studentprofile2 = studentdirectory.newStudentProfile(person005);
         StudentProfile studentprofile3 = studentdirectory.newStudentProfile(person006);
-        
+        studentprofile3.setNUID("19011412");
+        studentprofile2.setNUID("65464664");
+        studentprofile0.setNUID("61467674");
         
         FacultyDirectory facultydirectory = business.getFacultyDirectory();
         FacultyProfile facultyprofile0 = facultydirectory.newFacultyProfile(person002);
