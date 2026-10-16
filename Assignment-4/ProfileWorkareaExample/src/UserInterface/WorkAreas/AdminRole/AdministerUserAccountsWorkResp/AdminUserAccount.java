@@ -38,8 +38,24 @@ public class AdminUserAccount extends javax.swing.JPanel {
         initComponents();
         populatePersonComboBox();
         populateData();
+        updateEmploymentFields();
         //display user details here
+        
+        
+        //wait for an action on the combobox for profiles. enable/disable
+        cmbProfile.addActionListener(e -> {
+            String role = (String) cmbProfile.getSelectedItem();
 
+            //return true if we are faculty or employee, return false otherwise
+            boolean enabled = "Employee".equals(role)|| "Faculty".equals(role);
+
+            //enable on true, disable on false.
+            txtJobTitle.setEnabled(enabled);
+            txtHourlyRate.setEnabled(enabled);
+            chkTenured.setEnabled(enabled);
+        });
+
+        
     }
     
     private void populatePersonComboBox() {
@@ -48,13 +64,24 @@ public class AdminUserAccount extends javax.swing.JPanel {
             cmbPerson.addItem(person.getPersonId());
         }
     }
+    
+    private void updateEmploymentFields() {
+        Profile profile = selecteduseraccount.getAssociatedPersonProfile();
+
+        boolean enabled = profile instanceof EmployeeProfile || profile instanceof FacultyProfile;
+
+        txtJobTitle.setEnabled(enabled);
+        txtHourlyRate.setEnabled(enabled);
+        chkTenured.setEnabled(enabled);
+    }
       
     
     private void populateData() {
         txtUsername.setText(selecteduseraccount.getUserLoginName());
         cmbPerson.setSelectedItem(selecteduseraccount.getPersonId());
-        cmbProfile.setSelectedItem(selecteduseraccount.getAssociatedPersonProfile());
-        // Leave the password blank; an empty password field means keep the existing password.
+        cmbProfile.setSelectedItem(getProfileType(selecteduseraccount.getAssociatedPersonProfile()));
+        txtStatus.setText(selecteduseraccount.getStatus());
+        // Password is blank to protect password, I know it's not real password safety.
     }
     
     private String getProfileType(Profile profile) {
@@ -90,6 +117,13 @@ public class AdminUserAccount extends javax.swing.JPanel {
         lblPersonID4 = new javax.swing.JLabel();
         cmbProfile = new javax.swing.JComboBox<>();
         lblPersonID5 = new javax.swing.JLabel();
+        txtStatus = new javax.swing.JTextField();
+        lblStatus = new javax.swing.JLabel();
+        txtJobTitle = new javax.swing.JTextField();
+        lblStatus1 = new javax.swing.JLabel();
+        lblStatus2 = new javax.swing.JLabel();
+        txtHourlyRate = new javax.swing.JTextField();
+        chkTenured = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(null);
@@ -101,7 +135,7 @@ public class AdminUserAccount extends javax.swing.JPanel {
             }
         });
         add(Update);
-        Update.setBounds(280, 290, 100, 23);
+        Update.setBounds(280, 420, 100, 23);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel2.setText("Administer User Account");
@@ -115,13 +149,13 @@ public class AdminUserAccount extends javax.swing.JPanel {
             }
         });
         add(Back);
-        Back.setBounds(40, 290, 100, 23);
+        Back.setBounds(50, 420, 100, 23);
         add(txtPassword);
         txtPassword.setBounds(240, 200, 170, 22);
 
-        lblPersonID1.setText("Password");
+        lblPersonID1.setText("New Password (optional)");
         add(lblPersonID1);
-        lblPersonID1.setBounds(180, 210, 57, 16);
+        lblPersonID1.setBounds(90, 200, 140, 16);
         add(txtUsername);
         txtUsername.setBounds(240, 160, 170, 22);
 
@@ -130,11 +164,11 @@ public class AdminUserAccount extends javax.swing.JPanel {
         lblPersonID3.setBounds(170, 160, 57, 16);
 
         add(cmbPerson);
-        cmbPerson.setBounds(260, 110, 150, 22);
+        cmbPerson.setBounds(260, 100, 150, 22);
 
         lblPersonID4.setText("Person");
         add(lblPersonID4);
-        lblPersonID4.setBounds(180, 110, 57, 16);
+        lblPersonID4.setBounds(180, 100, 57, 16);
 
         cmbProfile.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "Faculty", "Employee" }));
         add(cmbProfile);
@@ -143,6 +177,33 @@ public class AdminUserAccount extends javax.swing.JPanel {
         lblPersonID5.setText("Profile");
         add(lblPersonID5);
         lblPersonID5.setBounds(180, 240, 57, 16);
+        add(txtStatus);
+        txtStatus.setBounds(240, 270, 170, 22);
+
+        lblStatus.setText("Status");
+        add(lblStatus);
+        lblStatus.setBounds(170, 270, 57, 16);
+        add(txtJobTitle);
+        txtJobTitle.setBounds(110, 310, 80, 22);
+
+        lblStatus1.setText("Job Title");
+        add(lblStatus1);
+        lblStatus1.setBounds(30, 310, 57, 16);
+
+        lblStatus2.setText("Hourly Rate");
+        add(lblStatus2);
+        lblStatus2.setBounds(20, 340, 80, 16);
+        add(txtHourlyRate);
+        txtHourlyRate.setBounds(110, 340, 80, 22);
+
+        chkTenured.setText("Tenured?");
+        chkTenured.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkTenuredActionPerformed(evt);
+            }
+        });
+        add(chkTenured);
+        chkTenured.setBounds(70, 380, 85, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
@@ -151,6 +212,7 @@ public class AdminUserAccount extends javax.swing.JPanel {
         String role = (String) cmbProfile.getSelectedItem();
         String username = txtUsername.getText().trim();
         String password = txtPassword.getText();
+        String status = txtStatus.getText();
 
         if (personId == null || role == null || username.isBlank()) {
             JOptionPane.showMessageDialog(this, "Person, profile, and username are required.","ERROR", JOptionPane.ERROR_MESSAGE);
@@ -163,6 +225,11 @@ public class AdminUserAccount extends javax.swing.JPanel {
         }
         if (password.length() > 20) {
             JOptionPane.showMessageDialog(this, "Password must be 20 characters or fewer.","Invalid Password", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if (status.length() > 20) {
+            JOptionPane.showMessageDialog(this, "Status must be 20 characters or fewer.","Invalid Status", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -202,6 +269,16 @@ public class AdminUserAccount extends javax.swing.JPanel {
                 }
             }
         }
+        
+        // students can't have employment information.
+        if ("Student".equals(role)) {
+            if (!txtJobTitle.getText().trim().isBlank() || !txtHourlyRate.getText().trim().isBlank() || chkTenured.isSelected()) {
+
+                JOptionPane.showMessageDialog(this,
+                        "Employment information cannot be given to a Student profile.","Invalid Employment Information", JOptionPane.ERROR_MESSAGE);
+                return;
+            }}
+        
         if (newProfile == null) {
             if ("Employee".equalsIgnoreCase(role)) {
                     newProfile =  business.getEmployeeDirectory().newEmployeeProfile(person);
@@ -215,14 +292,66 @@ public class AdminUserAccount extends javax.swing.JPanel {
         if (!role.equals(oldRole)) {
             deleteProfile(oldProfile);
         }
+        
+           
         selecteduseraccount.setAssociatedPersonProfile(newProfile);
         selecteduseraccount.setUserName(username);
+        selecteduseraccount.setStatus(status);
+        
+        //only update if changed.
         if (!password.isEmpty()) {
             selecteduseraccount.setPassword(password);
         }
+        
+        
+        
+        ////Faculty and Employee inputs
+        if (newProfile instanceof EmployeeProfile || newProfile instanceof FacultyProfile) {
 
-        JOptionPane.showMessageDialog(this, "User account successfully updated.",
-                "Information", JOptionPane.INFORMATION_MESSAGE);
+            String jobTitle = txtJobTitle.getText().trim();
+            String hourlyRateText = txtHourlyRate.getText().trim();
+            boolean isTenured = chkTenured.isSelected();
+
+            if (jobTitle.length() > 50) {JOptionPane.showMessageDialog(this,"Job title must be 50 characters or less.","Invalid Job Title", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            float hourlyRate = 0;
+
+            //validate hourly rate
+            if (!hourlyRateText.isEmpty()) {
+                try { ///check if input was float formatted
+                    hourlyRate = Float.parseFloat(hourlyRateText);
+
+                    if (hourlyRate < 0 ) {
+                        JOptionPane.showMessageDialog(this,"Hourly rate must be non-negative number, decimals allowed.","Invalid Hourly Rate", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this,"Hourly rate must be a valid number.","Invalid Hourly Rate", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+       
+                           
+              if (newProfile instanceof EmployeeProfile) {
+                    EmployeeProfile employee = (EmployeeProfile) newProfile;
+                    employee.setJobTitle(jobTitle);
+                    employee.setHourlyWage(hourlyRate);
+                    employee.setTenured(isTenured);
+
+                } else if (newProfile instanceof FacultyProfile) {
+                    FacultyProfile faculty = (FacultyProfile) newProfile;
+                    faculty.setJobTitle(jobTitle);
+                    faculty.setHourlyWage(hourlyRate);
+                    faculty.setTenured(isTenured);
+                }
+ 
+            
+        }/// end of faculty and employee only code
+
+            ///success
+        JOptionPane.showMessageDialog(this, "User account successfully updated.","Information", JOptionPane.INFORMATION_MESSAGE);
     
 
     }//GEN-LAST:event_UpdateActionPerformed
@@ -243,9 +372,13 @@ public class AdminUserAccount extends javax.swing.JPanel {
         
         Component[] panelStack = CardSequencePanel.getComponents();
         JPanel lastPanel = (JPanel) panelStack[panelStack.length - 1];
-        ManageUserAccountsJPanel manageUserAccountsJPanel = (ManageUserAccountsJPanel) lastPanel;
-        manageUserAccountsJPanel.refreshTable();
         
+        ///only update table if we are heading back there.
+        if (lastPanel instanceof ManageUserAccountsJPanel) {
+            ManageUserAccountsJPanel manageUserAccountsJPanel = (ManageUserAccountsJPanel) lastPanel;
+            manageUserAccountsJPanel.refreshTable();
+        }
+    
         
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
@@ -253,10 +386,15 @@ public class AdminUserAccount extends javax.swing.JPanel {
 
     }//GEN-LAST:event_BackActionPerformed
 
+    private void chkTenuredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkTenuredActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkTenuredActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JButton Update;
+    private javax.swing.JCheckBox chkTenured;
     private javax.swing.JComboBox<String> cmbPerson;
     private javax.swing.JComboBox<String> cmbProfile;
     private javax.swing.JLabel jLabel2;
@@ -264,7 +402,13 @@ public class AdminUserAccount extends javax.swing.JPanel {
     private javax.swing.JLabel lblPersonID3;
     private javax.swing.JLabel lblPersonID4;
     private javax.swing.JLabel lblPersonID5;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblStatus1;
+    private javax.swing.JLabel lblStatus2;
+    private javax.swing.JTextField txtHourlyRate;
+    private javax.swing.JTextField txtJobTitle;
     private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 

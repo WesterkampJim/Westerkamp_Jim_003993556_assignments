@@ -206,7 +206,10 @@ public class CreateUserAccountJPanel extends javax.swing.JPanel {
         }
         
         UserAccount ua = business.getUserAccountDirectory().newUserAccount(newprofile, username.trim(), password); /// new faculty profile objest with person02
-       
+        
+        ua.setStatus("Active");
+        
+        
         JOptionPane.showMessageDialog(this, "User account successfully created.","Information", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnUpdateActionPerformed
 

@@ -23,6 +23,34 @@ public class FacultyProfile extends Profile {
 //        transcript = new Transcript(this);
 //        employmenthistory = new EmploymentHistroy();
     }
+    
+    String jobTitle;
+    boolean isTenured;
+    float hourlyWage;
+
+    public String getJobTitle() {
+    return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    public boolean isTenured() {
+        return isTenured;
+    }
+
+    public void setTenured(boolean isTenured) {
+        this.isTenured = isTenured;
+    }
+
+    public float getHourlyWage() {
+        return hourlyWage;
+    }
+
+    public void setHourlyWage(float hourlyWage) {
+        this.hourlyWage = hourlyWage;
+    }
 
     @Override
     public String getRole() {

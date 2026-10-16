@@ -60,6 +60,11 @@ class ConfigureABusiness {
         UserAccount ua4 = uadirectory.newUserAccount(studentprofile0, "adam", "****"); /// order products for one of the customers and performed by a sales person
         UserAccount ua5 = uadirectory.newUserAccount(facultyprofile0, "gina", "****"); /// new faculty profile objest with person02
 
+        ua3.setStatus("active");
+        ua4.setStatus("active");
+        ua5.setStatus("active");
+        
+        
         return business;
 
     }

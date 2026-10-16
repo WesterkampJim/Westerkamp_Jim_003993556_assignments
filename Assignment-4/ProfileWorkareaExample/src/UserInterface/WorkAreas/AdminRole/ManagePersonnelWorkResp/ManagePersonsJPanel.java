@@ -8,7 +8,10 @@ package UserInterface.WorkAreas.AdminRole.ManagePersonnelWorkResp;
 import Business.Business;
 import Business.Person.Person;
 import Business.Person.PersonDirectory;
-import java.security.Provider.Service;
+import Business.Profiles.EmployeeProfile;
+import Business.Profiles.FacultyProfile;
+import Business.Profiles.StudentProfile;
+import Business.UserAccounts.UserAccount;
 import javax.swing.JOptionPane;
 
 
@@ -224,6 +227,10 @@ public class ManagePersonsJPanel extends javax.swing.JPanel {
                 Person selectedPerson = (Person) tblPersons.getValueAt(selectedRow,0);
                 personDirectory.deletePerson(selectedPerson);
                 populateTable();
+                
+                ///also delete persons profiles from directories.
+                deletePersonProfiles(selectedPerson);
+
             }
         }else{
             JOptionPane.showConfirmDialog(null, "Please select a person from the list.","Warning",JOptionPane.WARNING_MESSAGE);
@@ -231,7 +238,33 @@ public class ManagePersonsJPanel extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnDeleteActionPerformed
+    
+    //delete the profiles with the person
+    private void deletePersonProfiles(Person person) {
+        String personId = person.getPersonId();
+        
+        
+        UserAccount account = business.getUserAccountDirectory().findUserAccount(personId);
+        if (account != null) {
+            business.getUserAccountDirectory().deleteAccount(account);
+        }
+        
+        EmployeeProfile employee = business.getEmployeeDirectory().findEmployee(personId);
+        if (employee != null) {
+            business.getEmployeeDirectory().removeEmployeeProfile(employee);
+        }
 
+        FacultyProfile faculty = business.getFacultyDirectory().findFaculty(personId);
+        if (faculty != null) {
+            business.getFacultyDirectory().removeFacultyProfile(faculty);
+        }
+
+        StudentProfile student = business.getStudentDirectory().findStudent(personId);
+        if (student != null) {
+            business.getStudentDirectory().removeStudentProfile(student);
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
