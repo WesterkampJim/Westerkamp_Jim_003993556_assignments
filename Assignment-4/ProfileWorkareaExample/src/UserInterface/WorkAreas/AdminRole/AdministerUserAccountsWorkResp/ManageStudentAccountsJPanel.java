@@ -65,11 +65,12 @@ public class ManageStudentAccountsJPanel extends javax.swing.JPanel {
             if (ua.getAssociatedPersonProfile().getRole().equalsIgnoreCase("Student")){
 
                 StudentProfile student = (StudentProfile) ua.getAssociatedPersonProfile();
-                Object[] row = new Object[4];
+                Object[] row = new Object[5];
                 row[0] = ua;
                 row[1] = ua.getStatus();
                 row[2] = ua.getLastUpdated();
                 row[3] = ua.getLastAccessed();
+                row[4] = student.getNUID();
 
             ((DefaultTableModel) UserAccountTable.getModel()).addRow(row);
             
@@ -132,17 +133,17 @@ public class ManageStudentAccountsJPanel extends javax.swing.JPanel {
 
         UserAccountTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "User Name", "Status", "Last Activity", "Last Updated"
+                "User Name", "Status", "Last Activity", "Last Updated", "NUID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -242,12 +243,13 @@ public class ManageStudentAccountsJPanel extends javax.swing.JPanel {
                 || account.getUserLoginName().equalsIgnoreCase(searchText)){
                     
                     if (account.getAssociatedPersonProfile() == student) {
-                        Object[] row = new Object[4];
+                        Object[] row = new Object[5];
 
                         row[0] = account;
                         row[1] = account.getStatus();
                         row[2] = account.getLastAccessed();
                         row[3] = account.getLastUpdated();
+                        row[4] = student.getNUID();
 
                         model.addRow(row);
                         foundItems = true;

@@ -99,6 +99,8 @@ public class UserAccount {
     public void setAssociatedPersonProfile(Profile p){
         lastUpdated = new Date();
         this.profile = p;
+        //login validation will update timestamp
+        recordAccess();
     }
         
     @Override

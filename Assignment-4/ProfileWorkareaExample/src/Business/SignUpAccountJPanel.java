@@ -70,8 +70,11 @@ public class SignUpAccountJPanel extends javax.swing.JPanel {
         txtUsername = new javax.swing.JTextField();
         txtNUID = new javax.swing.JTextField();
         lblPersonID5 = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        lblPersonID6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
+        setMinimumSize(new java.awt.Dimension(500, 500));
         setLayout(null);
 
         Back.setText("<< Back");
@@ -114,6 +117,12 @@ public class SignUpAccountJPanel extends javax.swing.JPanel {
         lblPersonID5.setText("NUID");
         add(lblPersonID5);
         lblPersonID5.setBounds(190, 90, 57, 16);
+        add(txtName);
+        txtName.setBounds(260, 60, 170, 22);
+
+        lblPersonID6.setText("Name");
+        add(lblPersonID6);
+        lblPersonID6.setBounds(190, 60, 57, 16);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -126,10 +135,11 @@ public class SignUpAccountJPanel extends javax.swing.JPanel {
 
         String nuid = txtNUID.getText();
         String username = txtUsername.getText();
+        String name = txtName.getText();
         String password = txtPassword.getText();
 
 
-        if (nuid.trim().isBlank() || username.trim().isBlank()|| password.trim().isBlank()) {
+        if (name.trim().isBlank() || nuid.trim().isBlank() || username.trim().isBlank()|| password.trim().isBlank()) {
             JOptionPane.showMessageDialog(this, "All fields are mandatory.",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
@@ -137,6 +147,11 @@ public class SignUpAccountJPanel extends javax.swing.JPanel {
 
         if (!username.matches("[A-Za-z0-9 ._-]+") || username.length() > 25 ) {
             JOptionPane.showMessageDialog(this,"Username must be 1–25 characters and may contain letters, numbers, periods, underscores, and hyphens.","Invalid Username", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if (!name.matches("[A-Za-z0-9 ._-]+") || username.length() > 25 ) {
+            JOptionPane.showMessageDialog(this,"Name must be 1–25 characters and may contain letters, numbers, periods, underscores, and hyphens.","Invalid Username", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
@@ -170,7 +185,7 @@ public class SignUpAccountJPanel extends javax.swing.JPanel {
         }
         
         
-        Person p = business.getPersonDirectory().newPerson("username");
+        Person p = business.getPersonDirectory().newPerson(name);
         Profile newprofile = business.getStudentDirectory().newStudentProfile(p);   
         UserAccount ua = business.getUserAccountDirectory().newUserAccount(newprofile, username.trim(), password); 
         ua.setStatus("Active");
@@ -189,7 +204,7 @@ public class SignUpAccountJPanel extends javax.swing.JPanel {
        // String r = useraccount.getRole();
         Profile profile = ua.getAssociatedPersonProfile();
         StudentProfile spp = (StudentProfile) profile;
-        studentworkareajpanel = new StudentWorkAreaJPanel(business, spp, CardSequencePanel);
+        studentworkareajpanel = new StudentWorkAreaJPanel(business, spp, CardSequencePanel, ua);
         CardSequencePanel.removeAll();
         CardSequencePanel.add("student", studentworkareajpanel);
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
@@ -209,7 +224,9 @@ public class SignUpAccountJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblPersonID3;
     private javax.swing.JLabel lblPersonID4;
     private javax.swing.JLabel lblPersonID5;
+    private javax.swing.JLabel lblPersonID6;
     private javax.swing.JTextField txtNUID;
+    private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables

@@ -10,6 +10,7 @@ import Business.Person.Person;
 import Business.Profiles.EmployeeProfile;
 import Business.Profiles.FacultyProfile;
 import Business.Profiles.Profile;
+import Business.Profiles.StudentDirectory;
 import Business.Profiles.StudentProfile;
 import Business.UserAccounts.UserAccount;
 import java.awt.Component;
@@ -53,6 +54,9 @@ public class AdminUserAccount extends javax.swing.JPanel {
             txtJobTitle.setEnabled(enabled);
             txtHourlyRate.setEnabled(enabled);
             chkTenured.setEnabled(enabled);
+            
+            ///Students only
+            txtNUID.setEnabled(!enabled);
         });
 
         
@@ -81,6 +85,14 @@ public class AdminUserAccount extends javax.swing.JPanel {
         cmbPerson.setSelectedItem(selecteduseraccount.getPersonId());
         cmbProfile.setSelectedItem(getProfileType(selecteduseraccount.getAssociatedPersonProfile()));
         txtStatus.setText(selecteduseraccount.getStatus());
+        
+        //if student, populate the NUID
+        if(selecteduseraccount.getAssociatedPersonProfile()instanceof StudentProfile){
+            StudentProfile sp = (StudentProfile) selecteduseraccount.getAssociatedPersonProfile();
+            txtNUID.setText(sp.getNUID());
+        }else{
+            txtNUID.setEnabled(false);
+        }
         // Password is blank to protect password, I know it's not real password safety.
     }
     
@@ -124,6 +136,8 @@ public class AdminUserAccount extends javax.swing.JPanel {
         lblStatus2 = new javax.swing.JLabel();
         txtHourlyRate = new javax.swing.JTextField();
         chkTenured = new javax.swing.JCheckBox();
+        lblPersonID6 = new javax.swing.JLabel();
+        txtNUID = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(null);
@@ -204,6 +218,12 @@ public class AdminUserAccount extends javax.swing.JPanel {
         });
         add(chkTenured);
         chkTenured.setBounds(70, 380, 85, 20);
+
+        lblPersonID6.setText("NUID");
+        add(lblPersonID6);
+        lblPersonID6.setBounds(370, 340, 57, 16);
+        add(txtNUID);
+        txtNUID.setBounds(410, 340, 170, 22);
     }// </editor-fold>//GEN-END:initComponents
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
@@ -213,6 +233,7 @@ public class AdminUserAccount extends javax.swing.JPanel {
         String username = txtUsername.getText().trim();
         String password = txtPassword.getText();
         String status = txtStatus.getText();
+        String nuid = txtNUID.getText();
 
         if (personId == null || role == null || username.isBlank()) {
             JOptionPane.showMessageDialog(this, "Person, profile, and username are required.","ERROR", JOptionPane.ERROR_MESSAGE);
@@ -224,6 +245,11 @@ public class AdminUserAccount extends javax.swing.JPanel {
             return;
         }
         if (password.length() > 20) {
+            JOptionPane.showMessageDialog(this, "Password must be 20 characters or fewer.","Invalid Password", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if (nuid.length() > 20) {
             JOptionPane.showMessageDialog(this, "Password must be 20 characters or fewer.","Invalid Password", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -297,6 +323,24 @@ public class AdminUserAccount extends javax.swing.JPanel {
         selecteduseraccount.setAssociatedPersonProfile(newProfile);
         selecteduseraccount.setUserName(username);
         selecteduseraccount.setStatus(status);
+        
+        //only apply nuid to students
+        if (!nuid.isBlank()){
+            StudentDirectory students = business.getStudentDirectory();
+            for (StudentProfile s : students.getStudentList()) {
+                if (s.getNUID()!=null){
+                if (s.getNUID().equalsIgnoreCase(nuid)) {
+                    JOptionPane.showMessageDialog(this, "That NUID is already in use.","Duplicate NUID", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                }
+            }
+
+            if(selecteduseraccount.getAssociatedPersonProfile()instanceof StudentProfile){
+                StudentProfile sp = (StudentProfile) selecteduseraccount.getAssociatedPersonProfile();
+                sp.setNUID(nuid);
+            }
+        }
         
         //only update if changed.
         if (!password.isEmpty()) {
@@ -402,11 +446,13 @@ public class AdminUserAccount extends javax.swing.JPanel {
     private javax.swing.JLabel lblPersonID3;
     private javax.swing.JLabel lblPersonID4;
     private javax.swing.JLabel lblPersonID5;
+    private javax.swing.JLabel lblPersonID6;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblStatus1;
     private javax.swing.JLabel lblStatus2;
     private javax.swing.JTextField txtHourlyRate;
     private javax.swing.JTextField txtJobTitle;
+    private javax.swing.JTextField txtNUID;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtUsername;
