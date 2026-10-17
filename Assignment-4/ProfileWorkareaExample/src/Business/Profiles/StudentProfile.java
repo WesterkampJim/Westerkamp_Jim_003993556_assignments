@@ -18,7 +18,7 @@ public class StudentProfile extends Profile {
 
     String NUID;
     //Transcript transcript;
-    //   EmploymentHistroy employmenthistory;
+    //   EmploymentHistory employmenthistory;
 
     public StudentProfile(Person p) {
         super(p);

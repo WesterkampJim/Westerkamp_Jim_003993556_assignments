@@ -149,19 +149,18 @@ public class CreateUserAccountJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_BackActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-
+        /// grab all the inputs
         String personId = (String) cmbPerson.getSelectedItem();
         String role = (String) cmbProfile.getSelectedItem();
         String username = txtUsername.getText();
         String password = txtPassword.getText();
 
-
+        //validate fields are filled in
         if (personId.isBlank() || role.isBlank() || username.trim().isBlank()|| password.trim().isBlank()) {
-            JOptionPane.showMessageDialog(this, "All fields are mandatory.",
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "All fields are mandatory.","ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        ///Only letters and some character
         if (!username.matches("[A-Za-z0-9 ._-]+") || username.length() > 25 ) {
             JOptionPane.showMessageDialog(this,"Username must be 1–25 characters and may contain letters, numbers, periods, underscores, and hyphens.","Invalid Username", JOptionPane.ERROR_MESSAGE);
             return;
@@ -177,7 +176,7 @@ public class CreateUserAccountJPanel extends javax.swing.JPanel {
             profile = business.getFacultyDirectory().findFaculty(personId);
         }
 
-        
+        ///make sure the user accounts do not exist already
         UserAccountDirectory accounts = business.getUserAccountDirectory();
         for (UserAccount account : accounts.getUserAccountList()) {
             if (account.getUserLoginName().equalsIgnoreCase(username)) {
@@ -190,7 +189,7 @@ public class CreateUserAccountJPanel extends javax.swing.JPanel {
             }
         }
         
-        
+        //Assign profiles to directories based on role.
         Profile newprofile = null;
         Person p= business.getPersonDirectory().findPerson(personId);
         

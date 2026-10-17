@@ -55,11 +55,7 @@ public class ManageStudentAccountsJPanel extends javax.swing.JPanel {
             ((DefaultTableModel) UserAccountTable.getModel()).removeRow(i);
         }
 
-
-
         UserAccountDirectory uad = business.getUserAccountDirectory();
-
-       
 
         for (UserAccount ua : uad.getUserAccountList()) {
             if (ua.getAssociatedPersonProfile().getRole().equalsIgnoreCase("Student")){
@@ -77,8 +73,6 @@ public class ManageStudentAccountsJPanel extends javax.swing.JPanel {
             }
         }
         
-        
-
     }
 
     
@@ -185,13 +179,11 @@ public class ManageStudentAccountsJPanel extends javax.swing.JPanel {
         int selectedRow = UserAccountTable.getSelectedRow();
         
         if (selectedRow >=0){
-            UserAccount selectedAccount = (UserAccount) UserAccountTable.getValueAt(selectedRow,0);
-            
+            UserAccount selectedAccount = (UserAccount) UserAccountTable.getValueAt(selectedRow,0);   
             AdminUserAccount mppd = new AdminUserAccount(selectedAccount, CardSequencePanel, business);
             CardSequencePanel.add(mppd);
             ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
-
-            
+ 
         }else{
             JOptionPane.showConfirmDialog(null, "Please select a user account from the list.","Warning",JOptionPane.WARNING_MESSAGE);
 
@@ -232,12 +224,12 @@ public class ManageStudentAccountsJPanel extends javax.swing.JPanel {
     // Check whether any students match.
     boolean foundItems = false;
 
-    // Search.
+    // Search through student directory
     for (StudentProfile student : business.getStudentDirectory().getStudentList()) {
 
-            // Find the student's associated user account.
+            // grab each user account for each student,
             for (UserAccount account : business.getUserAccountDirectory().getUserAccountList()) {
-                
+                //check if some of the values are equal, ignore case.
                 if (String.valueOf(student.getNUID()).equalsIgnoreCase(searchText) 
                 || student.getPerson().getPersonId().equalsIgnoreCase(searchText) 
                 || account.getUserLoginName().equalsIgnoreCase(searchText)){
@@ -261,10 +253,7 @@ public class ManageStudentAccountsJPanel extends javax.swing.JPanel {
 
     // Display a message if no matching student account was found.
     if (!foundItems) {
-        JOptionPane.showMessageDialog(this,
-                "No student account found matching your search.",
-                "Warning",
-                JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this,"No student account found matching your search.","Warning",JOptionPane.WARNING_MESSAGE);
 
         refreshTable();
     }

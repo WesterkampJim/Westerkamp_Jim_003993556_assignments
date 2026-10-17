@@ -31,7 +31,6 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
      */
     JPanel CardSequencePanel;
     Business business;
-    UserAccount selecteduseraccount;
     UserAccountDirectory userAccountDirectory;
 
 
@@ -46,25 +45,19 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
 
     public void refreshTable() {
 
-//clear supplier table
-
+        //clear supplier table
+        
         int rc = UserAccountTable.getRowCount();
         int i;
         for (i = rc - 1; i >= 0; i--) {
             ((DefaultTableModel) UserAccountTable.getModel()).removeRow(i);
         }
-
-
-
         UserAccountDirectory uad = business.getUserAccountDirectory();
-
-       
-
         for (UserAccount ua : uad.getUserAccountList()) {
 
             Object[] row = new Object[5];
             row[0] = ua;
-            row[1] = ua.getStatus(); //complete this.. (OK I WILL)
+            row[1] = ua.getStatus(); //complete this.. (OK I WILL) Added a few more attributes to display in table.
             row[2] = ua.getLastUpdated();
             row[3] = ua.getLastAccessed();
 
@@ -278,6 +271,8 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCreateNewUserAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNewUserAccountActionPerformed
+       
+        //send to user creation panel
         CreateUserAccountJPanel mppd = new CreateUserAccountJPanel(business, CardSequencePanel);
         CardSequencePanel.add(mppd);
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);

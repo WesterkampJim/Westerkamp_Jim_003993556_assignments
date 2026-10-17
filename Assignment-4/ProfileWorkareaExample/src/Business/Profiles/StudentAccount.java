@@ -9,6 +9,8 @@ package Business.Profiles;
  *
  * @author kal bugrara
  */
+
+///was this redundant with "StudentProfile" ? I found no use for it.
 public class StudentAccount {
     
 }

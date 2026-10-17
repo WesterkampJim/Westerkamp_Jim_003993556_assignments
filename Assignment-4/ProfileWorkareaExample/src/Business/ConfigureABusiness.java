@@ -49,6 +49,7 @@ class ConfigureABusiness {
         StudentProfile studentprofile0 = studentdirectory.newStudentProfile(person003);
         StudentProfile studentprofile2 = studentdirectory.newStudentProfile(person005);
         StudentProfile studentprofile3 = studentdirectory.newStudentProfile(person006);
+        //assign NUID's to students after creation.
         studentprofile3.setNUID("19011412");
         studentprofile2.setNUID("65464664");
         studentprofile0.setNUID("61467674");
@@ -66,7 +67,9 @@ class ConfigureABusiness {
         UserAccount ua5 = uadirectory.newUserAccount(facultyprofile0, "gina", "****"); /// new faculty profile objest with person02
         UserAccount ua6 = uadirectory.newUserAccount(studentprofile2, "jim", "****"); /// order products for one of the customers and performed by a sales person
         UserAccount ua7 = uadirectory.newUserAccount(studentprofile3, "anna", "****"); /// order products for one of the customers and performed by a sales person
-              
+         
+        
+        //Added a status attribute.
         ua3.setStatus("active");
         ua4.setStatus("active");
         ua5.setStatus("active");

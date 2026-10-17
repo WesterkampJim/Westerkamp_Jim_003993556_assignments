@@ -276,7 +276,7 @@ public class AdminUserAccount extends javax.swing.JPanel {
         Profile oldProfile = selecteduseraccount.getAssociatedPersonProfile();
         String oldRole = getProfileType(oldProfile);
         Profile newProfile =null;
-        
+        ///look for existing profile from this person in directories.
         if ("Employee".equalsIgnoreCase(role)) {
             newProfile =  business.getEmployeeDirectory().findEmployee(personId);
         }
@@ -286,7 +286,7 @@ public class AdminUserAccount extends javax.swing.JPanel {
         if ("Faculty".equalsIgnoreCase(role)) {
             newProfile = business.getFacultyDirectory().findFaculty(personId);
         }
-        
+        //if the person is already assigned to a profile, return
         if (newProfile != null && newProfile != oldProfile) {
             for (UserAccount account : business.getUserAccountDirectory().getUserAccountList()) {
                 if (account != selecteduseraccount && account.getAssociatedPersonProfile() == newProfile) {
@@ -377,7 +377,7 @@ public class AdminUserAccount extends javax.swing.JPanel {
                 }
             }
        
-                           
+                 //if this is an employee or faculty, populate in the employee and faculty specific fields.          
               if (newProfile instanceof EmployeeProfile) {
                     EmployeeProfile employee = (EmployeeProfile) newProfile;
                     employee.setJobTitle(jobTitle);
@@ -400,7 +400,7 @@ public class AdminUserAccount extends javax.swing.JPanel {
 
     }//GEN-LAST:event_UpdateActionPerformed
 
-    
+    ///delete profile from directory 
     private void deleteProfile(Profile profile) {
         if (profile instanceof EmployeeProfile) {
             business.getEmployeeDirectory().removeEmployeeProfile((EmployeeProfile) profile);

@@ -26,13 +26,7 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
     StudentProfile student;
     UserAccount ua;
 
-    /**
-     * Creates new form UnitRiskWorkArea
-     * @param b
-     * @param spp
-     * @param clp
-     * @param ua
-     */
+
 
     public StudentWorkAreaJPanel(Business b, StudentProfile spp, JPanel clp, UserAccount ua) {
 
@@ -179,7 +173,7 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4IdentifyResourceAssetsActionPerformed
 
     private void btnViewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewProfileActionPerformed
-        
+        //switch to view profile, bring in user account and student.
         StudentProfileJPanel spanel = new StudentProfileJPanel(business, student, CardSequencePanel, ua);
         CardSequencePanel.add("View Profile", spanel);
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
@@ -199,7 +193,7 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
 
-        CardSequencePanel.removeAll();
+       // CardSequencePanel.removeAll();
 }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed

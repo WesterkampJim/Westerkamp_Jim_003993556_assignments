@@ -109,7 +109,6 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
         // grab text from fields and populate
         ID = txtPersonID.getText();
 
-
         //validate text fields are not blank
         if (ID.isBlank()) {
             JOptionPane.showMessageDialog(this, "All fields are mandatory.", "ERROR", JOptionPane.ERROR_MESSAGE);

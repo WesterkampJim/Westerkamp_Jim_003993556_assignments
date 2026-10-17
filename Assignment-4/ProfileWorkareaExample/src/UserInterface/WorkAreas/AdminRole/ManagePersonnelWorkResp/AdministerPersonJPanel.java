@@ -91,9 +91,12 @@ public class AdministerPersonJPanel extends javax.swing.JPanel {
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
+        
         CardSequencePanel.remove(this);
         Component[] panelStack = CardSequencePanel.getComponents();
         JPanel lastPanel = (JPanel) panelStack[panelStack.length - 1];
+        
+        //find panel from pervious page and update it before going back.
         ManagePersonsJPanel managePersonJPanel = (ManagePersonsJPanel) lastPanel;
         managePersonJPanel.populateTable();
  

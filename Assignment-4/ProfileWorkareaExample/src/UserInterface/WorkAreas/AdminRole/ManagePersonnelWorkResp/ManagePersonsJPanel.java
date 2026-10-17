@@ -37,12 +37,14 @@ public class ManagePersonsJPanel extends javax.swing.JPanel {
         this.business = bz;
         this.personDirectory = personDirectory;
         initComponents();
+        
+        //populate table
         populateTable();
 
     }
 
     public void populateTable(){
-            
+            ///grab table, remove rows, loop through person directory and add each with columns.
         DefaultTableModel model = (DefaultTableModel) tblPersons.getModel();
         model.setRowCount(0);
         for (Person a : personDirectory.getPersonList()) {
@@ -162,16 +164,17 @@ public class ManagePersonsJPanel extends javax.swing.JPanel {
 
     private void NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextActionPerformed
         // TODO add your handling code here:
-        int selectedRow = tblPersons.getSelectedRow();
         
+        
+        int selectedRow = tblPersons.getSelectedRow();
+        ///if no row, show warning.
         if (selectedRow >=0){
+            //pull up adminperson card of the selected person in table. pass through selected person.
             Person selectedPerson = (Person) tblPersons.getValueAt(selectedRow,0);
-            
             AdministerPersonJPanel mppd = new AdministerPersonJPanel(business, CardSequencePanel, selectedPerson);
             CardSequencePanel.add(mppd);
             ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
-
-            
+   
         }else{
             JOptionPane.showConfirmDialog(null, "Please select a person from the list.","Warning",JOptionPane.WARNING_MESSAGE);
 
@@ -181,6 +184,7 @@ public class ManagePersonsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_NextActionPerformed
 
     private void btnCreateNewPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNewPersonActionPerformed
+        //add card and send to createperson panel for the admin.
         CreatePersonJPanel mppd = new CreatePersonJPanel(business, CardSequencePanel, personDirectory);
         CardSequencePanel.add(mppd);
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
@@ -219,7 +223,7 @@ public class ManagePersonsJPanel extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int selectedRow = tblPersons.getSelectedRow();
-
+        //if a row is selected, show prompt yes/no confirmation. remove person from persondirectory,
         if (selectedRow >= 0){
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the selected person?","Warning",JOptionPane.WARNING_MESSAGE);
@@ -228,7 +232,7 @@ public class ManagePersonsJPanel extends javax.swing.JPanel {
                 personDirectory.deletePerson(selectedPerson);
                 populateTable();
                 
-                ///also delete persons profiles from directories.
+                ///also delete persons profiles from other directories.
                 deletePersonProfiles(selectedPerson);
 
             }
@@ -239,11 +243,11 @@ public class ManagePersonsJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnDeleteActionPerformed
     
-    //delete the profiles with the person
+    //delete the profiles possibly associated the person
     private void deletePersonProfiles(Person person) {
         String personId = person.getPersonId();
         
-        
+        //look through directory, if found, delete/remove object from directory
         UserAccount account = business.getUserAccountDirectory().findUserAccount(personId);
         if (account != null) {
             business.getUserAccountDirectory().deleteAccount(account);

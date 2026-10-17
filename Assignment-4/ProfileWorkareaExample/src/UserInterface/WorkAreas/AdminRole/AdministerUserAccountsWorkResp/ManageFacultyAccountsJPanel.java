@@ -52,7 +52,9 @@ public void refreshTable() {
     DefaultTableModel model =(DefaultTableModel) UserAccountTable.getModel();
     model.setRowCount(0);
     UserAccountDirectory uad = business.getUserAccountDirectory();
+    
     for (UserAccount ua : uad.getUserAccountList()) {
+        //only pull in users with faculty profiles
         if (ua.getAssociatedPersonProfile() instanceof FacultyProfile) {
 
             FacultyProfile faculty =(FacultyProfile) ua.getAssociatedPersonProfile();
@@ -242,10 +244,7 @@ public void refreshTable() {
     }
 
     if (!foundItems) {
-        JOptionPane.showMessageDialog(this,
-                "No faculty account found matching your search.",
-                "Warning",
-                JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this,"No faculty account found matching your search.","Warning",JOptionPane.WARNING_MESSAGE);
 
         refreshTable();
     }

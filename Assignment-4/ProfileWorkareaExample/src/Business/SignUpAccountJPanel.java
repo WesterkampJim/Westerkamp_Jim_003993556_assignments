@@ -175,7 +175,7 @@ public class SignUpAccountJPanel extends javax.swing.JPanel {
                 return;
             }
         }
-        
+        ///check for NUID already in use.
         StudentDirectory students = business.getStudentDirectory();
         for (StudentProfile s : students.getStudentList()) {
             if (s.getNUID().equalsIgnoreCase(nuid)) {
@@ -199,7 +199,7 @@ public class SignUpAccountJPanel extends javax.swing.JPanel {
         
         
 
-            
+            ///Send user to student work area after successful account creation.
         StudentWorkAreaJPanel studentworkareajpanel;
        // String r = useraccount.getRole();
         Profile profile = ua.getAssociatedPersonProfile();

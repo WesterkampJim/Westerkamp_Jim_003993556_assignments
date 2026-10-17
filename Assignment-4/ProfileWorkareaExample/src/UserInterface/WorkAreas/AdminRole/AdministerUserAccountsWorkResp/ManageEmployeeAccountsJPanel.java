@@ -54,7 +54,7 @@ public void refreshTable() {
     UserAccountDirectory uad = business.getUserAccountDirectory();
     for (UserAccount ua : uad.getUserAccountList()) {
         if (ua.getAssociatedPersonProfile() instanceof EmployeeProfile) {
-
+               ///Only pull in users with employee profiles.
             EmployeeProfile employee =(EmployeeProfile) ua.getAssociatedPersonProfile();
 
             Object[] row = new Object[5];

@@ -28,12 +28,7 @@ public class StudentProfileJPanel extends javax.swing.JPanel {
     StudentProfile student;
     UserAccount ua;
 
-    /**
-     * Creates new form UnitRiskWorkArea
-     * @param b
-     * @param spp
-     * @param clp
-     */
+
 
     public StudentProfileJPanel(Business b, StudentProfile spp, JPanel clp, UserAccount ua) {
 
@@ -43,6 +38,7 @@ public class StudentProfileJPanel extends javax.swing.JPanel {
         this.ua = ua;
         initComponents();
         
+        //populate fields
         txtPerson.setText(spp.getPerson().toString());
         txtNUID.setText(spp.getNUID());
         txtUsername.setText(ua.getUserLoginName());

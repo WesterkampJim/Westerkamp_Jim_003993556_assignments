@@ -12,7 +12,7 @@ import Business.Person.Person;
  * @author kal bugrara
  */
 public class EmployeeProfile extends Profile {
-    
+    ///some attributes for the employee
     String jobTitle;
     boolean isTenured;
     float hourlyWage;
@@ -46,7 +46,8 @@ public class EmployeeProfile extends Profile {
         super(p); 
 
     }
-    @Override
+    //updated, every employee is not an admin.
+    @Override 
     public String getRole(){
         return  "Employee";
     }

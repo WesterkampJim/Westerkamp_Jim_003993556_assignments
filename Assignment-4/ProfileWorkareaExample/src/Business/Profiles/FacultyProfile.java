@@ -23,7 +23,7 @@ public class FacultyProfile extends Profile {
 //        transcript = new Transcript(this);
 //        employmenthistory = new EmploymentHistroy();
     }
-    
+    ///some attributes for the faculty
     String jobTitle;
     boolean isTenured;
     float hourlyWage;
