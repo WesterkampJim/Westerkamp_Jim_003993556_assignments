@@ -37,10 +37,11 @@ public class CustomerProfile extends Profile {
     
 
     public int getTotalPricePerformance() {
-
-        //for each order in the customer orderlist 
-        //calculate order price performance and add it to the sum
-        return 0;
+        int total=0;
+        for (Order o : orders){
+            total+=o.getOrderTotal();
+        }
+        return total;
     }
 
     public int getNumberOfOrdersAboveTotalTarget() {

@@ -20,7 +20,8 @@ public class RangePricingApplication {
     public static void main(String[] args) {
         // TODO code application logic here
        Business business = ConfigureABusiness.initializeMarkets();
-       
+
+              
         PricingMainFrame frame = new PricingMainFrame();
         frame.setVisible(true);
               

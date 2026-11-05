@@ -110,15 +110,14 @@ class ConfigureABusiness {
         OrderItem oi7 = order1.newOrderItem(products1p7, 36500, 3);
         OrderItem oi8 = order1.newOrderItem(products1p8, 50000, 2);
 
-        Order order12 = masterorderlist.newOrder(customerprofile4, salespersonprofile);
-        OrderItem oi112 = order1.newOrderItem(products1p1, 17000, 1);
-        OrderItem oi12 = order1.newOrderItem(products1p2, 9500, 4);
-        OrderItem oi13 = order1.newOrderItem(products1p3, 29500, 10);
-        OrderItem oi14 = order1.newOrderItem(products1p4, 30000, 1);
-        OrderItem oi15 = order1.newOrderItem(products1p5, 2000, 3);
-        OrderItem oi16 = order1.newOrderItem(products1p6, 95000, 2);
-        OrderItem oi17 = order1.newOrderItem(products1p7, 26500, 3);
-        OrderItem oi18 = order1.newOrderItem(products1p8, 40000, 2);
+        Order order12 = masterorderlist.newOrder(customerprofile2, salespersonprofile);
+        OrderItem oi12 = order12.newOrderItem(products1p2, 9500, 4);
+        OrderItem oi13 = order12.newOrderItem(products1p3, 29500, 10);
+        OrderItem oi14 = order12.newOrderItem(products1p4, 30000, 1);
+        OrderItem oi15 = order12.newOrderItem(products1p5, 2000, 3);
+        OrderItem oi16 = order12.newOrderItem(products1p6, 95000, 2);
+        OrderItem oi17 = order12.newOrderItem(products1p7, 26500, 3);
+        OrderItem oi18 = order12.newOrderItem(products1p8, 40000, 2);
 
         return business;
 

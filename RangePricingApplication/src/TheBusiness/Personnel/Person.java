@@ -10,8 +10,25 @@ package TheBusiness.Personnel;
  * @author kal bugrara
  */
 public class Person {
-
+    
+    String name;
     String id;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Person(String id) {
 
@@ -31,6 +48,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return getPersonId();
+        return getName();
     }
 }

@@ -59,12 +59,14 @@ class ConfigureABusiness {
         Person person009 = persondirectory.newPerson("State street"); //we use this as customer
 
 // Create Customers
-        CustomerDirectory customedirectory = business.getCustomerDirectory();
-        CustomerProfile customerprofile1 = customedirectory.newCustomerProfile(person005);
-        CustomerProfile customerprofile2 = customedirectory.newCustomerProfile(person006);
-        CustomerProfile customerprofile3 = customedirectory.newCustomerProfile(person007);
-        CustomerProfile customerprofile4 = customedirectory.newCustomerProfile(person008);
-        CustomerProfile customerprofile5 = customedirectory.newCustomerProfile(person009);
+        CustomerDirectory customerdirectory = business.getCustomerDirectory();
+        CustomerProfile customerprofile1 = customerdirectory.newCustomerProfile(person005);
+        CustomerProfile customerprofile2 = customerdirectory.newCustomerProfile(person006);
+        CustomerProfile customerprofile3 = customerdirectory.newCustomerProfile(person007);
+        CustomerProfile customerprofile4 = customerdirectory.newCustomerProfile(person008);
+        CustomerProfile customerprofile5 = customerdirectory.newCustomerProfile(person009);
+
+
 
 // Create Sales people
         SalesPersonDirectory salespersondirectory = business.getSalesPersonDirectory();
@@ -130,7 +132,7 @@ class ConfigureABusiness {
         OrderItem oi17 = order1.newOrderItem(products1p7, 26500, 3);
         OrderItem oi18 = order1.newOrderItem(products1p8, 40000, 2);
 
-        Order order13 = masterorderlist.newOrder(customerprofile4, salespersonprofile);
+        Order order13 = masterorderlist.newOrder(customerprofile2, salespersonprofile);
         oi112 = order13.newOrderItem(products1p1, 19000, 1);
         oi12 = order13.newOrderItem(products1p2, 10500, 4);
         oi13 = order13.newOrderItem(products1p3, 20500, 10);
@@ -139,6 +141,7 @@ class ConfigureABusiness {
         oi16 = order13.newOrderItem(products1p6, 105000, 2);
         oi17 = order13.newOrderItem(products1p7, 36500, 3);
         oi18 = order13.newOrderItem(products1p8, 550000, 1);
+        
 
         ProductSummary ps = new ProductSummary(products1p8);
 
@@ -148,6 +151,13 @@ class ConfigureABusiness {
         System.out.println("Frequency above target:  " + ps.getNumberAboveTarget());
         System.out.println("Frequency Below:  " + ps.getNumberBelowTarget());
 //===============================
+
+
+
+
+
+
+
 
         MarketCatalog mc = business.getMarketCatalog();
         ChannelCatalog cc = business.getChannelCatalog();

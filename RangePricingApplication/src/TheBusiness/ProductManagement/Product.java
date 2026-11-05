@@ -99,4 +99,8 @@ public class Product {
         return ceilingPrice;
     }
 
+    public String getName() {
+        return name;
+    }
+
 }

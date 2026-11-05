@@ -6,9 +6,14 @@ package UserInterface.Main.WorkSpaceProfiles;
 
 import TheBusiness.Business.Business;
 import TheBusiness.SalesManagement.SalesPersonReport;
+import TheBusiness.CustomerManagement.CustomerDirectory;
 import java.awt.CardLayout;
+import java.util.Arrays;
 import javax.swing.JPanel;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -43,6 +48,7 @@ public class SalesReportsWorkAreaJPanel extends javax.swing.JPanel {
         btnGenerateReport = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         lblTableName = new javax.swing.JLabel();
+        btnGenerateCustomersReport = new javax.swing.JButton();
 
         jSalesReportsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -65,7 +71,7 @@ public class SalesReportsWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jSalesReportsTable);
 
-        btnGenerateReport.setText("Generate Report");
+        btnGenerateReport.setText("Most Expensive Products Report");
         btnGenerateReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerateReportActionPerformed(evt);
@@ -79,7 +85,17 @@ public class SalesReportsWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblTableName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTableName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTableName.setText("Sales Report");
+        lblTableName.setAlignmentX(0.5F);
+
+        btnGenerateCustomersReport.setText("Most Valuable Customers Report");
+        btnGenerateCustomersReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateCustomersReportActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -88,28 +104,32 @@ public class SalesReportsWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(426, 426, 426)
-                        .addComponent(btnGenerateReport))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(323, 323, 323)
-                        .addComponent(lblTableName, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(106, 106, 106)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnGenerateReport, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(btnGenerateCustomersReport, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(lblTableName, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(120, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(lblTableName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(15, 15, 15)
+                .addComponent(lblTableName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(btnGenerateReport)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGenerateReport, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGenerateCustomersReport, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnBack)
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -125,24 +145,101 @@ public class SalesReportsWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateReportActionPerformed
         clearTable();
-        SalesPersonReport r = new SalesPersonReport().getMostExpensiveProductsReport(business);
-        populateTableWithReport(r);
+        //create a new report for getting most expensive items.
+        SalesPersonReport r = new SalesPersonReport().getProductsPriceReport(business);
+        lblTableName.setText("Product Price Report");
+        
+        //create a new default table, and override existing methods.
+        DefaultTableModel model = new DefaultTableModel() {
+            //change the column classes so items sort correctly on each generated report.
+            //this was a pain
+            @Override
+            public Class<?> getColumnClass(int colNum) {
+                switch (colNum) {
+                    case 0:
+                        return Object.class;
+                    case 1:
+                        return Object.class;
+                    case 2:
+                        return Double.class;
+                    default:
+                        return Object.class;
+                }
+            }
+            //set the cells to not be editable.
+             @Override
+             public boolean isCellEditable(int row, int column) {
+             return false;
+        }
+        };
+
+        // Add headers
+        for (String header : r.getHeaders()) {
+            model.addColumn(header);
+        }
+   
+        for (Object[] row : r.getData()) {
+            model.addRow(row);
+        }
+        jSalesReportsTable.setModel(model);
+
+        // create a sorting column
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        jSalesReportsTable.setRowSorter(sorter);
+        //start the sort descending.
+        sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(2, SortOrder.DESCENDING)));
+
+        sorter.sort();
     }//GEN-LAST:event_btnGenerateReportActionPerformed
 
-    private void populateTableWithReport(SalesPersonReport report){
-       DefaultTableModel model = (DefaultTableModel) jSalesReportsTable.getModel();
+    private void btnGenerateCustomersReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateCustomersReportActionPerformed
+        clearTable();
+        //create a new report for getting most expensive items.
+        SalesPersonReport r = new SalesPersonReport().getCustomersTotalPurchases(business);
+        lblTableName.setText("Product Price Report");
+        
+        //create a new default table, and override existing methods.
+        DefaultTableModel model = new DefaultTableModel() {
+            //change the column classes so items sort correctly on each generated report.
+            //this was a pain
+            @Override
+            public Class<?> getColumnClass(int colNum) {
+                switch (colNum) {
+                    case 0:
+                        return Object.class;
+                      case 1:
+                        return Double.class;
+                    default:
+                        return Object.class;
+                }
+            }
+            //set the cells to not be editable.
+             @Override
+             public boolean isCellEditable(int row, int column) {
+             return false;
+        }
+        };
 
-       for (String header : report.getHeaders()) {
-           model.addColumn(header);
-       }
+        // add headers
+        for (String header : r.getHeaders()) {
+            model.addColumn(header);
+        }
+   
+        for (Object[] row : r.getData()) {
+            model.addRow(row);
+        }
+        jSalesReportsTable.setModel(model);
 
-       for (Object[] row : report.getData()) {
-           model.addRow(row);
-       }
+        // create a sorting column
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        jSalesReportsTable.setRowSorter(sorter);
+        //start the sort descending.
+        sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(1, SortOrder.DESCENDING)));
 
-    
-    }
-    
+        sorter.sort();
+    }//GEN-LAST:event_btnGenerateCustomersReportActionPerformed
+
+
     private void clearTable(){
         DefaultTableModel model = (DefaultTableModel) jSalesReportsTable.getModel();
         int rowCount = jSalesReportsTable.getRowCount();
@@ -159,6 +256,7 @@ public class SalesReportsWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnGenerateCustomersReport;
     private javax.swing.JButton btnGenerateReport;
     private javax.swing.JTable jSalesReportsTable;
     private javax.swing.JScrollPane jScrollPane1;

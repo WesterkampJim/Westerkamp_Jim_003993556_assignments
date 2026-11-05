@@ -4,7 +4,13 @@
  */
 package TheBusiness.SalesManagement;
 
+
 import TheBusiness.Business.Business;
+import TheBusiness.CustomerManagement.CustomerDirectory;
+import TheBusiness.CustomerManagement.CustomerProfile;
+import TheBusiness.ProductManagement.Product;
+import TheBusiness.ProductManagement.ProductCatalog;
+import TheBusiness.Supplier.Supplier;
 import TheBusiness.Supplier.SupplierDirectory;
 import java.util.ArrayList;
 
@@ -53,22 +59,55 @@ public class SalesPersonReport {
     }
     
     //
-   public static SalesPersonReport getMostExpensiveProductsReport(Business business){
-        
-        SupplierDirectory sd = business.getSupplierDirectory();
-
+   public static SalesPersonReport getProductsPriceReport(Business business){
+       
         SalesPersonReport report = new SalesPersonReport();
 
-        report.addHeader("Product ID");
-        report.addHeader("Product Name");
+        report.addHeader("Supplier");
+        report.addHeader("Product");
         report.addHeader("Price");
+       
+       
+        //new list to hold all products 
+        ArrayList<Product> productlist = new ArrayList<Product>();
+        //grab the supplier directory
+        SupplierDirectory sd = business.getSupplierDirectory();
+        //declare product catalog, supplier name
+        ProductCatalog pc;
+        String suppliername;
+        //loop through suppliers
+        for (Supplier s: sd.getSuplierList()){
+            //set pc to that suppliers catalog
+            suppliername = s.getName();
+            pc = s.getProductCatalog();
+            //iteratre through all of suppliers products
+            for (Product p : pc.getProductList()){
+                //add product to the "product list"
+                productlist.add(p);
+                report.addRow(new Object[]{suppliername, p.getName(), p.getCeilingPrice()});
 
-        report.addRow(new Object[]{1, "Product A", 500.00});
-        report.addRow(new Object[]{2, "Product B", 350.00});
-        report.addRow(new Object[]{3, "Product C", 250.00});
-
+            }  
+        }
+  
         return report;
    }
+   
+   public static SalesPersonReport getCustomersTotalPurchases(Business business){
+        SalesPersonReport report = new SalesPersonReport();
+        
+        report.addHeader("Customer");
+        report.addHeader("Total Purchase Value");
+        
+        ArrayList<CustomerProfile> customerlist = new ArrayList<CustomerProfile>();
+        CustomerDirectory cd = business.getCustomerDirectory();
+        for (CustomerProfile c : cd.getCustomerlist()){
+                report.addRow(new Object[]{c.getPerson().getId(),c.getTotalPricePerformance() });
+        }
+
+        return report;
+
+   }
+   
     
     
 }
