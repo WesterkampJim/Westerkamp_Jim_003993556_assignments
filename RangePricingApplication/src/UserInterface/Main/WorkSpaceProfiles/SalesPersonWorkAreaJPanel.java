@@ -15,6 +15,7 @@ import TheBusiness.CustomerManagement.CustomerProfile;
 import TheBusiness.SalesManagement.SalesPersonProfile;
 import UserInterface.Main.WorkSpaceProfiles.OrderManagement.ManageSalesPersonOrders;
 import UserInterface.Main.WorkSpaceProfiles.OrderManagement.ProcessOrder;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -222,14 +223,17 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnPerformanceReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerformanceReportsActionPerformed
         // TODO add your handling code here:
-/* sorry I don't know what this code is supposed to be doing here?
+    /* sorry I don't know what this code is supposed to be doing here?
         CardSequencePanel.removeAll();
         ManageIncidents aos = new  ManageIncidents(businessunit, CardSequencePanel);
         aos.setAgenda(businessunit.getRiskManagementAgenda());
         CardSequencePanel.add("RiskAgendaObjectives", aos);
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
-*/
-
+    */
+        SalesReportsWorkAreaJPanel jp = new SalesReportsWorkAreaJPanel(CardSequencePanel, business);
+        CardSequencePanel.add("SalesReportsWorkAreaJPanel", jp);
+        CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
+        layout.next(CardSequencePanel);
 }//GEN-LAST:event_btnPerformanceReportsActionPerformed
 
 

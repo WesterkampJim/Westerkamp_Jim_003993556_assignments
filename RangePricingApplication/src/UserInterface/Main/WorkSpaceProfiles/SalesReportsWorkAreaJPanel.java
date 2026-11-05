@@ -4,6 +4,12 @@
  */
 package UserInterface.Main.WorkSpaceProfiles;
 
+import TheBusiness.Business.Business;
+import TheBusiness.SalesManagement.SalesPersonReport;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jtwes
@@ -13,7 +19,13 @@ public class SalesReportsWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SalesReportsWorkAreaJPanel
      */
-    public SalesReportsWorkAreaJPanel() {
+    
+    Business business;
+    javax.swing.JPanel CardSequencePanel;
+    
+    public SalesReportsWorkAreaJPanel(JPanel jp, Business business) {
+        this.business = business;
+        this.CardSequencePanel = jp;
         initComponents();
     }
 
@@ -26,19 +38,130 @@ public class SalesReportsWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jSalesReportsTable = new javax.swing.JTable();
+        btnGenerateReport = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        lblTableName = new javax.swing.JLabel();
+
+        jSalesReportsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "-", "-", "-", "-"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jSalesReportsTable);
+
+        btnGenerateReport.setText("Generate Report");
+        btnGenerateReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateReportActionPerformed(evt);
+            }
+        });
+
+        btnBack.setText("<<--BACK");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        lblTableName.setText("Sales Report");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(426, 426, 426)
+                        .addComponent(btnGenerateReport))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(323, 323, 323)
+                        .addComponent(lblTableName, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(lblTableName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(btnGenerateReport)
+                .addGap(18, 18, 18)
+                .addComponent(btnBack)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:    
+        CardSequencePanel.remove(this);
+        CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
+        layout.previous(CardSequencePanel);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateReportActionPerformed
+        clearTable();
+        SalesPersonReport r = new SalesPersonReport().getMostExpensiveProductsReport(business);
+        populateTableWithReport(r);
+    }//GEN-LAST:event_btnGenerateReportActionPerformed
+
+    private void populateTableWithReport(SalesPersonReport report){
+       DefaultTableModel model = (DefaultTableModel) jSalesReportsTable.getModel();
+
+       for (String header : report.getHeaders()) {
+           model.addColumn(header);
+       }
+
+       for (Object[] row : report.getData()) {
+           model.addRow(row);
+       }
+
+    
+    }
+    
+    private void clearTable(){
+        DefaultTableModel model = (DefaultTableModel) jSalesReportsTable.getModel();
+        int rowCount = jSalesReportsTable.getRowCount();
+        model.setColumnCount(0);
+        for(int i=rowCount-1;i>=0;i--){
+            model.removeRow(i);
+        }
+    }
+    
+    
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnGenerateReport;
+    private javax.swing.JTable jSalesReportsTable;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTableName;
     // End of variables declaration//GEN-END:variables
 }
