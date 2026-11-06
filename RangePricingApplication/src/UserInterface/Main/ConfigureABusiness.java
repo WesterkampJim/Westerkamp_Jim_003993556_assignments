@@ -32,9 +32,9 @@ class ConfigureABusiness {
 
     static Business initialize() {
         Business business = new Business("Xerox");
-        SupplierDirectory suplierdirectory = business.getSupplierDirectory();
+        SupplierDirectory supplierdirectory = business.getSupplierDirectory();
 
-        Supplier supplier1 = suplierdirectory.newSupplier("Lenovo");
+        Supplier supplier1 = supplierdirectory.newSupplier("Lenovo");
         ProductCatalog productcatalog = supplier1.getProductCatalog();
         Product products1p1 = productcatalog.newProduct("Scanner 3  1", 2000, 16500, 10000);
         Product products1p2 = productcatalog.newProduct("Scanner 4", 10000, 25000, 16500);
@@ -46,7 +46,7 @@ class ConfigureABusiness {
         Product products1p8 = productcatalog.newProduct("Photocopier 3", 30000, 70000, 50000);
 
         //       SupplierDirectory suplierdirectory = business.getSupplierDirectory();
-        Supplier supplier2 = suplierdirectory.newSupplier("Epson");
+        Supplier supplier2 = supplierdirectory.newSupplier("Epson");
         productcatalog = supplier2.getProductCatalog();
         Product products2p1 = productcatalog.newProduct("Scanner 13  1", 12000, 26000, 18500);
         Product products2p2 = productcatalog.newProduct("Scanner 14", 90000, 165000, 125000);
@@ -104,16 +104,16 @@ class ConfigureABusiness {
         OrderItem oi1 = order1.newOrderItem(products1p1, 18000, 1);
         OrderItem oi2 = order1.newOrderItem(products1p2, 19500, 4);
         OrderItem oi3 = order1.newOrderItem(products1p3, 36500, 10);
-        OrderItem oi4 = order1.newOrderItem(products1p4, 50000, 1);
+        OrderItem oi4 = order1.newOrderItem(products2p4, 50000, 1);
         OrderItem oi5 = order1.newOrderItem(products1p5, 25000, 3);
         OrderItem oi6 = order1.newOrderItem(products1p6, 105000, 2);
-        OrderItem oi7 = order1.newOrderItem(products1p7, 36500, 3);
+        OrderItem oi7 = order1.newOrderItem(products2p7, 36500, 3);
         OrderItem oi8 = order1.newOrderItem(products1p8, 50000, 2);
 
         Order order12 = masterorderlist.newOrder(customerprofile2, salespersonprofile);
         OrderItem oi12 = order12.newOrderItem(products1p2, 9500, 4);
         OrderItem oi13 = order12.newOrderItem(products1p3, 29500, 10);
-        OrderItem oi14 = order12.newOrderItem(products1p4, 30000, 1);
+        OrderItem oi14 = order12.newOrderItem(products2p4, 30000, 1);
         OrderItem oi15 = order12.newOrderItem(products1p5, 2000, 3);
         OrderItem oi16 = order12.newOrderItem(products1p6, 95000, 2);
         OrderItem oi17 = order12.newOrderItem(products1p7, 26500, 3);

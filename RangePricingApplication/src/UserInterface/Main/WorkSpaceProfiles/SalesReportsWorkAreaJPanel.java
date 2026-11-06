@@ -49,6 +49,7 @@ public class SalesReportsWorkAreaJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         lblTableName = new javax.swing.JLabel();
         btnGenerateCustomersReport = new javax.swing.JButton();
+        btnGenerateSupplierReport = new javax.swing.JButton();
 
         jSalesReportsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,6 +98,13 @@ public class SalesReportsWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnGenerateSupplierReport.setText("Supplier Report");
+        btnGenerateSupplierReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateSupplierReportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,17 +115,19 @@ public class SalesReportsWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(85, 85, 85)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(lblTableName, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(106, 106, 106)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnGenerateReport, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(btnGenerateCustomersReport, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addComponent(lblTableName, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(120, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnGenerateCustomersReport, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnGenerateSupplierReport, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,7 +139,8 @@ public class SalesReportsWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGenerateReport, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGenerateCustomersReport, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGenerateCustomersReport, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGenerateSupplierReport, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnBack)
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -196,7 +207,7 @@ public class SalesReportsWorkAreaJPanel extends javax.swing.JPanel {
         clearTable();
         //create a new report for getting most expensive items.
         SalesPersonReport r = new SalesPersonReport().getCustomersTotalPurchases(business);
-        lblTableName.setText("Product Price Report");
+        lblTableName.setText("Most Valuable Customer Spend");
         
         //create a new default table, and override existing methods.
         DefaultTableModel model = new DefaultTableModel() {
@@ -239,6 +250,59 @@ public class SalesReportsWorkAreaJPanel extends javax.swing.JPanel {
         sorter.sort();
     }//GEN-LAST:event_btnGenerateCustomersReportActionPerformed
 
+    private void btnGenerateSupplierReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateSupplierReportActionPerformed
+        clearTable();
+        //create a new report for getting most expensive items.
+        SalesPersonReport r = new SalesPersonReport().getSupplierReport(business);
+        lblTableName.setText("Supplier Sales Report");
+        
+        //create a new default table, and override existing methods.
+        DefaultTableModel model = new DefaultTableModel() {
+            //change the column classes so items sort correctly on each generated report.
+            //this was a pain
+            @Override
+            public Class<?> getColumnClass(int colNum) {
+                switch (colNum) {
+                    case 0:
+                        return Object.class;
+                    case 1:
+                        return Integer.class;
+                    case 2:
+                        return Double.class;
+                    case 3:
+                        return Double.class;
+                    case 4:
+                        return Double.class;
+                    default:
+                        return Object.class;
+                }
+            }
+            //set the cells to not be editable.
+             @Override
+             public boolean isCellEditable(int row, int column) {
+             return false;
+        }
+        };
+
+        // add headers
+        for (String header : r.getHeaders()) {
+            model.addColumn(header);
+        }
+   
+        for (Object[] row : r.getData()) {
+            model.addRow(row);
+        }
+        jSalesReportsTable.setModel(model);
+
+        // create a sorting column
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        jSalesReportsTable.setRowSorter(sorter);
+        //start the sort descending.
+        sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(1, SortOrder.DESCENDING)));
+
+        sorter.sort();
+    }//GEN-LAST:event_btnGenerateSupplierReportActionPerformed
+
 
     private void clearTable(){
         DefaultTableModel model = (DefaultTableModel) jSalesReportsTable.getModel();
@@ -258,6 +322,7 @@ public class SalesReportsWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnGenerateCustomersReport;
     private javax.swing.JButton btnGenerateReport;
+    private javax.swing.JButton btnGenerateSupplierReport;
     private javax.swing.JTable jSalesReportsTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTableName;

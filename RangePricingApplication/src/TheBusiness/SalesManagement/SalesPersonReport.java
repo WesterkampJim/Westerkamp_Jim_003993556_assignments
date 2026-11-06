@@ -8,6 +8,7 @@ package TheBusiness.SalesManagement;
 import TheBusiness.Business.Business;
 import TheBusiness.CustomerManagement.CustomerDirectory;
 import TheBusiness.CustomerManagement.CustomerProfile;
+import TheBusiness.OrderManagement.MasterOrderList;
 import TheBusiness.ProductManagement.Product;
 import TheBusiness.ProductManagement.ProductCatalog;
 import TheBusiness.Supplier.Supplier;
@@ -102,6 +103,47 @@ public class SalesPersonReport {
         CustomerDirectory cd = business.getCustomerDirectory();
         for (CustomerProfile c : cd.getCustomerlist()){
                 report.addRow(new Object[]{c.getPerson().getId(),c.getTotalPricePerformance() });
+        }
+
+        return report;
+
+   }
+   
+   
+      public static SalesPersonReport getSupplierReport(Business business){
+        SalesPersonReport report = new SalesPersonReport();
+        MasterOrderList mol = business.getMasterOrderList();
+        
+        report.addHeader("Supplier");
+        report.addHeader("Total Sales");
+        report.addHeader("Loyalty Score");
+        report.addHeader("Average Spending Per Customer");
+        report.addHeader("Top 5 Sales Score");
+        
+       
+
+        //grab the supplier directory
+        SupplierDirectory sd = business.getSupplierDirectory();
+        //declare product catalog, supplier name
+        String suppliername;
+        int totalsales;
+        double ts;
+        double loyaltyscore;
+        double avgspendpercustomer;
+        double top5avg;
+        //loop through suppliers
+        for (Supplier s: sd.getSuplierList()){           
+            suppliername = s.getName();
+            totalsales = mol.getSalesTotalBySupplier(business, s);
+            loyaltyscore = mol.getLoyaltyScore(business, s);
+            avgspendpercustomer = mol.getAverageSpendPerCustomer(business, s);
+            top5avg = mol.getTop5SalesScore(business, s);
+            ts = totalsales;
+            
+            report.addRow(new Object[]{suppliername,ts,loyaltyscore,avgspendpercustomer,top5avg});
+
+            
+            
         }
 
         return report;

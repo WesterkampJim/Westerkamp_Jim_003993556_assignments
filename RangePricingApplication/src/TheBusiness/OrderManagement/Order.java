@@ -24,6 +24,22 @@ public class Order {
     String status;
 
     public Order(){}
+
+    public CustomerProfile getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerProfile customer) {
+        this.customer = customer;
+    }
+
+    public ArrayList<OrderItem> getOrderitems() {
+        return orderitems;
+    }
+
+    public void setOrderitems(ArrayList<OrderItem> orderitems) {
+        this.orderitems = orderitems;
+    }
     
     public Order(CustomerProfile cp) {
         orderitems = new ArrayList();
