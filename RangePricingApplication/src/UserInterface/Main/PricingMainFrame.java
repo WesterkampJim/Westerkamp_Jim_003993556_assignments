@@ -60,6 +60,8 @@ public class PricingMainFrame extends javax.swing.JFrame {
         CardSequencePanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(200, 200));
+        setPreferredSize(new java.awt.Dimension(1200, 800));
 
         actionsidejpanel.setBackground(new java.awt.Color(0, 153, 153));
         actionsidejpanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
