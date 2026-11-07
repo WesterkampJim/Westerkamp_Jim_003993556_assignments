@@ -25,6 +25,14 @@ public class SalesPersonDirectory {
 
     }
 
+    public ArrayList<SalesPersonProfile> getSalespersonlist() {
+        return salespersonlist;
+    }
+
+    public void setSalespersonlist(ArrayList<SalesPersonProfile> salespersonlist) {
+        this.salespersonlist = salespersonlist;
+    }
+
     public SalesPersonProfile newSalesPersonProfile(Person p) {
 
         SalesPersonProfile sp = new SalesPersonProfile(p);

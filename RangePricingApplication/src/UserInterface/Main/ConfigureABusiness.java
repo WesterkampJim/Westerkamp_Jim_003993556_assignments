@@ -23,6 +23,8 @@ import TheBusiness.Supplier.Supplier;
 import TheBusiness.Supplier.SupplierDirectory;
 import TheBusiness.UserAccountManagement.UserAccount;
 import TheBusiness.UserAccountManagement.UserAccountDirectory;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -57,6 +59,8 @@ class ConfigureABusiness {
         Product products2p7 = productcatalog.newProduct("Premier Printer 300", 322000, 470000, 736500);
         Product products2p8 = productcatalog.newProduct("Color Photocopier 500", 350000, 580000, 780000);
 
+        
+        
 // Create Persons
         PersonDirectory persondirectory = business.getPersonDirectory();
 // person representing sales organization        
@@ -79,7 +83,10 @@ class ConfigureABusiness {
         CustomerProfile customerprofile3 = customedirectory.newCustomerProfile(person007);
         CustomerProfile customerprofile4 = customedirectory.newCustomerProfile(person008);
         CustomerProfile customerprofile5 = customedirectory.newCustomerProfile(person009);
-
+        
+      
+        
+        
 // Create Sales people
         SalesPersonDirectory salespersondirectory = business.getSalesPersonDirectory();
         SalesPersonProfile salespersonprofile = salespersondirectory.newSalesPersonProfile(xeroxsalesperson001);
@@ -118,8 +125,94 @@ class ConfigureABusiness {
         OrderItem oi16 = order12.newOrderItem(products1p6, 95000, 2);
         OrderItem oi17 = order12.newOrderItem(products1p7, 26500, 3);
         OrderItem oi18 = order12.newOrderItem(products1p8, 40000, 2);
-
+        
+        generateSuppliers(business);
+        generateCustomers(business);
         return business;
+
+    }
+    
+    
+    public static void generateSuppliers(Business business){
+        //some names in a two lists
+        String[] randomnames1= {"Big","Up","Tech","Special","Tiger","Bear","Chicago","Wendell","Caleb","Williams","Awe","Scrunk","Gernoble","Brandbury"};
+        String[] randomnames2={"Yellow","Time","Analytics","Engineering","Inc","Up","Bordoo","Red","Orange","Sonoma","Clarico","Express"};
+        
+        //random product names
+        String[] randomwords1 = {"mislead","wind","install","worry","easy","awful","technology","suitcase","order","suburb","shatter","brake","due","identity","panic","viable","bind","mix","current","excavate","series","revise","proud","trunk","shortage"};
+        String[] randomwords2 = {"laptop","tablet","smartphone","headphones","earbuds","charger","cable","mouse","keyboard","monitor","webcam","microphone","speaker","router","modem","hard drive","SSD","RAM","GPU","processor","power bank","smartwatch"};    
+        
+//init random
+        Random random = new Random();
+        
+        //combine lists randomly to generate names. add a number at the end to make sure they are unique.
+        ArrayList<String> suppliernames = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            String name = randomnames1[random.nextInt(randomnames1.length)] + " " + randomnames2[random.nextInt(randomnames2.length)] + String.valueOf(i) ;
+            suppliernames.add(name);
+        }
+
+        String productname="";
+        String s ="";
+        for (int i = 0; i < 31; i++ ){
+            s = suppliernames.get(i);
+            Supplier supplier = business.getSupplierDirectory().newSupplier(s);
+            ProductCatalog pc = supplier.getProductCatalog();
+            for (int j = 0 ; j < 51; j++){
+                productname = randomwords1[random.nextInt(randomwords1.length)] + " " + randomwords2[random.nextInt(randomwords2.length)] + String.valueOf(j);
+                Product p = pc.newProduct(productname, random.nextInt(500,15000), random.nextInt(500,15000), random.nextInt(500,15000));            
+            }
+        }
+    }
+    
+        public static void generateCustomers(Business business){
+        //some names in a two lists
+        String[] randomnames1= {"Bill","Mike","Tim","Sara","Tiger","Bob","Cheryl","Wendell","Caleb","Williams","Brad","Murph","Marco","Jon"};
+        String[] randomnames2={"Cruise","Black","Johsnon","Smith","Durgle","Up","Payton","Red","Orange","Sonoma","Clarico","Gerry"};
+        
+        //random product names
+        String[] randomwords1 = {"mislead","wind","install","worry","easy","awful","technology","suitcase","order","suburb","shatter","brake","due","identity","panic","viable","bind","mix","current","excavate","series","revise","proud","trunk","shortage"};
+        String[] randomwords2 = {"laptop","tablet","smartphone","headphones","earbuds","charger","cable","mouse","keyboard","monitor","webcam","microphone","speaker","router","modem","hard drive","SSD","RAM","GPU","processor","power bank","smartwatch"};    
+        
+        PersonDirectory persondirectory = business.getPersonDirectory();
+        CustomerDirectory customedirectory = business.getCustomerDirectory();
+        MasterOrderList masterorderlist = business.getMasterOrderList();
+        UserAccountDirectory uadirectory = business.getUserAccountDirectory();
+        SalesPersonDirectory salespersondirectory = business.getSalesPersonDirectory();
+        SupplierDirectory supplierdirectory = business.getSupplierDirectory();
+
+        //init random
+        Random random = new Random();
+        Person p;
+        CustomerProfile c;
+        SalesPersonProfile rsalesperson;
+        Supplier rsupplier;
+        Product rproduct;
+        int rprice;
+        int rquarter;
+        
+        //combine lists randomly to generate names. add a number at the end to make sure they are unique.
+        for (int i = 0; i < 301; i++) {
+            String name = randomnames1[random.nextInt(randomnames1.length)] + " " + randomnames2[random.nextInt(randomnames2.length)] + String.valueOf(i) ;
+            p = persondirectory.newPerson(name);
+            c = customedirectory.newCustomerProfile(p);                    
+            //pick random salespersonprofile
+            System.out.println(salespersondirectory.getSalespersonlist());
+            rsalesperson = salespersondirectory.getSalespersonlist().get(random.nextInt(salespersondirectory.getSalespersonlist().size()));
+            //pick random supplier
+            rsupplier = supplierdirectory.getSuplierList().get(random.nextInt(supplierdirectory.getSuplierList().size()));
+            //pick random product
+            rproduct = rsupplier.getProductCatalog().getProductList().get(random.nextInt(rsupplier.getProductCatalog().getProductList().size()));
+            //pick a random price
+            rprice = random.nextInt(100,50000);
+            //pick a random quarter
+            rquarter = random.nextInt(1,5);
+            
+            //put all those randoms together!
+            Order o = masterorderlist.newOrder(c, rsalesperson);
+            OrderItem oi1 = o.newOrderItem(rproduct, rprice, rquarter);
+        }
+
 
     }
 
